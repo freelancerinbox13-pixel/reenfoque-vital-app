@@ -470,7 +470,7 @@
             <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-kaizen" style="margin-bottom: 8px;">
               💬 Entrar al Círculo de Apoyo en Skool
             </a>
-            <a href="https://t.me/TU_CANAL_DE_TELEGRAM" target="_blank" class="btn btn-purple" style="font-size: 0.85rem;">
+            <a href="https://t.me/ReenfoqueVital" target="_blank" class="btn btn-purple" style="font-size: 0.85rem;">
               📢 Unirme al Canal Oficial de Telegram
             </a>
           </div>
@@ -586,7 +586,7 @@
       <div class="card">
         <h2>⚙️ Gestión y Respaldo de Datos</h2>
         <button class="btn btn-purple" onclick="exportData()" style="margin-bottom: 8px;">📥 Exportar Copia de Seguridad</button>
-        <button class="btn btn-danger" onclick="resetAllData()">Reiniciar Datos</button>
+        <button class="btn btn-danger" onclick="resetAllData()">Reiniciar Todos los Datos</button>
       </div>
     </div>
 
@@ -680,7 +680,7 @@
         title.textContent = '🔒 Plazas Fundadoras Completadas';
         desc.textContent = 'El cupo especial de 100 miembros se ha completado. Mantente atento a futuras aperturas de la comunidad.';
         btn.textContent = 'Entrar al Canal General';
-        btn.href = 'https://t.me/TU_CANAL_DE_TELEGRAM';
+        btn.href = 'https://t.me/ReenfoqueVital';
       } else {
         banner.style.background = 'linear-gradient(135deg, #529471, #3b6e53)';
         title.textContent = '🎁 Plaza de Miembro Fundador (Gratis)';
@@ -781,7 +781,8 @@
           <div class="habit-streak-title">${cat.name}</div>
           <div class="habit-streak-value" id="count_${cat.id}">${daysCount} Días</div>
           <label style="font-size:0.8rem; color:var(--text-light); display:block; margin-bottom:4px;">Fecha de inicio (Racha):</label>
-          <input type="date" id="date_${cat.id}" value="${savedDate}" onchange="updateHabitStreak('${cat.id}')">
+          <input type="date" id="date_${cat.id}" value="${savedDate}" onchange="updateHabitStreak('${cat.id}')" style="margin-bottom:8px;">
+          <button class="btn btn-danger" style="padding:6px; font-size:0.8rem;" onclick="resetHabitStreak('${cat.id}')">🔄 Reiniciar Racha de este Hábito</button>
         `;
         container.appendChild(card);
       });
@@ -797,6 +798,15 @@
       } else {
         localStorage.removeItem(storageKey);
         document.getElementById(`count_${catId}`).textContent = `0 Días`;
+      }
+    }
+
+    // FUNCIÓN DE REINICIO INDIVIDUAL POR HÁBITO
+    function resetHabitStreak(catId) {
+      if(confirm(`¿Deseas reiniciar el contador para ${catId}?`)) {
+        const storageKey = `rf_streak_${catId}`;
+        localStorage.removeItem(storageKey);
+        renderIndependentStreaks();
       }
     }
 
@@ -1285,7 +1295,7 @@
     }
 
     function resetAllData() {
-      if (confirm('¿Borrar todos los datos?')) { localStorage.clear(); location.reload(); }
+      if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
     }
 
     loadDarkMode();
