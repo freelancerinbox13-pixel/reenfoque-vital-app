@@ -425,22 +425,12 @@
         <button class="btn btn-purple" id="noiseBtn" onclick="toggleNoise()">Activar Sonido</button>
       </div>
 
-      <div class="card">
-        <h2>🐸 "Eat That Frog" (La Tarea Principal)</h2>
-        <input type="text" id="frogInput" placeholder="Mi tarea principal de hoy es...">
-        <button class="btn btn-success" onclick="saveFrog()">Establecer Tarea Principal</button>
-        <div id="frogStatus" style="margin-top: 8px; font-weight: bold; color: var(--primary);"></div>
-      </div>
-
-      <div class="card">
-        <h2>🌱 Método Kaizen (Pasos de 1 Min)</h2>
-        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión...">
-        <button class="btn btn-kaizen" id="kaizenBtn" onclick="showRewardAd(completeKaizen)">¡Completar Micro-Meta!</button>
-        <div id="kaizenStatus" style="display:none; margin-top:8px; text-align:center; font-weight:bold; color:var(--warning);"></div>
-      </div>
-
+      <!-- TEMPORIZADOR POMODORO -->
       <div class="card">
         <h2>⏱️ Temporizador Pomodoro</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
+          <strong>¿Para qué sirve?</strong> Ayuda a mantener alta la concentración dividiendo el trabajo en bloques de 25 minutos seguidos de descansos cortos. Previene el agotamiento mental y combate la procrastinación.
+        </p>
         <div class="timer-display" id="timer">25:00</div>
         <div class="timer-controls">
           <button class="btn" onclick="startTimer()">Iniciar</button>
@@ -448,13 +438,39 @@
         </div>
       </div>
 
+      <!-- EAT THAT FROG -->
+      <div class="card">
+        <h2>🐸 "Eat That Frog" (La Tarea Principal)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
+          <strong>¿Por qué se hace?</strong> Basado en el principio de Mark Twain: si lo primero que haces cada mañana es comerte una rana viva (tu tarea más difícil o pesada), el resto del día fluirá con éxito y sin el peso de la postergación.
+        </p>
+        <input type="text" id="frogInput" placeholder="Mi tarea principal de hoy es...">
+        <button class="btn btn-success" onclick="saveFrog()">Establecer Tarea Principal</button>
+        <div id="frogStatus" style="margin-top: 8px; font-weight: bold; color: var(--primary);"></div>
+      </div>
+
+      <!-- MÉTODO KAIZEN -->
+      <div class="card">
+        <h2>🌱 Método Kaizen (Pasos de 1 Min)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
+          <strong>¿Para qué sirve?</strong> La mejora continua a través de micro-pasos tan ridículamente pequeños que tu cerebro no active resistencia ni miedo al fracaso. Ideal para superar la inercia inicial.
+        </p>
+        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión...">
+        <button class="btn btn-kaizen" id="kaizenBtn" onclick="showRewardAd(completeKaizen)">¡Completar Micro-Meta!</button>
+        <div id="kaizenStatus" style="display:none; margin-top:8px; text-align:center; font-weight:bold; color:var(--warning);"></div>
+      </div>
+
       <!-- BLOQUE PUBLICITARIO NATIVO 1 (ENFOQUE) -->
       <div class="ad-native-card" id="adContainerFocus">
         <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
       </div>
 
+      <!-- REGLA DE LOS 2 MINUTOS -->
       <div class="card">
         <h2>⚡ Regla de los 2 Minutos</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
+          <strong>¿Por qué se hace?</strong> Si una acción te toma menos de dos minutos en ser realizada, hazla de inmediato. Elimina la acumulación mental de pequeñas tareas pendientes que consumen tu atención.
+        </p>
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
         <button class="btn btn-success" onclick="addQuickTask()">Agregar y Ejecutar</button>
         <ul id="taskList"></ul>
@@ -1114,462 +1130,6 @@
         localStorage.removeItem(storageKey);
         renderIndependentStreaks();
       }
-    }
-
-    let ecoInterval = null;
-    const ecoWords = [
-      "Inhala paz, exhala tensión", "Aquí y ahora estoy a salvo", "Este impulso pasará", 
-      "Un día a la vez", "Elijo cuidar de mi mente", "Mi cuerpo está relajado", 
-      "Suelto el control del pasado", "Cada segundo cuento", "Respiro con calma", "Todo está bien"
-    ];
-
-    function toggleEcoMental() {
-      const btn = document.getElementById('ecoBtn');
-      const display = document.getElementById('ecoWordDisplay');
-      
-      if (ecoInterval) {
-        clearInterval(ecoInterval);
-        ecoInterval = null;
-        display.textContent = "Ejercicio finalizado.";
-        btn.textContent = "Iniciar Ejercicio de Voz (30s)";
-        btn.style.backgroundColor = "var(--success)";
-        return;
-      }
-
-      let timeLeft = 30;
-      btn.textContent = "Detener Ejercicio";
-      btn.style.backgroundColor = "#c97a63";
-      
-      display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
-
-      ecoInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          clearInterval(ecoInterval);
-          ecoInterval = null;
-          display.textContent = "¡Excelente trabajo completado! 🌟";
-          btn.textContent = "Iniciar Ejercicio de Voz (30s)";
-          btn.style.backgroundColor = "var(--success)";
-        } else {
-          if (timeLeft % 4 === 0) {
-            display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
-          }
-        }
-      }, 1000);
-    }
-
-    let recordedInitialIntensity = 8;
-
-    function startIntensityCheck() {
-      recordedInitialIntensity = document.getElementById('intensityBefore').value;
-      document.getElementById('intensityStep1').style.display = 'none';
-      document.getElementById('intensityStep2').style.display = 'block';
-    }
-
-    function finishIntensityCheck() {
-      const finalIntensity = document.getElementById('intensityAfter').value;
-      const reduction = recordedInitialIntensity - finalIntensity;
-      
-      alert(`¡Buen trabajo! Has reducido la intensidad de tu impulso en ${reduction > 0 ? reduction : 0} puntos. Cada vez entrenas mejor a tu mente.`);
-      
-      showRewardAd(() => {});
-
-      document.getElementById('intensityStep2').style.display = 'none';
-      document.getElementById('intensityStep1').style.display = 'block';
-    }
-
-    const ADDICTION_PROTOCOLS = {
-      general: [
-        "Lávate las manos o la cara con agua fría inmediatamente para romper el ciclo fisiológico.",
-        "Cambia de habitación o lugar físico en este segundo.",
-        "El impulso alcanza su pico a los 10 minutos y luego decae de forma natural.",
-        "Realiza cinco respiraciones profundas inhalando en 4 segundos, reteniendo en 4 y exhalando en 6.",
-        "Nombra en voz alta 5 objetos de distintos colores que veas a tu alrededor para volver al momento presente.",
-        "Bebe un vaso entero de agua fría muy despacio, prestando total atención a la sensación física.",
-        "Da un paseo corto de 5 minutos al aire libre para cambiar de entorno y romper el bucle mental.",
-        "Escribe en un papel qué es exactamente lo que sientes y qué provocó este estado.",
-        "Pon música instrumental tranquila o sonidos de la naturaleza para enmascarar el ruido mental.",
-        "Escribe o llama a una persona de confianza de tu círculo para romper el aislamiento."
-      ],
-      drogas_blandas: [
-        "Aísla y guarda todos los accesorios de consumo fuera de tu vista inmediata.",
-        "El 'fog' o niebla mental es temporal; el aire limpio restaura tu claridad.",
-        "Cepíllate los dientes con una pasta de sabor muy intenso (como menta fuerte) para cambiar el estímulo oral.",
-        "Sal a caminar a paso ligero durante 10 minutos para redirigir la energía ansiosa del cuerpo.",
-        "Prepara y bebe una infusión caliente relajante que te reconforte sin cafeína.",
-        "Identifica con honestidad qué emoción, estrés o aburrimiento estás intentando anestesiar ahora mismo.",
-        "Realiza una tarea manual sencilla que requiera obligatoriamente el uso de ambas manos.",
-        "Ventila la habitación abriendo la ventana de par en par para renovar el aire y despejar la mente.",
-        "Cambia de ropa o date una ducha templada cerrando con agua fresca los últimos segundos.",
-        "Anota en tu diario los desencadenantes exactos que activaron este deseo repentino."
-      ],
-      drogas_duras: [
-        "Pausa absoluta. Si sientes peligro para tu salud, llama inmediatamente al 112.",
-        "Mete las manos en un recipiente con agua y hielos durante 15 segundos.",
-        "Llama sin dudarlo al teléfono de atención a crisis o apoyo psicológico urgente.",
-        "Acude de inmediato a un espacio común de tu hogar donde haya más personas presentes.",
-        "Siéntate en el suelo con la espalda recta y concéntrate únicamente en la expansión de tu abdomen al respirar.",
-        "Aleja cualquier objeto de riesgo de tu alcance físico de forma radical.",
-        "Pide ayuda explícita a un familiar o persona de apoyo cercana.",
-        "Fija la vista en un punto fijo de la pared y cuenta hacia atrás desde 100 restando de 3 en 3.",
-        "Bebe un vaso grande de agua con electrolitos o suero si dispones de ello en casa.",
-        "Recuérdate a ti mismo que tu vida y tu salud valen infinitamente más que este momento crítico."
-      ],
-      alcohol: [
-        "Toma un vaso grande de agua con hielo de inmediato.",
-        "Evita entrar a la cocina o acercarte a lugares donde haya botellas almacenadas.",
-        "Prepara una alternativa sin alcohol refrescante y saboréala con calma en un vaso especial.",
-        "Sal a dar una caminata rápida alejándote de bares, supermercados o zonas de tentación.",
-        "Llama a un compañero de tu círculo de apoyo que entienda perfectamente tu proceso.",
-        "Mastica chicle o caramelos sin azúcar para mantener la boca y la mandíbula ocupadas.",
-        "Pon una lista de reproducción de música que te motive y eleve tu estado de ánimo actual.",
-        "Escribe los beneficios físicos y económicos que has ganado desde el último día que decidiste no beber.",
-        "Dúchate con agua fresca para despejar por completo las sensaciones corporales del antojo.",
-        "Recuérdate el motivo profundo por el cual decidiste recuperar el control de tu bienestar."
-      ],
-      sexo: [
-        "Desconecta la conexión Wi-Fi de tu teléfono durante los próximos 30 minutos.",
-        "Deja tu teléfono o dispositivo en otra habitación y sal a un espacio común.",
-        "Realiza flexiones o ejercicios de fuerza rápida hasta agotar la tensión acumulada en los músculos.",
-        "Haz una lista mental rápida de 10 cosas por las que te sientes agradecido hoy.",
-        "Lávate la cara con agua muy fría prestando atención al tacto en la piel.",
-        "Lee un capítulo corto de un libro de desarrollo personal o crecimiento mental.",
-        "Reconoce que se trata de un pico hormonal y de dopamina pasajero que desaparecerá si lo ignoras.",
-        "Cambia de postura corporal o realiza estiramientos de espalda y hombros.",
-        "Escribe en tu diario qué necesidad emocional real (cariño, validación, estrés) se oculta tras este impulso.",
-        "Realiza una tarea rápida de orden o limpieza en tu entorno inmediato."
-      ],
-      juego: [
-        "Bloquea inmediatamente las aplicaciones bancarias y de apuestas de tu dispositivo.",
-        "Entrega tu tarjeta de crédito o débito a una persona de confianza.",
-        "Llama a un familiar o amigo y cuéntale con total sinceridad lo que estás experimentando.",
-        "Sal a dar un paseo sin llevar dinero en efectivo ni tarjetas en los bolsillos.",
-        "Escribe una lista detallada con las consecuencias económicas y emocionales negativas que te trajo apostar.",
-        "Piensa en el destino útil y real que le darás a ese dinero si decides conservarlo contigo hoy.",
-        "Realiza una actividad manual absorbente como dibujar, cocinar una receta compleja o arreglar algo.",
-        "Cierra todas las pestañas del navegador y apaga la pantalla del dispositivo electrónico.",
-        "Repite mentalmente: 'La banca siempre gana; jugar hoy es regalar mi paz mental'.",
-        "Respira profundamente y concéntrate en la tranquilidad de mantener tu cuenta a salvo."
-      ],
-      porno: [
-        "Cierra todas las pestañas de tu navegador de inmediato sin dudar ni un segundo.",
-        "Activa el filtro de contenidos para adultos en los ajustes de tu dispositivo.",
-        "Deja tu teléfono móvil o tablet cargando en la cocina o en el salón durante el resto de la jornada.",
-        "Enciende todas las luces de la habitación y abre las cortinas para que entre luz natural.",
-        "Sal de la estancia privada y busca compañía en las zonas comunes de tu hogar o espacio.",
-        "Haz ejercicio de alta intensidad durante 3 minutos (sentadillas o planchas) para redirigir la energía.",
-        "Toma una ducha fría para cortar de raíz el estímulo y la inercia dopaminérgica.",
-        "Abre una aplicación de lectura o un libro físico y lee al menos dos páginas completas en voz alta.",
-        "Escribe qué vacío, aburrimiento o frustración del día te ha impulsado a buscar este escape.",
-        "Reconócete y felicítate cada vez que logres cerrar el navegador a tiempo y superar el momento."
-      ]
-    };
-
-    function toggleSOS() {
-      const box = document.getElementById('sosBox');
-      const isOpening = box.style.display !== 'block';
-      box.style.display = isOpening ? 'block' : 'none';
-      if (isOpening) {
-        updateSOSAdvice();
-      }
-    }
-
-    function updateSOSAdvice() {
-      const category = document.getElementById('addictionCategorySelect').value;
-      const adviceTitle = document.getElementById('sosAdviceTitle');
-      const adviceText = document.getElementById('sosAdviceText');
-
-      const categoryNames = {
-        general: "Recomendación de Auxilio General",
-        drogas_blandas: "Protocolo: Cannabis / Vapeo",
-        drogas_duras: "Protocolo de Urgencia: Sustancias Duras",
-        alcohol: "Protocolo: Deseo de Alcohol",
-        sexo: "Protocolo: Impulsos Sexuales Compulsivos",
-        juego: "Protocolo: Control de Ludopatía / Apuestas",
-        porno: "Protocolo: Pantallas / Contenido Adultos"
-      };
-
-      const options = ADDICTION_PROTOCOLS[category] || ADDICTION_PROTOCOLS.general;
-      const randomIndex = Math.floor(Math.random() * options.length);
-
-      adviceTitle.textContent = categoryNames[category] || "Protocolo de Auxilio";
-      adviceText.textContent = `💡 "${options[randomIndex]}"`;
-    }
-
-    const EMOTION_TEMPLATES = {
-      phrases: [
-        "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.",
-        "No estás atascado, solo estás tomando impulso para el siguiente nivel.",
-        "Acepta este momento presente sin juzgarlo como bueno o malo.",
-        "Tu valor no disminuye por tener un día de baja energía.",
-        "Cada pensamiento negativo es una sugerencia, no una orden."
-      ],
-      advices: [
-        "Bebe un vaso de agua fría y haz 3 respiraciones profundas.",
-        "Realiza una micro-meta Kaizen de 1 minuto en la pestaña Enfoque.",
-        "Escribe libremente 3 líneas en tu diario íntimo sin juzgarte.",
-        "Sal a caminar 5 minutos o estira tus hombros suavemente.",
-        "Escucha una frecuencia de meditación durante 5 minutos."
-      ]
-    };
-
-    function processEmotion() {
-      const val = document.getElementById('emotionSelect').value;
-      const responseBox = document.getElementById('emotionResponse');
-
-      if (!val) { responseBox.style.display = 'none'; return; }
-
-      const randomPhraseIndex = Math.floor(Math.random() * EMOTION_TEMPLATES.phrases.length);
-      const randomAdviceIndex = Math.floor(Math.random() * EMOTION_TEMPLATES.advices.length);
-
-      const phrase = EMOTION_TEMPLATES.phrases[randomPhraseIndex];
-      const advice = EMOTION_TEMPLATES.advices[randomAdviceIndex];
-
-      const emotionNames = {
-        duelo: "Duelo / Pérdida", nube: "Nube Mental / Confusión", ira: "Ira / Enojo",
-        ansiedad: "Ansiedad / Abrumado", soledad: "Soledad / Frustración", desmotivado: "Desmotivación",
-        claridad: "Claridad / Enfoque", feliz: "Feliz / Motivado", agradecido: "Gratitud Profunda", atascado: "Sensación de Bloqueo"
-      };
-
-      document.getElementById('responseTitle').textContent = `Reencuadre para: ${emotionNames[val] || 'Tu Estado Actual'}`;
-      
-      document.getElementById('responseText').innerHTML = `
-        <p style="margin-bottom:8px;"><b>Frase:</b> "${phrase}"</p>
-        <p style="margin-bottom:12px;"><b>Consejo Práctico:</b> ${advice}</p>
-        
-        <div style="background: rgba(74, 91, 109, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
-          <p style="font-size: 0.82rem; margin: 0 0 8px 0; color: var(--primary-dark);">
-            💬 <b>¿Te cuesta gestionar esta emoción hoy?</b> No lo pases a solas.
-          </p>
-          <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="font-size: 0.85rem; padding: 8px 12px; display: inline-block;">
-            Compartir en el Foro de Skool
-          </a>
-        </div>
-      `;
-      
-      responseBox.style.display = 'block';
-    }
-
-    const FAQ_DATABASE = [
-      {
-        question: "¿Por qué me pasa esto a mí?",
-        answer: "No te ocurre a ti de forma punitiva, sino para ti. Cada momento difícil es una oportunidad para revisar tus hábitos, soltar viejas creencias y construir mayor resiliencia."
-      },
-      {
-        question: "¿Por qué siento que vuelvo a empezar de cero?",
-        answer: "El progreso no es una línea recta, es una espiral. Cuando sientes que recaes, no vuelves al inicio: ahora tienes más experiencia y autoconocimiento que la primera vez."
-      },
-      {
-        question: "¿Cómo puedo calmar la ansiedad en menos de 2 minutos?",
-        answer: "Utiliza el protocolo de respiración 4-7-8 o la respiración cuadrada en la pestaña SOS. El oxígeno consciente envía una señal directa al sistema nervioso parasimpático para reducir el ritmo cardíaco."
-      },
-      {
-        question: "¿Qué debo hacer cuando tengo un impulso muy fuerte?",
-        answer: "Pausa de inmediato. Bebe un vaso de agua fría, cambia de habitación y aplica la regla de esperar 10 minutos. Los impulsos son picos hormonales que decaen si no se alimentan."
-      },
-      {
-        question: "¿Por qué es importante separar los hechos de las historias?",
-        answer: "Nuestra mente tiende a dramatizar la realidad añadiendo interpretaciones subjetivas (historias). Separar el hecho objetivo reduce un 80% del sufrimiento innecesario."
-      },
-      {
-        question: "¿Cómo funciona el método Kaizen para crear hábitos?",
-        answer: "Consiste en reducir cualquier tarea o meta a un micro-paso tan pequeño que sea imposible fallar (por ejemplo, leer 1 página o hacer 1 flexión). La clave es la constancia diaria, no la intensidad."
-      },
-      {
-        question: "¿Qué es la técnica 'Eat That Frog'?",
-        answer: "Es el principio de abordar tu tarea más importante, difícil o temida a primera hora del día. Una vez completada, el resto de la jornada fluye con mucha mayor ligereza."
-      },
-      {
-        question: "¿Por qué fallan los propósitos tradicionales?",
-        answer: "Porque se centran en metas abstractas a largo plazo en lugar de diseñar sistemas diarios y entornos que faciliten el comportamiento deseado."
-      },
-      {
-        question: "¿Cómo puedo gestionar la culpa tras una recaída?",
-        answer: "La culpa genera estrés, y el estrés desencadena el ciclo del hábito. Acepta que es parte del proceso de aprendizaje, perdónate y retoma tu rutina en el siguiente hábito sin castigos."
-      },
-      {
-        question: "¿Qué utilidad tiene llevar un diario íntimo?",
-        answer: "Escribir desahoga la memoria de trabajo, externaliza los pensamientos obsesivos y te permite ver patrones de comportamiento recurrentes con mayor claridad."
-      },
-      {
-        question: "¿Por qué es clave tener contadores independientes de rachas?",
-        answer: "Porque una dificultad o tropiezo en un área específica de tu vida no debe invalidar los logros y avances que mantienes firmes en las demás."
-      },
-      {
-        question: "¿Cómo influyen los sonidos de enfoque en la concentración?",
-        answer: "Los ruidos de color (blanco, rosa, marrón) enmascaran los sonidos ambientales molestos y generan un fondo acústico constante que estimula las ondas cerebrales propicias para el trabajo profundo."
-      },
-      {
-        question: "¿Qué son las frecuencias vibracionales y para qué sirven?",
-        answer: "Son tonos puros diseñados para inducir estados de relajación profunda (como las ondas Alfa o Theta), ayudando a calmar la actividad mental acelerada."
-      },
-      {
-        question: "¿Cómo funciona el ejercicio de Eco Mental?",
-        answer: "Consiste en repetir frases ancla en voz alta para obligar al cerebro a cambiar de canal neuronal, interrumpiendo el bucle de pensamientos automáticos negativos."
-      },
-      {
-        question: "¿Por qué es importante registrar los desencadenantes (triggers)?",
-        answer: "Porque identificar con precisión el lugar, la hora y la emoción previa te permite anticiparte y diseñar barreras defensivas antes de que aparezca el impulso."
-      },
-      {
-        question: "¿Qué diferencia hay entre motivación y disciplina?",
-        answer: "La motivación es una emoción inestable que va y viene. La disciplina es un sistema de hábitos automáticos que te sostiene incluso cuando no tienes ganas de actuar."
-      },
-      {
-        question: "¿Cómo puedo usar la regla de los 2 minutos?",
-        answer: "Si una tarea que tienes pendiente te toma menos de 2 minutos completarla, hazla en el acto. Esto evita la acumulación de pequeñas fricciones mentales."
-      },
-      {
-        question: "¿Por qué es beneficioso formar parte de una comunidad como Skool?",
-        answer: "Porque el aislamiento mental alimenta las recaídas. Compartir tu proceso, leer experiencias de otros y recibir apoyo mutuo acelera enormemente la recuperación."
-      },
-      {
-        question: "¿Cómo afecta el uso excesivo de pantallas al estado de ánimo?",
-        answer: "La sobreestimulación digital constante satura los receptores de dopamina, generando apatía, fatiga mental y dificultad para concentrarse en tareas profundas."
-      },
-      {
-        question: "¿Cuál es el primer paso para empezar a transformar mi vida?",
-        answer: "Aceptar tu punto de partida actual sin juicios severos, comprometerte con un solo micro-hábito diario y recordar que cada día es una nueva oportunidad para reenfocarte."
-      }
-    ];
-
-    function renderFAQ() {
-      const select = document.getElementById('faqSelect');
-      if (!select) return;
-      select.innerHTML = '<option value="">-- Selecciona una pregunta --</option>';
-
-      FAQ_DATABASE.forEach((item, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = item.question;
-        select.appendChild(option);
-      });
-    }
-
-    function showFAQAnswer() {
-      const select = document.getElementById('faqSelect');
-      const responseBox = document.getElementById('faqResponseBox');
-      const index = select.value;
-
-      if (index === "" || !FAQ_DATABASE[index]) {
-        responseBox.style.display = 'none';
-        return;
-      }
-
-      const selectedFAQ = FAQ_DATABASE[index];
-      document.getElementById('faqResponseTitle').textContent = selectedFAQ.question;
-      document.getElementById('faqResponseText').textContent = selectedFAQ.answer;
-      responseBox.style.display = 'block';
-    }
-
-    function showRewardAd(onSuccessCallback) {
-      if (isUserPremium) { onSuccessCallback(); return; }
-      if (AdController) {
-        AdController.show().then(() => onSuccessCallback()).catch(() => alert("Debes ver el anuncio completo para desbloquear la función."));
-      } else {
-        onSuccessCallback();
-      }
-    }
-
-    const BOOKS_DATABASE = [
-      {
-        title: "Hábitos Atómicos",
-        author: "James Clear",
-        desc: "Una guía práctica para cambiar un 1% cada día mediante pequeñas victorias cotidianas.",
-        affiliateLink: "https://www.amazon.es/dp/8418118032",
-        extract: "<b>Resumen del Módulo:</b> Los hábitos son el interés compuesto de la superación personal. No te concentres en las metas, concéntrate en el sistema."
-      }
-    ];
-
-    function renderBooks() {
-      const container = document.getElementById('booksContainer');
-      if (!container) return;
-      container.innerHTML = '';
-
-      BOOKS_DATABASE.forEach((book, index) => {
-        const div = document.createElement('div');
-        div.className = 'book-card';
-        div.innerHTML = `
-          <h3 class="book-title">${book.title}</h3>
-          <p class="book-author"><b>Autor:</b> ${book.author}</p>
-          <p class="book-desc">${book.desc}</p>
-          <div class="book-actions">
-            <button class="btn btn-kaizen" onclick="readBookWithAd(${index})">
-              📖 Leer en la app (Ver Anuncio)
-            </button>
-            <a href="${book.affiliateLink}" target="_blank" class="btn btn-success" style="text-decoration:none;">
-              🛒 Comprar Libro (Afiliado)
-            </a>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function readBookWithAd(index) {
-      showRewardAd(() => {
-        const book = BOOKS_DATABASE[index];
-        document.getElementById('readerTitle').textContent = book.title;
-        document.getElementById('readerContent').innerHTML = book.extract;
-        document.getElementById('readerModal').style.display = 'block';
-      });
-    }
-
-    function closeReader() {
-      document.getElementById('readerModal').style.display = 'none';
-    }
-
-    const SAMPLES = {
-      brain_dump: { title: "Brain Dumping", desc: "Escribe durante 2 minutos todo lo que tienes rondando en la cabeza sin juzgar ni ordenar." },
-      facts_stories: { title: "Filtro 'Hechos vs. Historias'", desc: "Escribe la situación que te preocupa. Separa lo que es un HECHO real de lo que es una HISTORIA de tu mente." },
-      energy_audit: { title: "Auditoría de Energía", desc: "Anota 2 actividades de tu día que te hayan drenado energía y 2 que te hayan recargado." }
-    };
-
-    function loadSampleExercise() {
-      const val = document.getElementById('exerciseSampleSelect').value;
-      const box = document.getElementById('sampleExerciseBox');
-      document.getElementById('completedSampleBanner').style.display = 'none';
-      if (val && SAMPLES[val]) {
-        document.getElementById('sampleTitle').textContent = SAMPLES[val].title;
-        document.getElementById('sampleDesc').textContent = SAMPLES[val].desc;
-        document.getElementById('sampleInput').value = '';
-        box.style.display = 'block';
-      } else { box.style.display = 'none'; }
-    }
-
-    function completeSampleExercise() {
-      const input = document.getElementById('sampleInput').value.trim();
-      if (!input) { alert('Escribe algo antes de guardar.'); return; }
-      document.getElementById('sampleExerciseBox').style.display = 'none';
-      document.getElementById('completedSampleBanner').style.display = 'block';
-    }
-
-    const AFFIRMATIONS = [
-      "Tengo el poder de enfocar mi mente en lo que suma y construir paz hoy.",
-      "Cada pequeño paso fortalece mi disciplina y mi confianza."
-    ];
-
-    function newAffirmation() {
-      const idx = Math.floor(Math.random() * AFFIRMATIONS.length);
-      document.getElementById('affirmationBox').textContent = `"${AFFIRMATIONS[idx]}"`;
-    }
-
-    function loadGratitude() {
-      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
-      const items = stored ? JSON.parse(stored) : [];
-      const list = document.getElementById('gratitudeList'); list.innerHTML = '';
-      items.forEach(item => { const li = document.createElement('li'); li.textContent = `🌸 ${item}`; list.appendChild(li); });
-    }
-
-    function addGratitude() {
-      const input = document.getElementById('gratitudeInput');
-      const text = input.value.trim();
-      if (!text) return;
-      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
-      const items = stored ? JSON.parse(stored) : [];
-      items.unshift(text);
-      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
-      input.value = ''; loadGratitude();
     }
 
     let audioCtxNoise = null, noiseSource = null, isPlayingNoise = false;
