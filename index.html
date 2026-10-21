@@ -122,6 +122,15 @@
     .skool-banner h3 { margin: 0 0 8px 0; font-size: 1.15rem; }
     .skool-banner p { margin: 0 0 14px 0; font-size: 0.88rem; line-height: 1.4; opacity: 0.95; }
 
+    .ad-native-card {
+      background: rgba(74, 91, 109, 0.06);
+      border: 1px dashed var(--primary);
+      border-radius: var(--border-radius);
+      padding: 12px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
     select, input[type="text"], input[type="date"], textarea {
       width: 100%;
       padding: 12px;
@@ -415,6 +424,11 @@
         </div>
       </div>
 
+      <!-- BLOQUE PUBLICITARIO NATIVO 1 (ENFOQUE) -->
+      <div class="ad-native-card" id="adContainerFocus">
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+      </div>
+
       <div class="card">
         <h2>⚡ Regla de los 2 Minutos</h2>
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
@@ -514,6 +528,11 @@
         <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()">Iniciar Frecuencia</button>
       </div>
 
+      <!-- BLOQUE PUBLICITARIO NATIVO 2 (RELAX) -->
+      <div class="ad-native-card" id="adContainerRelax">
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+      </div>
+
       <div class="card">
         <h2>📚 Biblioteca & Lecturas de Superación</h2>
         <p style="font-size: 0.85rem; color: var(--text-light);">
@@ -563,8 +582,10 @@
         <button class="btn btn-success" onclick="comprarConStars()">Eliminar Anuncios con Telegram Stars</button>
       </div>
 
+      <!-- GESTIÓN Y RESPALDO DE DATOS -->
       <div class="card">
-        <h2>⚙️ Gestión de Datos</h2>
+        <h2>⚙️ Gestión y Respaldo de Datos</h2>
+        <button class="btn btn-purple" onclick="exportData()" style="margin-bottom: 8px;">📥 Exportar Copia de Seguridad</button>
         <button class="btn btn-danger" onclick="resetAllData()">Reiniciar Datos</button>
       </div>
     </div>
@@ -607,6 +628,13 @@
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
+    }
+
+    // SI EL USUARIO ES PREMIUM, OCULTAMOS LOS BLOQUES PUBLICITARIOS NATIVOS
+    function checkAdsVisibility() {
+      if (isUserPremium) {
+        document.querySelectorAll('.ad-native-card').forEach(el => el.style.display = 'none');
+      }
     }
 
     function toggleDarkMode() {
@@ -692,7 +720,8 @@
           if (status === 'paid') {
             isUserPremium = true;
             localStorage.setItem(CONFIG.KEYS.IS_PREMIUM, 'true');
-            alert("¡Pago realizado con éxito! Gracias por tu compra. Ahora eres usuario Premium.");
+            checkAdsVisibility();
+            alert("¡Pago realizado con éxito! Gracias por tu compra. Ahora eres usuario Premium y se han eliminado los anuncios.");
           } else if (status === 'cancelled') {
             console.log("El usuario canceló el pago.");
           } else {
@@ -704,6 +733,22 @@
         console.error("Error en el proceso de pago:", err);
         alert("Hubo un error al procesar la solicitud.");
       }
+    }
+
+    // FUNCIÓN ADICIONAL: EXPORTAR DATOS DEL LOCALSTORAGE
+    function exportData() {
+      const dataObj = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        dataObj[key] = localStorage.getItem(key);
+      }
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataObj, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "reenfoque_vital_backup.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
     }
 
     const ADDICTION_CATEGORIES = [
@@ -1255,6 +1300,7 @@
     updateTimerDisplay();
     renderIndependentStreaks();
     checkFounderBanner();
+    checkAdsVisibility();
   </script>
 </body>
 </html>
