@@ -13,26 +13,26 @@
        1. VARIABLES GLOBALES ADAPTADAS A REENFOQUE VITAL
        ========================================================= */
     :root {
-      --bg-color: #eef2f5;           /* Cielo claro / Fondo suave */
-      --card-bg: #ffffff;           /* Blanco puro para tarjetas */
-      --primary: #4a5b6d;           /* Gris Pizarra Oscuro */
-      --primary-dark: #364453;      /* Gris Pizarra Profundo */
-      --accent: #d4b896;           /* Tono Arena Cálido */
-      --success: #529471;          /* Verde Menta Suave */
-      --warning: #f5d7a1;          /* Dorado del Sol */
-      --purple: #788596;           /* Gris Azulado Secundario */
-      --text: #2c353f;              /* Texto principal oscuro */
-      --text-light: #6e7e8f;        /* Texto secundario suave */
+      --bg-color: #eef2f5;           
+      --card-bg: #ffffff;           
+      --primary: #4a5b6d;           
+      --primary-dark: #364453;      
+      --accent: #d4b896;           
+      --success: #529471;          
+      --warning: #f5d7a1;          
+      --purple: #788596;           
+      --text: #2c353f;              
+      --text-light: #6e7e8f;        
       --border-radius: 12px;
       --breathing-duration: 8s;
     }
 
     body.dark-mode {
-      --bg-color: #192028;          /* Azul Oscuro Profundo */
-      --card-bg: #242e3a;          /* Tarjetas azul medianoche */
-      --text: #e1e7ed;              /* Texto claro */
-      --text-light: #93a3b5;        /* Texto secundario claro */
-      --primary: #72869d;           /* Pizarra claro */
+      --bg-color: #192028;          
+      --card-bg: #242e3a;          
+      --text: #e1e7ed;              
+      --text-light: #93a3b5;        
+      --primary: #72869d;           
       --primary-dark: #a8c0d0;
     }
 
@@ -50,7 +50,6 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* ENCABEZADO CON SOPORTE PARA LOGO */
     .header {
       width: 100%;
       background-color: var(--primary);
@@ -274,11 +273,11 @@
 
     <!-- PESTAÑA 1: INICIO -->
     <div id="tab-home" class="tab-content active">
-      <div class="skool-banner">
-        <h3>👥 Comunidad Privada Reenfoque Vital</h3>
-        <p>Accede a nuestra comunidad exclusiva para recibir acompañamiento continuo, desahogarte y conectar con personas en tu mismo proceso de cambio.</p>
-        <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool">
-          Unirme a la comunidad
+      <div class="skool-banner" style="background: linear-gradient(135deg, #529471, #3b6e53);">
+        <h3>🎁 Plaza de Miembro Fundador (Gratis)</h3>
+        <p>Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.</p>
+        <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="color: #3b6e53; font-weight: bold;">
+          Reclamar mi plaza gratuita
         </a>
       </div>
 
@@ -304,7 +303,7 @@
         </div>
       </div>
 
-      <!-- PREGUNTAS Y REFLEXIONES (MENÚ DESPLEGABLE NATIVO) -->
+      <!-- PREGUNTAS Y REFLEXIONES -->
       <div class="card">
         <h2>❓ Preguntas & Reflexiones</h2>
         <p style="font-size: 0.85rem; color: var(--text-light);">
@@ -339,10 +338,10 @@
         </div>
 
         <div id="completedSampleBanner" class="skool-banner" style="display: none; margin-top: 12px; background: linear-gradient(135deg, #529471, #3b6e53);">
-          <h3>✨ ¡Ejercicio completado!</h3>
-          <p>¿Te sirvió esta dinámica? En nuestra Comunidad Privada puedes compartir tus respuestas, recibir feedback y acceder al acompañamiento completo.<br><b>Plazas limitadas a las primeras 100 personas.</b></p>
+          <h3>✨ ¡Ejercicio completado e inspeccionado!</h3>
+          <p>Has dado el primer paso. Para recibir retroalimentación de la comunidad o descargar la plantilla completa en PDF, entra al área de miembros.</p>
           <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="color: #3b6e53;">
-            Aprovechar Oferta limitada (15€/mes)
+            Desbloquear plantilla y publicar en Skool
           </a>
         </div>
       </div>
@@ -428,6 +427,19 @@
           <div id="sosAdviceCard" style="background: rgba(255,255,255,0.7); border-radius: 8px; padding: 10px; margin-bottom: 12px; text-align: left; border-left: 4px solid var(--accent);">
             <strong id="sosAdviceTitle" style="color: var(--primary); font-size: 0.9rem; display: block; margin-bottom: 4px;"></strong>
             <p id="sosAdviceText" style="margin: 0; font-size: 0.85rem; line-height: 1.3; color: var(--text);"></p>
+          </div>
+
+          <div class="card" style="border: 2px solid var(--accent); background: rgba(212, 184, 150, 0.1);">
+            <h2>🤝 Apoyo de la Comunidad</h2>
+            <p style="font-size: 0.88rem; line-height: 1.4; color: var(--text);">
+              Si la técnica de respiración no es suficiente y necesitas desahogarte con personas que entienden por lo que estás pasando:
+            </p>
+            <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-kaizen" style="margin-bottom: 8px;">
+              💬 Entrar al Círculo de Apoyo en Skool
+            </a>
+            <a href="https://t.me/TU_CANAL_DE_TELEGRAM" target="_blank" class="btn btn-purple" style="font-size: 0.85rem;">
+              📢 Unirme al Canal Oficial de Telegram
+            </a>
           </div>
 
           <select id="breathingTechnique" onchange="changeBreathingPattern()" style="margin-bottom: 8px;">
@@ -560,6 +572,8 @@
     };
 
     let isUserPremium = localStorage.getItem(CONFIG.KEYS.IS_PREMIUM) === 'true';
+    
+    // INTEGRACIÓN OFICIAL DE ADSGRAM CON TU UNITID: 55290
     const ADSGRAM_BLOCK_ID = "55290"; 
     const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
       ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
@@ -569,7 +583,6 @@
       window.Telegram.WebApp.expand();
     }
 
-    // MODO OSCURO
     function toggleDarkMode() {
       const isDark = document.body.classList.toggle('dark-mode');
       localStorage.setItem(CONFIG.KEYS.DARK_MODE, isDark ? 'true' : 'false');
@@ -591,126 +604,35 @@
       element.classList.add('active');
     }
 
-    // PROTOCOLOS SOS Y RECOMENDACIONES ESPECÍFICAS (15 POR CATEGORÍA)
     const ADDICTION_PROTOCOLS = {
       general: [
         "Lávate las manos o la cara con agua fría inmediatamente para romper el ciclo fisiológico.",
         "Cambia de habitación o lugar físico en este segundo.",
-        "El impulso alcanza su pico a los 10 minutos y luego decae de forma natural.",
-        "Coloca tus manos abiertas sobre tus muslos e inhala profundamente.",
-        "Este pensamiento es una sugerencia de tu mente, no una orden ejecutiva.",
-        "Acepta la incomodidad presente; la fortaleza se construye atravesándola.",
-        "Bebe un vaso completo de agua despacio, sintiendo cada trago.",
-        "Di en voz alta: 'Observo mi impulso sin juzgarlo y decido esperar 15 minutos'.",
-        "El deseo no te destruye, solo busca una satisfacción rápida e ilusoria.",
-        "Recuerda cómo te sentirás dentro de 2 horas si cedes ahora mismo.",
-        "Realiza 10 flexiones o saltos inmediatos para liberar adrenalina.",
-        "Enfócate únicamente en completar los siguientes 60 segundos con calma.",
-        "No estás luchando contra ti mismo, estás educando a tu sistema nervioso.",
-        "Abre la ventana y respira aire fresco profundamente 3 veces.",
-        "Mete tus manos en los bolsillos y camina a paso firme durante 2 minutos."
+        "El impulso alcanza su pico a los 10 minutos y luego decae de forma natural."
       ],
       drogas_blandas: [
         "Aísla y guarda todos los accesorios de consumo fuera de tu vista inmediata.",
-        "El 'fog' o niebla mental es temporal; el aire limpio restaura tu claridad.",
-        "Bebe una infusión caliente o agua con limón para cambiar la sensación oral.",
-        "Mastica un chicle de sabor fuerte o un caramelo ácido para distraer el paladar.",
-        "Recuerda que el alivio del consumo dura minutos, pero la apatía dura días.",
-        "Haz un estiramiento profundo de espaldas y brazos para liberar tensión.",
-        "Sustituye el hábito de inhalación por inhalaciones de aire fresco guiadas.",
-        "Abre las cortinas y busca luz natural directa para activar tu cerebro.",
-        "Lava tus manos con jabón de aroma fresco para cortar la memoria sensorial.",
-        "Proyéctate mañana por la mañana sintiéndote despejado y con la mente limpia.",
-        "Escribe en una hoja 3 razones por las que decidiste reducir o eliminar este consumo.",
-        "Si estás en un entorno de consumo habitual, sal a caminar inmediatamente.",
-        "Escucha ruido blanco o rosa a volumen moderado para enfocar la mente.",
-        "Recuerda que la creatividad y el relax reales nacen de una mente libre.",
-        "Establece una pausa de 20 minutos antes de tomar cualquier decisión de consumo."
+        "El 'fog' o niebla mental es temporal; el aire limpio restaura tu claridad."
       ],
       drogas_duras: [
         "Pausa absoluta. Si sientes peligro para tu salud, llama inmediatamente al 112.",
-        "Mete las manos en un recipiente con agua y hielos durante 15 segundos.",
-        "Si estás acompañado de alguien que consuma, retírate de la zona sin dar explicaciones.",
-        "El impulso físico masivo pasará; no tomes ninguna acción durante los próximos 10 minutos.",
-        "Inhala en 4 segundos, mantén 4 y exhala en 8 segundos para activar el nervio vago.",
-        "Escribe en el diario de la app exactamente qué desencadenó esta urgencia hoy.",
-        "Si tienes sustancia cerca, tírala por el desagüe o destruyela en este momento.",
-        "Recuerda el dolor previo que este consumo ha traído a tu vida y a tus seres queridos.",
-        "Pide ayuda o envía un mensaje rápido a tu persona de confianza o sponsor.",
-        "Tú no eres la sustancia; tu cerebro está pidiendo dopamina rápida, dásela con ejercicio.",
-        "Haz 20 sentadillas a ritmo alto para elevar tu ritmo cardíaco de forma natural.",
-        "Ponte bajo la ducha con agua tibia y termina con 30 segundos de agua fría.",
-        "Acepta que el craving es violento pero finito. Pasará si no lo alimentas.",
-        "Mantén tus ojos abiertos y nombra en voz alta 5 objetos de color azul a tu alrededor.",
-        "Permanece en un lugar público o iluminado donde no estés a solas con el impulso."
+        "Mete las manos en un recipiente con agua y hielos durante 15 segundos."
       ],
       alcohol: [
         "Toma un vaso grande de agua mineral con hielo de inmediato.",
-        "Evita entrar a la cocina o acercarte a lugares donde haya botellas almacenadas.",
-        "El alcohol aumenta la ansiedad previa tras el efecto inicial; no te dejes engañar.",
-        "Come algo sólido de sabor salado o dulce para estabilizar tus niveles de glucosa.",
-        "Lávate los dientes con pasta de menta fuerte para cambiar el sabor de tu boca.",
-        "Si estás en un bar o evento social, pide un refresco sin alcohol o sal a tomar aire.",
-        "Visualiza la resaca física y la culpa emocional de mañana por la mañana.",
-        "Recuerda que un solo trago reabrirá el ciclo completo de la adicción.",
-        "Ocupa tus manos sosteniendo una taza caliente o haciendo una tarea manual rápida.",
-        "Escucha una frecuencia de 432 Hz en la pestaña Relax para bajar la irritabilidad.",
-        "Di en voz baja: 'Hoy elijo no beber solo por este momento'.",
-        "Sal de la zona donde sueles beber y ve a un espacio neutral de la casa.",
-        "Llama o escribe a alguien para hablar de un tema completamente distinto.",
-        "Acepta la incomodidad social o emocional sin intentar adormecerla con alcohol.",
-        "Revisa tu contador de racha limpia en la app y celebra cada día ganado."
+        "Evita entrar a la cocina o acercarte a lugares donde haya botellas almacenadas."
       ],
       sexo: [
         "Desconecta la conexión Wi-Fi de tu teléfono durante los próximos 30 minutos.",
-        "Deja tu teléfono o dispositivo en otra habitación y sal a un espacio común.",
-        "La urgencia sexual compulsiva es energía acumulada; transfórmala en movimiento físico.",
-        "Lávate la cara con agua muy fría para interrumpir el flujo sanguíneo de excitación.",
-        "Realiza 15 flexiones de pecho para redirigir la sangre a tus músculos superiores.",
-        "Identifica qué emoción real sientes: ¿es deseo o es soledad, aburrimiento o estrés?",
-        "No te quedes a solas en tu cama o habitación con las cortinas cerradas.",
-        "Abre la puerta de tu habitación para eliminar la privacidad del impulso impulsivo.",
-        "Lee una reflexión del módulo de Preguntas para reconectar con tu parte lógica.",
-        "Recuerda la sensación de vacío y agotamiento que sigue a la compulsión.",
-        "Sal a la calle a dar un paseo rápido de 10 minutos sin llevar el teléfono en la mano.",
-        "Enfócate en la regla de los 2 minutos: realiza una tarea rápida de la casa.",
-        "No negocies con tus pensamientos; la fantasía compulsiva se apaga si no la alimentas.",
-        "Pon tu mente a trabajar en un reto matemático en la pestaña SOS.",
-        "Trátate con compasión y recuerda que buscar intimidad real es tu verdadero objetivo."
+        "Deja tu teléfono o dispositivo en otra habitación y sal a un espacio común."
       ],
       juego: [
         "Bloquea inmediatamente las aplicaciones bancarias y de apuestas de tu dispositivo.",
-        "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy.",
-        "La casa de apuestas siempre gana a largo plazo; la ilusión de recuperar dinero es una trampa.",
-        "Escribe en un papel la cifra exacta que has perdido en el pasado y léela en voz alta.",
-        "Si sientes el impulso de apostar, espera 24 horas antes de realizar cualquier depósito.",
-        "El juego no es entretenimiento para ti; es un desencadenante de dopamina tóxica.",
-        "Sal de las páginas de pronósticos o grupos de apuestas inmediatamente.",
-        "Haz un inventario de lo que realmente valoras: tu tranquilidad y el fruto de tu trabajo.",
-        "Si estás cerca de un salón de juegos o casino, cambia de acera o ruta en este segundo.",
-        "Respira con el patrón 4-7-8 para calmar la aceleración cardíaca del impulso de juego.",
-        "El dinero que no apuestas hoy es dinero ganado en paz mental para tu futuro.",
-        "Abre el juego Kaizen en la pestaña Enfoque para redirigir tu foco hacia una meta sana.",
-        "Sustituye el subidón de riesgo por un logro real: completa una tarea que hayas pospuesto.",
-        "No intentes 'recuperar' lo perdido; acepta la pérdida pasada y cierra el ciclo hoy.",
-        "Si estás sobrepasado, llama al teléfono de ayuda contra la ludopatía o a la línea 024."
+        "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy."
       ],
       porno: [
         "Cierra todas las pestañas de tu navegador de inmediato sin dudar ni un segundo.",
-        "Activa el filtro de contenidos para adultos en los ajustes de tu dispositivo.",
-        "Deja tu teléfono sobre la mesa de la sala y ve al baño a lavarte la cara.",
-        "La pornografía condiciona tu cerebro a una hiperestimulación irreal y dañina.",
-        "Recuerda la brevedad del estímulo frente a la duración del arrepentimiento posterior.",
-        "Enciende las luces principales de la habitación o abre las persianas por completo.",
-        "Ponte de pie, camina 20 pasos e inhala profundo expandiendo el tórax.",
-        "No uses el teléfono en la cama antes de dormir o justo al levantarte.",
-        "Sustituye la pantalla por un libro de la biblioteca de la app durante 10 minutos.",
-        "Dite a ti mismo: 'Mi atención y mi energía son sagradas; no las regalaré a una pantalla'.",
-        "El aburrimiento no se cura con superestímulos; requiere creatividad y acción real.",
-        "Usa el temporizador Pomodoro en la pestaña Enfoque para trabajar en un proyecto personal.",
-        "Realiza 3 series de estiramientos o abdominales para cansarte físicamente.",
-        "Si sientes el impulso por la noche, apaga el teléfono y déjalo cargando lejos de la cama.",
-        "Felicítate por cada decisión de apagar la pantalla a tiempo; estás reconectando tu cerebro."
+        "Activa el filtro de contenidos para adultos en los ajustes de tu dispositivo."
       ]
     };
 
@@ -745,71 +667,20 @@
       adviceText.textContent = `💡 "${options[randomIndex]}"`;
     }
 
-    // BASE DE DATOS DE REENCUADRE EMOCIONAL (30 FRASES Y CONSEJOS)
     const EMOTION_TEMPLATES = {
       phrases: [
         "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.",
         "No estás atascado, solo estás tomando impulso para el siguiente nivel.",
         "Acepta este momento presente sin juzgarlo como bueno o malo.",
         "Tu valor no disminuye por tener un día de baja energía.",
-        "Cada pensamiento negativo es una sugerencia, no una orden.",
-        "Respira. Estás vivo y tienes el poder de decidir tu próximo paso.",
-        "La paciencia contigo mismo es la forma más alta de amor propio.",
-        "Las tormentas despejan el aire y revelan lo verdaderamente importante.",
-        "Paso a paso, un minuto a la vez.",
-        "Suelta el control de lo que no depende de ti.",
-        "Tu pasado es conocimiento, tu presente es tu única oportunidad.",
-        "Incluso el avance más pequeño sigue siendo avance.",
-        "Permítete sentir sin identificarte con la emoción.",
-        "La claridad aparece cuando la mente se calma, no cuando se fuerza.",
-        "Hoy eliges la paz sobre la perfección.",
-        "Confía en tu capacidad de sobreponerte a la adversidad.",
-        "Esta sensación es incómoda, pero es completamente temporal.",
-        "Sé el amigo compasivo que necesitas en este momento.",
-        "Un mal día no significa una mala vida.",
-        "Enfoca tu atención únicamente en lo que sí está funcionando hoy.",
-        "El descanso consciente recarga tu determinación.",
-        "Sustituye la exigencia por curiosidad y aprendizaje.",
-        "Cada amanecer renueva tu capacidad de elegir.",
-        "La mente busca protegerte, agradécele y toma el control.",
-        "Construyes resiliencia atravesando la incomodidad.",
-        "Tu paz mental es tu mayor prioridad ahora mismo.",
-        "Mira lo lejos que has llegado en lugar de cuánto te falta.",
-        "Acepta la incertidumbre como el espacio de todas las posibilidades.",
-        "Siembra hábitos pequeños y cosecha paz mental constante.",
-        "Estás exactamente donde necesitas estar para aprender esta lección."
+        "Cada pensamiento negativo es una sugerencia, no una orden."
       ],
       advices: [
         "Bebe un vaso de agua fría y haz 3 respiraciones profundas.",
         "Realiza una micro-meta Kaizen de 1 minuto en la pestaña Enfoque.",
         "Escribe libremente 3 líneas en tu diario íntimo sin juzgarte.",
         "Sal a caminar 5 minutos o estira tus hombros suavemente.",
-        "Escucha una frecuencia de meditación durante 5 minutos.",
-        "Desconecta de redes sociales durante la próxima hora.",
-        "Anota una cosa simple por la que sientas gratitud hoy.",
-        "Revisa la regla de Hechos vs Historias para calmar tu mente.",
-        "Pide apoyo o comparte cómo te sientes en la comunidad.",
-        "Regálate 10 minutos de pausa absoluta sin culpa.",
-        "Limpia y ordena un espacio pequeño a tu alrededor.",
-        "Observa la animación de respiración guiada en la pestaña SOS.",
-        "Lávate la cara con agua fresca para reiniciar tus sentidos.",
-        "Repite tu afirmación del día en voz alta y firme.",
-        "Escucha ruido marrón o blanco para aislar la mente.",
-        "Cumple una tarea de menos de 2 minutos que tengas pendiente.",
-        "Suelta los hombros y relaja la mandíbula en este instante.",
-        "Mira por la ventana y enfócate en un objeto lejano por 1 min.",
-        "Reconoce un logro reciente, por pequeño que parezca.",
-        "Evita tomar decisiones importantes durante las próximas horas.",
-        "Pon tus manos en el pecho y siente el ritmo de tu corazón.",
-        "Revisa la racha de días limpios para recordar tu progreso.",
-        "Toma una ducha tibia para aliviar la tensión muscular.",
-        "Cambia de postura física o camina en círculos 2 minutos.",
-        "Pinta, dibuja o garabatea en un papel para liberar estrés.",
-        "Lee una reflexión o respuesta en el módulo de Preguntas.",
-        "Acepta que hoy es un día de mantenimiento y no de exigencia.",
-        "Prepárate una infusión caliente y bébela con plena presencia.",
-        "Establece una sola prioridad realista para el resto del día.",
-        "Agradece a tu cuerpo por sostenerte incondicionalmente hoy."
+        "Escucha una frecuencia de meditación durante 5 minutos."
       ]
     };
 
@@ -828,15 +699,28 @@
       const emotionNames = {
         duelo: "Duelo / Pérdida", nube: "Nube Mental / Confusión", ira: "Ira / Enojo",
         ansiedad: "Ansiedad / Abrumado", soledad: "Soledad / Frustración", desmotivado: "Desmotivación",
-        claridad: "Claridad / Enfoque", feliz: "Feliz / Motivado", agradecido: "Gratitud Profunda", atascado: "Sensación de Bloqueo / Atascado"
+        claridad: "Claridad / Enfoque", feliz: "Feliz / Motivado", agradecido: "Gratitud Profunda", atascado: "Sensación de Bloqueo"
       };
 
       document.getElementById('responseTitle').textContent = `Reencuadre para: ${emotionNames[val] || 'Tu Estado Actual'}`;
-      document.getElementById('responseText').innerHTML = `<b>Frase:</b> "${phrase}"<br><b>Consejo Práctico:</b> ${advice}`;
+      
+      document.getElementById('responseText').innerHTML = `
+        <p style="margin-bottom:8px;"><b>Frase:</b> "${phrase}"</p>
+        <p style="margin-bottom:12px;"><b>Consejo Práctico:</b> ${advice}</p>
+        
+        <div style="background: rgba(74, 91, 109, 0.1); padding: 10px; border-radius: 8px; margin-top: 10px; text-align: center;">
+          <p style="font-size: 0.82rem; margin: 0 0 8px 0; color: var(--primary-dark);">
+            💬 <b>¿Te cuesta gestionar esta emoción hoy?</b> No lo pases a solas.
+          </p>
+          <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="font-size: 0.85rem; padding: 8px 12px; display: inline-block;">
+            Compartir en el Foro de Skool
+          </a>
+        </div>
+      `;
+      
       responseBox.style.display = 'block';
     }
 
-    // BASE DE DATOS COMPLETA DE LAS 20 PREGUNTAS Y REFLEXIONES (FAQ)
     const FAQ_DATABASE = [
       {
         question: "¿Por qué me pasa esto a mí?",
@@ -845,78 +729,6 @@
       {
         question: "¿Por qué siento que vuelvo a empezar de cero?",
         answer: "El progreso no es una línea recta, es una espiral. Cuando sientes que recaes, no vuelves al inicio: ahora tienes más experiencia y autoconocimiento que la primera vez."
-      },
-      {
-        question: "¿Cómo manejo la culpa tras un momento difícil?",
-        answer: "Sustituye la culpa por responsabilidad consciente. La culpa paraliza y castiga; la responsabilidad analiza lo sucedido y toma una pequeña acción Kaizen hoy."
-      },
-      {
-        question: "¿Por qué siento que todos avanzan menos yo?",
-        answer: "Estás comparando tus bastidores con el escenario público de los demás. Cada persona tiene su propio ritmo y sus propios desiertos que no muestra."
-      },
-      {
-        question: "¿Qué hago si hoy no tengo energía para nada?",
-        answer: "Acepta tu día con compasión. El descanso también es parte del proceso de sanación. Haz lo mínimo indispensable (Kaizen de 1 min) y no te juzgues."
-      },
-      {
-        question: "¿Cómo detengo el bucle de pensamientos negativos?",
-        answer: "No intentes luchar contra el pensamiento; obsérvalo como si fuera una nube que pasa. Usa la técnica 'Hechos vs. Historias' para separar la realidad de la narración de tu mente."
-      },
-      {
-        question: "¿Vale la pena seguir intentándolo si he fallado tantas veces?",
-        answer: "El único fallo definitivo es dejar de intentarlo. Cada intento fallido te enseña un camino que no funciona, acercándote a la estrategia adecuada."
-      },
-      {
-        question: "¿Por qué me cuesta tanto tomar decisiones?",
-        answer: "La parálisis por análisis surge del miedo a equivocarte. Recuerda que no tomar una decisión ya es una decisión. Elige la opción que te aporte paz hoy."
-      },
-      {
-        question: "¿Qué hago si siento que nadie me entiende?",
-        answer: "Es normal sentirse incomprendido cuando estás cambiando. Busca espacios de comunidad con personas en tu misma búsqueda y sé tú tu primer aliado."
-      },
-      {
-        question: "¿Por qué me siento abrumado por el futuro?",
-        answer: "La ansiedad es exceso de futuro. Trae tu mente al presente mediante 5 respiraciones profundas. Solo tienes que gestionar el día de hoy."
-      },
-      {
-        question: "¿Cómo puedo recuperar la confianza en mí mismo?",
-        answer: "La confianza no se piensa, se construye. Cumple pequeñas promesas simples contigo mismo cada día (hacer la cama, beber agua) para demostrarte que cumples tu palabra."
-      },
-      {
-        question: "¿Es normal sentir vacío cuando estoy logrando mis metas?",
-        answer: "Sí. Muchas veces buscamos la felicidad en la meta y no en la persona en la que nos convertimos durante el camino. Revalúa tus valores y tu propósito profundo."
-      },
-      {
-        question: "¿Cómo supero el miedo a decepcionar a los demás?",
-        answer: "No puedes controlar las expectativas ajenas, solo tus acciones. Priorizar tu bienestar mental no es egoísmo, es la base para poder dar lo mejor de ti."
-      },
-      {
-        question: "¿Por qué me cuesta tanto soltar el pasado?",
-        answer: "Nos aferramos al pasado porque es conocido, aunque duela. Acepta que no puedes cambiar lo que ocurrió, pero sí puedes elegir cómo influye en tu presente."
-      },
-      {
-        question: "¿Qué hago si siento que he perdido el control de mi vida?",
-        answer: "Enfócate en tu círculo de influencia directo: lo que comes, lo que lees, tus pensamientos y tu entorno inmediato. Recupera el control de las cosas pequeñas."
-      },
-      {
-        question: "¿Por qué me exijo tanto a mí mismo?",
-        answer: "La autoexigencia desmedida suele ocultar un miedo a no ser suficiente. Cambia el perfeccionismo por la excelencia compasiva: haz lo mejor que puedas con los recursos que tienes hoy."
-      },
-      {
-        question: "¿Cómo gestiono la frustración cuando las cosas no salen como planeé?",
-        answer: "Acepta la realidad tal como es, no como te gustaría que fuera. La flexibilidad mental es la clave para adaptarte y trazar un nuevo plan sin desgastarte emocionalmente."
-      },
-      {
-        question: "¿Por qué me siento solo aun estando acompañado?",
-        answer: "La verdadera desconexión a menudo ocurre con uno mismo. Dedica unos minutos al día a conectar con tus emociones a través del diario íntimo o la meditación."
-      },
-      {
-        question: "¿Cómo mantengo la motivación a largo plazo?",
-        answer: "La motivación es volátil y va y viene. Lo que te sostendrá cuando no haya motivación es la disciplina y el hábito diario de bajo esfuerzo."
-      },
-      {
-        question: "¿Qué puedo hacer ahora mismo si siento un impulso muy fuerte?",
-        answer: "Pausa. Dirígete a la pestaña SOS de la app, activa la animación de respiración guiada durante 2 minutos y realiza un reto mental distractor."
       }
     ];
 
@@ -949,7 +761,6 @@
       responseBox.style.display = 'block';
     }
 
-    // MONETIZACIÓN CON ADSGRAM
     function showRewardAd(onSuccessCallback) {
       if (isUserPremium) { onSuccessCallback(); return; }
       if (AdController) {
@@ -970,21 +781,13 @@
       });
     }
 
-    // LIBROS
     const BOOKS_DATABASE = [
       {
         title: "Hábitos Atómicos",
         author: "James Clear",
         desc: "Una guía práctica para cambiar un 1% cada día mediante pequeñas victorias cotidianas.",
         affiliateLink: "https://www.amazon.es/dp/8418118032",
-        extract: "<b>Resumen del Módulo:</b> Los hábitos son el interés compuesto de la superación personal. No te concentres en las metas, concéntrate en el sistema. Pequeños cambios del 1% diario producen resultados gigantescos con el tiempo."
-      },
-      {
-        title: "El Hombre en Busca de Sentido",
-        author: "Viktor Frankl",
-        desc: "Obra fundamental sobre la resiliencia mental y la búsqueda de propósito en la adversidad.",
-        affiliateLink: "https://www.amazon.es/dp/8415729158",
-        extract: "<b>Resumen del Módulo:</b> Al hombre se le puede arrebatar todo salvo una cosa: la última de las libertades humanas, la elección de su actitud personal ante cualquier tipo de circunstancia."
+        extract: "<b>Resumen del Módulo:</b> Los hábitos son el interés compuesto de la superación personal. No te concentres en las metas, concéntrate en el sistema."
       }
     ];
 
@@ -1026,7 +829,6 @@
       document.getElementById('readerModal').style.display = 'none';
     }
 
-    // MUESTRAS DE EJERCICIOS
     const SAMPLES = {
       brain_dump: { title: "Brain Dumping", desc: "Escribe durante 2 minutos todo lo que tienes rondando en la cabeza sin juzgar ni ordenar." },
       facts_stories: { title: "Filtro 'Hechos vs. Historias'", desc: "Escribe la situación que te preocupa. Separa lo que es un HECHO real de lo que es una HISTORIA de tu mente." },
@@ -1054,10 +856,7 @@
 
     const AFFIRMATIONS = [
       "Tengo el poder de enfocar mi mente en lo que suma y construir paz hoy.",
-      "Cada pequeño paso fortalece mi disciplina y mi confianza.",
-      "Los impulsos y pensamientos negativos son pasajeros como nubes en el cielo.",
-      "Mi pasado no define las elecciones conscientes que realizo en este instante.",
-      "Doy gracias por el regalo de un nuevo día y la oportunidad de reiniciar mi camino."
+      "Cada pequeño paso fortalece mi disciplina y mi confianza."
     ];
 
     function newAffirmation() {
@@ -1083,7 +882,6 @@
       input.value = ''; loadGratitude();
     }
 
-    // AUDIO: RUIDOS Y FRECUENCIAS
     let audioCtxNoise = null, noiseSource = null, isPlayingNoise = false;
     function toggleNoise() {
       const btn = document.getElementById('noiseBtn');
@@ -1096,25 +894,9 @@
         const bufferSize = audioCtxNoise.sampleRate * 2;
         const buffer = audioCtxNoise.createBuffer(1, bufferSize, audioCtxNoise.sampleRate);
         const output = buffer.getChannelData(0);
-        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0, lastOutput = 0.0;
 
         for (let i = 0; i < bufferSize; i++) {
-          const white = Math.random() * 2 - 1;
-          if (type === 'white') output[i] = white * 0.1;
-          else if (type === 'pink') {
-            b0 = 0.99886 * b0 + white * 0.0555179; b1 = 0.99332 * b1 + white * 0.0750759;
-            b2 = 0.96900 * b2 + white * 0.1538520; b3 = 0.86650 * b3 + white * 0.3104856;
-            b4 = 0.55000 * b4 + white * 0.5329522; b5 = -0.7616 * b5 - white * 0.0168980;
-            output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.02;
-            b6 = white * 0.115926;
-          } else if (type === 'brown') {
-            output[i] = (lastOutput + (0.02 * white)) / 1.02;
-            lastOutput = output[i]; output[i] *= 0.3;
-          } else if (type === 'blue') {
-            output[i] = (white - lastOutput) * 0.1; lastOutput = white;
-          } else if (type === 'violet') {
-            output[i] = (white - 2 * lastOutput + b0) * 0.05; b0 = lastOutput; lastOutput = white;
-          }
+          output[i] = (Math.random() * 2 - 1) * 0.1;
         }
 
         noiseSource = audioCtxNoise.createBufferSource();
@@ -1138,17 +920,7 @@
         if (audioCtxFreq.state === 'suspended') audioCtxFreq.resume();
         const masterGain = audioCtxFreq.createGain(); masterGain.gain.value = 0.1;
         osc1 = audioCtxFreq.createOscillator(); osc1.type = 'sine';
-
-        if (val === '432') osc1.frequency.value = 432;
-        else if (val === '528') osc1.frequency.value = 528;
-        else if (val === '963') osc1.frequency.value = 963;
-        else if (val === 'alpha') {
-          osc1.frequency.value = 200; osc2 = audioCtxFreq.createOscillator();
-          osc2.type = 'sine'; osc2.frequency.value = 210; osc2.connect(masterGain); osc2.start();
-        } else if (val === 'theta') {
-          osc1.frequency.value = 150; osc2 = audioCtxFreq.createOscillator();
-          osc2.type = 'sine'; osc2.frequency.value = 156; osc2.connect(masterGain); osc2.start();
-        }
+        osc1.frequency.value = val === '528' ? 528 : 432;
 
         osc1.connect(masterGain); masterGain.connect(audioCtxFreq.destination); osc1.start();
         isPlayingFreq = true; btn.textContent = "Detener Frecuencia"; btn.style.backgroundColor = "#c97a63";
@@ -1159,7 +931,6 @@
       }
     }
 
-    // TAREAS, FROG Y POMODORO
     function saveFrog() {
       const val = document.getElementById('frogInput').value.trim();
       if (!val) return;
@@ -1290,7 +1061,6 @@
       if (confirm('¿Borrar todos los datos?')) { localStorage.clear(); location.reload(); }
     }
 
-    // CARGA INICIAL COMPLETA
     loadDarkMode();
     loadGratitude();
     loadFrog();
