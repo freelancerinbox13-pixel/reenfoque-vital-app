@@ -9,9 +9,6 @@
   <!-- SDK Oficial de AdsGram -->
   <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
   <style>
-    /* =========================================================
-       1. VARIABLES GLOBALES ADAPTADAS A REENFOQUE VITAL
-       ========================================================= */
     :root {
       --bg-color: #eef2f5;           
       --card-bg: #ffffff;           
@@ -233,7 +230,16 @@
 
     .timer-display { font-size: 2.8rem; text-align: center; font-weight: bold; margin: 10px 0; color: var(--primary); }
     .timer-controls { display: flex; gap: 8px; }
-    .streak-display { font-size: 2.2rem; font-weight: bold; text-align: center; color: var(--success); margin: 10px 0; }
+    
+    .habit-streak-card {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .habit-streak-title { font-weight: bold; font-size: 0.95rem; color: var(--primary); margin-bottom: 6px; }
+    .habit-streak-value { font-size: 1.5rem; font-weight: bold; color: var(--success); margin: 6px 0; text-align: center; }
 
     .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-top: 10px; }
     .badge-item { background: var(--bg-color); border: 1px solid #d0d7de; border-radius: 8px; padding: 10px 5px; font-size: 0.8rem; opacity: 0.4; }
@@ -273,10 +279,11 @@
 
     <!-- PESTAÑA 1: INICIO -->
     <div id="tab-home" class="tab-content active">
-      <div class="skool-banner" style="background: linear-gradient(135deg, #529471, #3b6e53);">
-        <h3>🎁 Plaza de Miembro Fundador (Gratis)</h3>
-        <p>Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.</p>
-        <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="color: #3b6e53; font-weight: bold;">
+      <!-- BANNER AUTOMÁTICO DE MIEMBRO FUNDADOR / 9€ -->
+      <div id="dynamicFounderBanner" class="skool-banner" style="background: linear-gradient(135deg, #529471, #3b6e53);">
+        <h3 id="bannerTitle">🎁 Plaza de Miembro Fundador (Gratis)</h3>
+        <p id="bannerDesc">Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.</p>
+        <a id="bannerBtn" href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" onclick="incrementFounderCounter()" style="color: #3b6e53; font-weight: bold;">
           Reclamar mi plaza gratuita
         </a>
       </div>
@@ -515,9 +522,11 @@
     <!-- PESTAÑA 5: PROGRESO -->
     <div id="tab-stats" class="tab-content">
       <div class="card">
-        <h2>🔥 Contador de Racha (Días Limpios)</h2>
-        <input type="date" id="startDateInput" onchange="updateStreak()">
-        <div class="streak-display" id="streakDays">0 Días</div>
+        <h2>🔥 Contadores Independientes de Rachas</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
+          Una recaída en un área no borra tu esfuerzo en las demás. Gestiona cada hábito por separado:
+        </p>
+        <div id="independentStreaksContainer"></div>
       </div>
 
       <div class="card">
@@ -558,7 +567,6 @@
     const CONFIG = {
       WORK_MINUTES: 25,
       KEYS: {
-        START_DATE: 'rf_start_date',
         KAIZEN_GOAL: 'rf_kaizen_goal',
         KAIZEN_LAST_DONE: 'rf_kaizen_last_done',
         TASKS: 'rf_quick_tasks',
@@ -567,13 +575,14 @@
         TRIGGERS: 'rf_triggers_list',
         JOURNAL: 'rf_journal_entries',
         IS_PREMIUM: 'rf_is_premium',
-        DARK_MODE: 'rf_dark_mode'
+        DARK_MODE: 'rf_dark_mode',
+        FOUNDER_COUNTER: 'rf_founder_counter'
       }
     };
 
     let isUserPremium = localStorage.getItem(CONFIG.KEYS.IS_PREMIUM) === 'true';
     
-    // INTEGRACIÓN OFICIAL DE ADSGRAM CON TU UNITID: 55290
+    // INTEGRACIÓN OFICIAL DE ADSGRAM
     const ADSGRAM_BLOCK_ID = "55290"; 
     const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
       ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
@@ -602,37 +611,181 @@
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       element.classList.add('active');
+      if(tabId === 'tab-stats') {
+        renderIndependentStreaks();
+      }
     }
 
+    // LÓGICA AUTOMÁTICA DEL BANNER DE FUNDADOR (1 a 50 gratis, 51 a 100 a 9€)
+    function checkFounderBanner() {
+      let count = parseInt(localStorage.getItem(CONFIG.KEYS.FOUNDER_COUNTER) || '0', 10);
+      const banner = document.getElementById('dynamicFounderBanner');
+      const title = document.getElementById('bannerTitle');
+      const desc = document.getElementById('bannerDesc');
+      const btn = document.getElementById('bannerBtn');
+
+      if (count >= 50 && count < 100) {
+        banner.style.background = 'linear-gradient(135deg, #788596, #4a5b6d)';
+        title.textContent = '🌟 Membresía Reducida (9€)';
+        desc.textContent = 'Se han cubierto las primeras 50 plazas gratuitas. Mantén una tarifa especial de acceso por solo 9€ para los siguientes miembros hasta completar el cupo de 100.';
+        btn.textContent = 'Acceder por 9€';
+        btn.style.color = '#4a5b6d';
+      } else if (count >= 100) {
+        banner.style.background = 'linear-gradient(135deg, #c97a63, #a94442)';
+        title.textContent = '🔒 Plazas Fundadoras Completadas';
+        desc.textContent = 'El cupo especial de 100 miembros se ha completado. Mantente atento a futuras aperturas de la comunidad.';
+        btn.textContent = 'Entrar al Canal General';
+        btn.href = 'https://t.me/TU_CANAL_DE_TELEGRAM';
+      } else {
+        banner.style.background = 'linear-gradient(135deg, #529471, #3b6e53)';
+        title.textContent = '🎁 Plaza de Miembro Fundador (Gratis)';
+        desc.textContent = 'Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.';
+        btn.textContent = 'Reclamar mi plaza gratuita';
+        btn.style.color = '#3b6e53';
+      }
+    }
+
+    function incrementFounderCounter() {
+      let count = parseInt(localStorage.getItem(CONFIG.KEYS.FOUNDER_COUNTER) || '0', 10);
+      count++;
+      localStorage.setItem(CONFIG.KEYS.FOUNDER_COUNTER, count.toString());
+      checkFounderBanner();
+    }
+
+    const ADDICTION_CATEGORIES = [
+      { id: 'general', name: '🟢 General / Hábito Principal' },
+      { id: 'drogas_blandas', name: '🌿 Drogas Blandas (Cannabis, Vape)' },
+      { id: 'drogas_duras', name: '⚠️ Sustancias Fuertes / Drogas Duras' },
+      { id: 'alcohol', name: '🍺 Alcohol' },
+      { id: 'sexo', name: '🔥 Sexo / Impulsos Compulsivos' },
+      { id: 'juego', name: '🎰 Juego / Apuestas' },
+      { id: 'porno', name: '🔞 Pantallas / Contenido Adultos' }
+    ];
+
+    function renderIndependentStreaks() {
+      const container = document.getElementById('independentStreaksContainer');
+      if(!container) return;
+      container.innerHTML = '';
+
+      ADDICTION_CATEGORIES.forEach(cat => {
+        const storageKey = `rf_streak_${cat.id}`;
+        const savedDate = localStorage.getItem(storageKey) || '';
+        
+        let daysCount = 0;
+        if(savedDate) {
+          daysCount = Math.floor(Math.abs(new Date() - new Date(savedDate)) / (1000 * 60 * 60 * 24));
+        }
+
+        const card = document.createElement('div');
+        card.className = 'habit-streak-card';
+        card.innerHTML = `
+          <div class="habit-streak-title">${cat.name}</div>
+          <div class="habit-streak-value" id="count_${cat.id}">${daysCount} Días</div>
+          <label style="font-size:0.8rem; color:var(--text-light); display:block; margin-bottom:4px;">Fecha de inicio (Racha):</label>
+          <input type="date" id="date_${cat.id}" value="${savedDate}" onchange="updateHabitStreak('${cat.id}')">
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateHabitStreak(catId) {
+      const inputVal = document.getElementById(`date_${catId}`).value;
+      const storageKey = `rf_streak_${catId}`;
+      if(inputVal) {
+        localStorage.setItem(storageKey, inputVal);
+        const diff = Math.floor(Math.abs(new Date() - new Date(inputVal)) / (1000 * 60 * 60 * 24));
+        document.getElementById(`count_${catId}`).textContent = `${diff} Día${diff !== 1 ? 's' : ''}`;
+      } else {
+        localStorage.removeItem(storageKey);
+        document.getElementById(`count_${catId}`).textContent = `0 Días`;
+      }
+    }
+
+    // 10 OPCIONES DE AUXILIO AMPLIADAS PARA CADA CATEGORÍA
     const ADDICTION_PROTOCOLS = {
       general: [
         "Lávate las manos o la cara con agua fría inmediatamente para romper el ciclo fisiológico.",
         "Cambia de habitación o lugar físico en este segundo.",
-        "El impulso alcanza su pico a los 10 minutos y luego decae de forma natural."
+        "El impulso alcanza su pico a los 10 minutos y luego decae de forma natural.",
+        "Realiza cinco respiraciones profundas inhalando en 4 segundos, reteniendo en 4 y exhalando en 6.",
+        "Nombra en voz alta 5 objetos de distintos colores que veas a tu alrededor para volver al momento presente.",
+        "Bebe un vaso entero de agua fría muy despacio, prestando total atención a la sensación física.",
+        "Da un paseo corto de 5 minutos al aire libre para cambiar de entorno y romper el bucle mental.",
+        "Escribe en un papel qué es exactamente lo que sientes y qué provocó este estado.",
+        "Pon música instrumental tranquila o sonidos de la naturaleza para enmascarar el ruido mental.",
+        "Escribe o llama a una persona de confianza de tu círculo para romper el aislamiento."
       ],
       drogas_blandas: [
         "Aísla y guarda todos los accesorios de consumo fuera de tu vista inmediata.",
-        "El 'fog' o niebla mental es temporal; el aire limpio restaura tu claridad."
+        "El 'fog' o niebla mental es temporal; el aire limpio restaura tu claridad.",
+        "Cepíllate los dientes con una pasta de sabor muy intenso (como menta fuerte) para cambiar el estímulo oral.",
+        "Sal a caminar a paso ligero durante 10 minutos para redirigir la energía ansiosa del cuerpo.",
+        "Prepara y bebe una infusión caliente relajante que te reconforte sin cafeína.",
+        "Identifica con honestidad qué emoción, estrés o aburrimiento estás intentando anestesiar ahora mismo.",
+        "Realiza una tarea manual sencilla que requiera obligatoriamente el uso de ambas manos.",
+        "Ventila la habitación abriendo la ventana de par en par para renovar el aire y despejar la mente.",
+        "Cambia de ropa o date una ducha templada cerrando con agua fresca los últimos segundos.",
+        "Anota en tu diario los desencadenantes exactos que activaron este deseo repentino."
       ],
       drogas_duras: [
         "Pausa absoluta. Si sientes peligro para tu salud, llama inmediatamente al 112.",
-        "Mete las manos en un recipiente con agua y hielos durante 15 segundos."
+        "Mete las manos en un recipiente con agua y hielos durante 15 segundos.",
+        "Llama sin dudarlo al teléfono de atención a crisis o apoyo psicológico urgente.",
+        "Acude de inmediato a un espacio común de tu hogar donde haya más personas presentes.",
+        "Siéntate en el suelo con la espalda recta y concéntrate únicamente en la expansión de tu abdomen al respirar.",
+        "Aleja cualquier objeto de riesgo de tu alcance físico de forma radical.",
+        "Pide ayuda explícita a un familiar o persona de apoyo cercana.",
+        "Fija la vista en un punto fijo de la pared y cuenta hacia atrás desde 100 restando de 3 en 3.",
+        "Bebe un vaso grande de agua con electrolitos o suero si dispones de ello en casa.",
+        "Recuérdate a ti mismo que tu vida y tu salud valen infinitamente más que este momento crítico."
       ],
       alcohol: [
         "Toma un vaso grande de agua mineral con hielo de inmediato.",
-        "Evita entrar a la cocina o acercarte a lugares donde haya botellas almacenadas."
+        "Evita entrar a la cocina o acercarte a lugares donde haya botellas almacenadas.",
+        "Prepara una alternativa sin alcohol refrescante y saboréala con calma en un vaso especial.",
+        "Sal a dar una caminata rápida alejándote de bares, supermercados o zonas de tentación.",
+        "Llama a un compañero de tu círculo de apoyo que entienda perfectamente tu proceso.",
+        "Mastica chicle o caramelos sin azúcar para mantener la boca y la mandíbula ocupadas.",
+        "Pon una lista de reproducción de música que te motive y eleve tu estado de ánimo actual.",
+        "Escribe los beneficios físicos y económicos que has ganado desde el último día que decidiste no beber.",
+        "Dúchate con agua fresca para despejar por completo las sensaciones corporales del antojo.",
+        "Recuérdate el motivo profundo por el cual decidiste recuperar el control de tu bienestar."
       ],
       sexo: [
         "Desconecta la conexión Wi-Fi de tu teléfono durante los próximos 30 minutos.",
-        "Deja tu teléfono o dispositivo en otra habitación y sal a un espacio común."
+        "Deja tu teléfono o dispositivo en otra habitación y sal a un espacio común.",
+        "Realiza flexiones o ejercicios de fuerza rápida hasta agotar la tensión acumulada en los músculos.",
+        "Haz una lista mental rápida de 10 cosas por las que te sientes agradecido hoy.",
+        "Lávate la cara con agua muy fría prestando atención al tacto en la piel.",
+        "Lee un capítulo corto de un libro de desarrollo personal o crecimiento mental.",
+        "Reconoce que se trata de un pico hormonal y de dopamina pasajero que desaparecerá si lo ignoras.",
+        "Cambia de postura corporal o realiza estiramientos de espalda y hombros.",
+        "Escribe en tu diario qué necesidad emocional real (cariño, validación, estrés) se oculta tras este impulso.",
+        "Realiza una tarea rápida de orden o limpieza en tu entorno inmediato."
       ],
       juego: [
         "Bloquea inmediatamente las aplicaciones bancarias y de apuestas de tu dispositivo.",
-        "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy."
+        "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy.",
+        "Llama a un familiar o amigo y cuéntale con total sinceridad lo que estás experimentando.",
+        "Sal a dar un paseo sin llevar dinero en efectivo ni tarjetas de crédito en los bolsillos.",
+        "Escribe una lista detallada con las consecuencias económicas y emocionales negativas que te trajo apostar.",
+        "Piensa en el destino útil y real que le darás a ese dinero si decides conservarlo contigo hoy.",
+        "Realiza una actividad manual absorbente como dibujar, cocinar una receta compleja o arreglar algo.",
+        "Cierra todas las pestañas del navegador y apaga la pantalla del dispositivo electrónico.",
+        "Repite mentalmente: 'La banca siempre gana; jugar hoy es regalar mi paz mental'.",
+        "Respira profundamente y concéntrate en la tranquilidad de mantener tu cuenta a salvo."
       ],
       porno: [
         "Cierra todas las pestañas de tu navegador de inmediato sin dudar ni un segundo.",
-        "Activa el filtro de contenidos para adultos en los ajustes de tu dispositivo."
+        "Activa el filtro de contenidos para adultos en los ajustes de tu dispositivo.",
+        "Deja tu teléfono móvil o tablet cargando en la cocina o en el salón durante el resto de la jornada.",
+        "Enciende todas las luces de la habitación y abre las cortinas para que entre luz natural.",
+        "Sal de la estancia privada y busca compañía en las zonas comunes de tu hogar o espacio.",
+        "Haz ejercicio de alta intensidad durante 3 minutos (sentadillas o planchas) para redirigir la energía.",
+        "Toma una ducha fría para cortar de raíz el estímulo y la inercia dopaminérgica.",
+        "Abre una aplicación de lectura o un libro físico y lee al menos dos páginas completas en voz alta.",
+        "Escribe qué vacío, aburrimiento o frustración del día te ha impulsado a buscar este escape.",
+        "Reconócete y felicítate cada vez que logres cerrar el navegador a tiempo y superar el momento."
       ]
     };
 
@@ -885,7 +1038,6 @@
     let audioCtxNoise = null, noiseSource = null, isPlayingNoise = false;
     function toggleNoise() {
       const btn = document.getElementById('noiseBtn');
-      const type = document.getElementById('noiseTypeSelect').value;
 
       if (!isPlayingNoise) {
         audioCtxNoise = new (window.AudioContext || window.webkitAudioContext)();
@@ -1044,19 +1196,6 @@
       entries.forEach(e => { const li = document.createElement('li'); li.innerHTML = `📝 ${e}`; list.appendChild(li); });
     }
 
-    function updateStreak() {
-      const val = document.getElementById('startDateInput').value;
-      if (!val) return;
-      localStorage.setItem(CONFIG.KEYS.START_DATE, val);
-      const diff = Math.floor(Math.abs(new Date() - new Date(val)) / (1000 * 60 * 60 * 24));
-      document.getElementById('streakDays').textContent = `${diff} Día${diff !== 1 ? 's' : ''}`;
-    }
-
-    function loadStreak() {
-      const saved = localStorage.getItem(CONFIG.KEYS.START_DATE);
-      if (saved) { document.getElementById('startDateInput').value = saved; updateStreak(); }
-    }
-
     function resetAllData() {
       if (confirm('¿Borrar todos los datos?')) { localStorage.clear(); location.reload(); }
     }
@@ -1068,10 +1207,11 @@
     loadTasks();
     loadTriggers();
     loadJournal();
-    loadStreak();
     renderFAQ();
     renderBooks();
     updateTimerDisplay();
+    renderIndependentStreaks();
+    checkFounderBanner();
   </script>
 </body>
 </html>
