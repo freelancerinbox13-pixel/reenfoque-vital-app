@@ -647,12 +647,29 @@
       </div>
     </div>
 
-    <!-- PESTAÑA 6: PLAN DE TRANSFORMACIÓN (4 MESES Y ANUAL) -->
+    <!-- PESTAÑA 6: PLAN DE TRANSFORMACIÓN -->
     <div id="tab-transformation" class="tab-content">
       <div class="skool-banner" style="background: linear-gradient(135deg, #364453, #192028);">
-        <h3>🗺️ Mapa de Ejecución: 4 Meses</h3>
-        <p>Un sistema implacable de 16 semanas para reinventar tu vida, ordenar tus finanzas y ejecutar sin distracciones.</p>
-        <div id="transformationProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--accent); margin-top: 6px;">Progreso Global: 0% Completado</div>
+        <h3>🗺️ Tu Ruta de Transformación y Bienestar</h3>
+        <p>Un sistema de ejecución paso a paso para cuidar de ti, ordenar tu entorno y recuperar el control mental y emocional.</p>
+        <div id="transformationProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--accent); margin-top: 6px;">Progreso Sprint (4M): 0% Completado</div>
+        <div id="yearlyProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--warning); margin-top: 4px;">Progreso Anual (12M): 0% Completado</div>
+      </div>
+
+      <!-- TEXTO EXPLICATIVO DE SALUD MENTAL -->
+      <div class="card" style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent);">
+        <h3 style="margin-bottom: 8px; font-size: 1rem; color: var(--primary);">🧠 ¿Por dónde empezar a reconstruir tu equilibrio?</h3>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 10px;">
+          La fatiga mental, la rumiación y la ansiedad a menudo nacen del caos: la falta de rumbos claros y el agotamiento diario. No se trata de "intentar" cambiar con fuerza de voluntad agotada, sino de contar con un <strong>sistema de ejecución estructurado</strong> que te acompañe a recuperar la paz a tu ritmo.
+        </p>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 0;">
+          Dispones de dos rutas según tu momento actual: un <strong>Sprint de 4 Meses</strong> para frenar el desgaste y estabilizarte, o el <strong>Mapa Maestro de 12 Meses</strong> para una reinvención profunda y sostenible.
+        </p>
+      </div>
+
+      <!-- BANNER PUBLICITARIO NATIVO 3 (TRANSFORMACIÓN) -->
+      <div class="ad-native-card" id="adContainerTransformation">
+        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
       </div>
 
       <!-- FASE 0: LIMPIEZA -->
@@ -829,7 +846,7 @@
       const percent = Math.round((checkedCount / totalTasks) * 100);
       const progressEl = document.getElementById('transformationProgressText');
       if (progressEl) {
-        progressEl.textContent = `Progreso Global: ${percent}% Completado`;
+        progressEl.textContent = `Progreso Sprint (4M): ${percent}% Completado`;
       }
     }
 
@@ -863,6 +880,12 @@
         } else if (checkbox) {
           localStorage.setItem(`rf_y_task_${i}`, 'false');
         }
+      }
+
+      const percent = Math.round((checkedCount / totalTasks) * 100);
+      const progressEl = document.getElementById('yearlyProgressText');
+      if (progressEl) {
+        progressEl.textContent = `Progreso Anual (12M): ${percent}% Completado`;
       }
     }
 
