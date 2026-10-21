@@ -279,11 +279,12 @@
       background-color: var(--card-bg); display: flex; justify-content: space-around;
       align-items: center; border-top: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 -2px 10px rgba(0,0,0,0.03); z-index: 1000;
+      overflow-x: auto;
     }
 
-    .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; color: var(--text-light); cursor: pointer; width: 20%; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: var(--text-light); cursor: pointer; min-width: 60px; }
     .nav-item.active { color: var(--primary); font-weight: bold; }
-    .nav-item span { font-size: 1.2rem; margin-bottom: 2px; }
+    .nav-item span { font-size: 1.1rem; margin-bottom: 2px; }
   </style>
 </head>
 <body>
@@ -646,6 +647,113 @@
       </div>
     </div>
 
+    <!-- PESTAÑA 6: PLAN DE TRANSFORMACIÓN (4 MESES Y ANUAL) -->
+    <div id="tab-transformation" class="tab-content">
+      <div class="skool-banner" style="background: linear-gradient(135deg, #364453, #192028);">
+        <h3>🗺️ Mapa de Ejecución: 4 Meses</h3>
+        <p>Un sistema implacable de 16 semanas para reinventar tu vida, ordenar tus finanzas y ejecutar sin distracciones.</p>
+        <div id="transformationProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--accent); margin-top: 6px;">Progreso Global: 0% Completado</div>
+      </div>
+
+      <!-- FASE 0: LIMPIEZA -->
+      <div class="card">
+        <h2>🛡️ Fase 0: Protocolo de Limpieza (Semanas 1-2)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Detén la hemorragia, aíslate del ruido y audita tu punto de partida.</p>
+        
+        <div class="habit-streak-card">
+          <div class="habit-streak-title">📋 Auditoría de Cero (Libreta Personal)</div>
+          <textarea id="auditNotes" placeholder="Escribe aquí tus notas de finanzas, habilidades actuales y fugas de energía..."></textarea>
+          <button class="btn btn-success" style="margin-top: 8px;" onclick="saveTransformationNotes()">Guardar Auditoría</button>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_1" onchange="updateTransformationProgress()"> Aislamiento activo (Modo Monje / Cero redes sociales pasivas)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_2" onchange="updateTransformationProgress()"> Chasis físico blindado (Sueño de 7-8h y entrenamiento diario)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_3" onchange="updateTransformationProgress()"> Auditoría de finanzas y habilidades completada</label>
+        </div>
+      </div>
+
+      <!-- FASE 1: ESTABILIZACIÓN -->
+      <div class="card">
+        <h2>⚡ Fase 1: Estabilización y Activos (Mes 2)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Asegura flujo de caja rápido y elige un único vehículo de enfoque.</p>
+        <div>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_4" onchange="updateTransformationProgress()"> Ingreso de supervivencia asegurado (Monetización rápida)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_5" onchange="updateTransformationProgress()"> Elección del Dragón (Selección de un único proyecto principal)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_6" onchange="updateTransformationProgress()"> Arquitectura del entorno y bloques de tiempo configurados</label>
+        </div>
+      </div>
+
+      <!-- FASE 2: TRACCIÓN -->
+      <div class="card">
+        <h2>🚀 Fase 2: Tracción Brutal (Mes 3)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Haz ruido constante, valida tu oferta y sal al mercado.</p>
+        <div>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_7" onchange="updateTransformationProgress()"> Creación de la Oferta Grand Slam (Solución de alto valor)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_8" onchange="updateTransformationProgress()"> Máquina de distribución activa (Contenido y captación diaria)</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_9" onchange="updateTransformationProgress()"> Automatización del 80% de tareas repetitivas</label>
+        </div>
+      </div>
+
+      <!-- FASE 3: ACELERACIÓN -->
+      <div class="card">
+        <h2>🏆 Fase 3: Aceleración y Estándar (Mes 4)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Multiplica resultados, blinda tu caja y consolida tu nueva línea base.</p>
+        <div>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_10" onchange="updateTransformationProgress()"> Optimización de embudos y métricas de conversión</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_11" onchange="updateTransformationProgress()"> Fondo de reserva y reinversión estratégica asegurados</label>
+          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_12" onchange="updateTransformationProgress()"> Documentación de SOPs y cierre del ciclo de 120 días</label>
+        </div>
+      </div>
+
+      <!-- PLAN ANUAL DE 12 MESES -->
+      <div class="card" style="margin-top: 20px; border-top: 4px solid var(--primary);">
+        <h2>🗺️ Mapa Maestro: Plan Anual de 12 Meses</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
+          El sistema de 52 semanas para la reinvención total y la construcción de un proyecto de vida sólido.
+        </p>
+
+        <!-- FASE 0: 12 MESES -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🛡️ Fase 0: Protocolo de Limpieza (Semanas 1 a 4)</div>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_1" onchange="updateYearlyProgress()"> Aislamiento Estratégico (Modo fantasma / Monk Mode)</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_2" onchange="updateYearlyProgress()"> Auditoría de Cero (Finanzas, habilidades y fugas de energía)</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_3" onchange="updateYearlyProgress()"> Reconstrucción del Chasis (Sueño, movimiento y nutrición)</label>
+        </div>
+
+        <!-- FASE 1: 12 MESES -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">⚡ Fase 1: Estabilización y Activos (Meses 2 al 3)</div>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_4" onchange="updateYearlyProgress()"> Ingresos de supervivencia y flujo rápido asegurados</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_5" onchange="updateYearlyProgress()"> Elección del Dragón (Enfoque único en un solo vehículo)</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_6" onchange="updateYearlyProgress()"> Arquitectura del entorno y time-blocking configurados</label>
+        </div>
+
+        <!-- FASE 2: 12 MESES -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🚀 Fase 2: Tracción Brutal (Meses 4 al 6)</div>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_7" onchange="updateYearlyProgress()"> Monopolio Personal de Habilidades (Oferta Grand Slam)</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_8" onchange="updateYearlyProgress()"> Distribución, impacto y consistencia diaria de contenidos</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_9" onchange="updateYearlyProgress()"> Sistemas de escala y automatización del 80% operativo</label>
+        </div>
+
+        <!-- FASE 3: 12 MESES -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">📈 Fase 3: Aceleración y Dominio (Meses 7 al 9)</div>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_10" onchange="updateYearlyProgress()"> Optimización de embudos, conversión y retención</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_11" onchange="updateYearlyProgress()"> Fortaleza financiera (Fondo de reserva y reinversión)</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_12" onchange="updateYearlyProgress()"> Círculo de excelencia y networking estratégico</label>
+        </div>
+
+        <!-- FASE 4: 12 MESES -->
+        <div class="habit-streak-card">
+          <div class="habit-streak-title">🏆 Fase 4: El Nuevo Estándar (Meses 10 al 12)</div>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_13" onchange="updateYearlyProgress()"> Institucionalización de la marca/proyecto y SOPs</label>
+          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_14" onchange="updateYearlyProgress()"> Revisión del máximo nivel y cierre del ciclo de 365 días</label>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- NAVEGACIÓN INFERIOR -->
@@ -655,6 +763,7 @@
     <div class="nav-item" onclick="switchTab('tab-sos', this)"><span>🆘</span>SOS</div>
     <div class="nav-item" onclick="switchTab('tab-meditation', this)"><span>🧘</span>Relax</div>
     <div class="nav-item" onclick="switchTab('tab-stats', this)"><span>🔥</span>Progreso</div>
+    <div class="nav-item" onclick="switchTab('tab-transformation', this)"><span>🗺️</span>Plan 4M</div>
   </div>
 
   <script>
@@ -694,6 +803,78 @@
       } else {
         adCards.forEach(el => el.style.display = 'block');
       }
+    }
+
+    // LÓGICA DEL PLAN DE TRANSFORMACIÓN DE 4 MESES
+    function saveTransformationNotes() {
+      const notes = document.getElementById('auditNotes').value;
+      localStorage.setItem('rf_transformation_audit', notes);
+      alert('¡Notas de auditoría guardadas con éxito!');
+    }
+
+    function updateTransformationProgress() {
+      let checkedCount = 0;
+      const totalTasks = 12;
+
+      for (let i = 1; i <= totalTasks; i++) {
+        const checkbox = document.getElementById(`t_task_${i}`);
+        if (checkbox && checkbox.checked) {
+          checkedCount++;
+          localStorage.setItem(`rf_t_task_${i}`, 'true');
+        } else if (checkbox) {
+          localStorage.setItem(`rf_t_task_${i}`, 'false');
+        }
+      }
+
+      const percent = Math.round((checkedCount / totalTasks) * 100);
+      const progressEl = document.getElementById('transformationProgressText');
+      if (progressEl) {
+        progressEl.textContent = `Progreso Global: ${percent}% Completado`;
+      }
+    }
+
+    function loadTransformationData() {
+      const savedNotes = localStorage.getItem('rf_transformation_audit');
+      if (savedNotes) {
+        const auditEl = document.getElementById('auditNotes');
+        if(auditEl) auditEl.value = savedNotes;
+      }
+
+      for (let i = 1; i <= 12; i++) {
+        const checkbox = document.getElementById(`t_task_${i}`);
+        const isChecked = localStorage.getItem(`rf_t_task_${i}`) === 'true';
+        if (checkbox) {
+          checkbox.checked = isChecked;
+        }
+      }
+      updateTransformationProgress();
+    }
+
+    // LÓGICA DEL PLAN ANUAL DE 12 MESES
+    function updateYearlyProgress() {
+      let checkedCount = 0;
+      const totalTasks = 14;
+
+      for (let i = 1; i <= totalTasks; i++) {
+        const checkbox = document.getElementById(`y_task_${i}`);
+        if (checkbox && checkbox.checked) {
+          checkedCount++;
+          localStorage.setItem(`rf_y_task_${i}`, 'true');
+        } else if (checkbox) {
+          localStorage.setItem(`rf_y_task_${i}`, 'false');
+        }
+      }
+    }
+
+    function loadYearlyData() {
+      for (let i = 1; i <= 14; i++) {
+        const checkbox = document.getElementById(`y_task_${i}`);
+        const isChecked = localStorage.getItem(`rf_y_task_${i}`) === 'true';
+        if (checkbox) {
+          checkbox.checked = isChecked;
+        }
+      }
+      updateYearlyProgress();
     }
 
     // FUNCIÓN DE VERIFICACIÓN AUTOMÁTICA DE LOGROS E INSIGNIAS
@@ -1146,7 +1327,6 @@
       responseBox.style.display = 'block';
     }
 
-    // BASE DE DATOS AMPLIADA CON LAS 20 PREGUNTAS FRECUENTES
     const FAQ_DATABASE = [
       {
         question: "¿Por qué me pasa esto a mí?",
@@ -1548,6 +1728,8 @@
     checkFounderBanner();
     checkAdsVisibility();
     checkAndUnlockBadges();
+    loadTransformationData();
+    loadYearlyData();
   </script>
 </body>
 </html>
