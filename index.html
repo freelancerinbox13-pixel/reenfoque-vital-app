@@ -332,27 +332,6 @@
         </div>
       </div>
 
-      <!-- TABLÓN DUAL DE SUGERENCIAS Y REPORTES CONECTADO A TELEGRAM -->
-      <div class="card" style="border-left: 4px solid var(--purple);">
-        <h2>📬 Tablón de Sugerencias y Reportes</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          ¿Tienes una idea para mejorar la app o encontraste algún error? Envía tu mensaje directo a nuestra comunidad de Telegram.
-        </p>
-
-        <!-- BANNER PUBLICITARIO INTEGRADO EN EL TABLÓN (Se oculta si es Premium) -->
-        <div class="ad-native-card" id="adContainerTablon" style="margin-bottom: 12px;">
-          <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
-        </div>
-        
-        <select id="tipoAportacion" style="margin-top: 4px;">
-          <option value="Sugerencia">💡 Sugerencia de Nueva Funcionalidad</option>
-          <option value="Reporte de Error">🐛 Reporte de Problema / Bug</option>
-        </select>
-
-        <textarea id="textoAportacion" placeholder="Escribe aquí tu sugerencia o describe el error..."></textarea>
-        <button class="btn btn-purple" onclick="enviarAlTablonDeTelegram()">Enviar a la Comunidad de Telegram</button>
-      </div>
-
       <!-- PREGUNTAS Y REFLEXIONES -->
       <div class="card">
         <h2>❓ Preguntas & Reflexiones</h2>
@@ -407,6 +386,28 @@
         <button class="btn btn-success" onclick="addGratitude()">Guardar Gratitud</button>
         <ul id="gratitudeList"></ul>
       </div>
+
+      <!-- TABLÓN DUAL DE SUGERENCIAS Y REPORTES (REUBICADO DEBAJO DE AFIRMACIONES) -->
+      <div class="card" style="border-left: 4px solid var(--purple);">
+        <h2>📬 Tablón de Sugerencias y Reportes</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
+          ¿Tienes una idea para mejorar la app o encontraste algún error? Envía tu mensaje directo a nuestra comunidad de Telegram.
+        </p>
+
+        <!-- BANNER PUBLICITARIO INTEGRADO EN EL TABLÓN -->
+        <div class="ad-native-card" id="adContainerTablon" style="margin-bottom: 12px;">
+          <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+        </div>
+        
+        <select id="tipoAportacion" style="margin-top: 4px;">
+          <option value="Sugerencia">💡 Sugerencia de Nueva Funcionalidad</option>
+          <option value="Reporte de Error">🐛 Reporte de Problema / Bug</option>
+        </select>
+
+        <textarea id="textoAportacion" placeholder="Escribe aquí tu sugerencia o describe el error..."></textarea>
+        <button class="btn btn-purple" onclick="enviarAlTablonDeTelegram()">Enviar a la Comunidad de Telegram</button>
+      </div>
+
     </div>
 
     <!-- PESTAÑA 2: ENFOQUE -->
@@ -1012,7 +1013,7 @@
         "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy.",
         "Llama a un familiar o amigo y cuéntale con total sinceridad lo que estás experimentando.",
         "Sal a dar un paseo sin llevar dinero en efectivo ni tarjetas de crédito en los bolsillos.",
-        "Escribe una lista detallada con las consecuencias económicas y emocionalmente negativas que te trajo apostar.",
+        "Escribe una lista detallada con las consecuencias económicas y emocionales negativas que te trajo apostar.",
         "Piensa en el destino útil y real que le darás a ese dinero si decides conservarlo contigo hoy.",
         "Realiza una actividad manual absorbente como dibujar, cocinar una receta compleja o arreglar algo.",
         "Cierra todas las pestañas del navegador y apaga la pantalla del dispositivo electrónico.",
