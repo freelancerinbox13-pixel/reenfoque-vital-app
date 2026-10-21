@@ -698,7 +698,6 @@
 
     // FUNCIÓN DE VERIFICACIÓN AUTOMÁTICA DE LOGROS E INSIGNIAS
     function checkAndUnlockBadges() {
-      // 1. Verificar rachas en cualquier categoría para 1, 3, 7 y 30 días
       let maxStreak = 0;
       const categories = ['general', 'drogas_blandas', 'drogas_duras', 'alcohol', 'sexo', 'juego', 'porno'];
       
@@ -715,13 +714,11 @@
       if (maxStreak >= 7) document.getElementById('badge-7').classList.add('unlocked');
       if (maxStreak >= 30) document.getElementById('badge-30').classList.add('unlocked');
 
-      // 2. Verificar Insignia Kaizen (si existe meta completada)
       const kaizenDone = localStorage.getItem(CONFIG.KEYS.KAIZEN_LAST_DONE);
       if (kaizenDone) {
         document.getElementById('badge-kaizen').classList.add('unlocked');
       }
 
-      // 3. Verificar Insignia Diario (si hay al menos una entrada)
       const journalEntries = JSON.parse(localStorage.getItem(CONFIG.KEYS.JOURNAL) || '[]');
       if (journalEntries.length > 0) {
         document.getElementById('badge-journal').classList.add('unlocked');
@@ -766,11 +763,10 @@
       
       if(tabId === 'tab-stats') {
         renderIndependentStreaks();
-        checkAndUnlockBadges(); // Ejecuta la verificación de insignias al abrir Progreso
+        checkAndUnlockBadges();
       }
     }
 
-    // LÓGICA AUTOMÁTICA DEL BANNER DE FUNDADOR (1 a 50 gratis, 51 a 100 a 9€)
     function checkFounderBanner() {
       let count = parseInt(localStorage.getItem(CONFIG.KEYS.FOUNDER_COUNTER) || '0', 10);
       const banner = document.getElementById('dynamicFounderBanner');
@@ -806,7 +802,6 @@
       checkFounderBanner();
     }
 
-    // FUNCIÓN DE PAGO CON TELEGRAM STARS
     async function comprarConStars() {
       const tg = window.Telegram.WebApp;
       const userId = tg.initDataUnsafe?.user?.id;
@@ -844,7 +839,6 @@
       }
     }
 
-    // FUNCIÓN ADICIONAL: EXPORTAR DATOS DEL LOCALSTORAGE
     function exportData() {
       const dataObj = {};
       for (let i = 0; i < localStorage.length; i++) {
@@ -918,7 +912,6 @@
       }
     }
 
-    // LÓGICA DE LOS MÓDULOS SOS (ECO MENTAL Y TERMÓMETRO)
     let ecoInterval = null;
     const ecoWords = [
       "Inhala paz, exhala tensión", "Aquí y ahora estoy a salvo", "Este impulso pasará", 
@@ -1044,9 +1037,9 @@
       ],
       juego: [
         "Bloquea inmediatamente las aplicaciones bancarias y de apuestas de tu dispositivo.",
-        "Entrega tus tarjetas de crédito/débito a una persona de confianza durante hoy.",
+        "Entrega tu tarjeta de crédito o débito a una persona de confianza.",
         "Llama a un familiar o amigo y cuéntale con total sinceridad lo que estás experimentando.",
-        "Sal a dar un paseo sin llevar dinero en efectivo ni tarjetas de crédito en los bolsillos.",
+        "Sal a dar un paseo sin llevar dinero en efectivo ni tarjetas en los bolsillos.",
         "Escribe una lista detallada con las consecuencias económicas y emocionales negativas que te trajo apostar.",
         "Piensa en el destino útil y real que le darás a ese dinero si decides conservarlo contigo hoy.",
         "Realiza una actividad manual absorbente como dibujar, cocinar una receta compleja o arreglar algo.",
@@ -1153,6 +1146,7 @@
       responseBox.style.display = 'block';
     }
 
+    // BASE DE DATOS AMPLIADA CON LAS 20 PREGUNTAS FRECUENTES
     const FAQ_DATABASE = [
       {
         question: "¿Por qué me pasa esto a mí?",
@@ -1161,6 +1155,78 @@
       {
         question: "¿Por qué siento que vuelvo a empezar de cero?",
         answer: "El progreso no es una línea recta, es una espiral. Cuando sientes que recaes, no vuelves al inicio: ahora tienes más experiencia y autoconocimiento que la primera vez."
+      },
+      {
+        question: "¿Cómo puedo calmar la ansiedad en menos de 2 minutos?",
+        answer: "Utiliza el protocolo de respiración 4-7-8 o la respiración cuadrada en la pestaña SOS. El oxígeno consciente envía una señal directa al sistema nervioso parasimpático para reducir el ritmo cardíaco."
+      },
+      {
+        question: "¿Qué debo hacer cuando tengo un impulso muy fuerte?",
+        answer: "Pausa de inmediato. Bebe un vaso de agua fría, cambia de habitación y aplica la regla de esperar 10 minutos. Los impulsos son picos hormonales que decaen si no se alimentan."
+      },
+      {
+        question: "¿Por qué es importante separar los hechos de las historias?",
+        answer: "Nuestra mente tiende a dramatizar la realidad añadiendo interpretaciones subjetivas (historias). Separar el hecho objetivo reduce un 80% del sufrimiento innecesario."
+      },
+      {
+        question: "¿Cómo funciona el método Kaizen para crear hábitos?",
+        answer: "Consiste en reducir cualquier tarea o meta a un micro-paso tan pequeño que sea imposible fallar (por ejemplo, leer 1 página o hacer 1 flexión). La clave es la constancia diaria, no la intensidad."
+      },
+      {
+        question: "¿Qué es la técnica 'Eat That Frog'?",
+        answer: "Es el principio de abordar tu tarea más importante, difícil o temida a primera hora del día. Una vez completada, el resto de la jornada fluye con mucha mayor ligereza."
+      },
+      {
+        question: "¿Por qué fallan los propósitos tradicionales?",
+        answer: "Porque se centran en metas abstractas a largo plazo en lugar de diseñar sistemas diarios y entornos que faciliten el comportamiento deseado."
+      },
+      {
+        question: "¿Cómo puedo gestionar la culpa tras una recaída?",
+        answer: "La culpa genera estrés, y el estrés desencadena el ciclo del hábito. Acepta que es parte del proceso de aprendizaje, perdónate y retoma tu rutina en el siguiente hábito sin castigos."
+      },
+      {
+        question: "¿Qué utilidad tiene llevar un diario íntimo?",
+        answer: "Escribir desahoga la memoria de trabajo, externaliza los pensamientos obsesivos y te permite ver patrones de comportamiento recurrentes con mayor claridad."
+      },
+      {
+        question: "¿Por qué es clave tener contadores independientes de rachas?",
+        answer: "Porque una dificultad o tropiezo en un área específica de tu vida no debe invalidar los logros y avances que mantienes firmes en las demás."
+      },
+      {
+        question: "¿Cómo influyen los sonidos de enfoque en la concentración?",
+        answer: "Los ruidos de color (blanco, rosa, marrón) enmascaran los sonidos ambientales molestos y generan un fondo acústico constante que estimula las ondas cerebrales propicias para el trabajo profundo."
+      },
+      {
+        question: "¿Qué son las frecuencias vibracionales y para qué sirven?",
+        answer: "Son tonos puros diseñados para inducir estados de relajación profunda (como las ondas Alfa o Theta), ayudando a calmar la actividad mental acelerada."
+      },
+      {
+        question: "¿Cómo funciona el ejercicio de Eco Mental?",
+        answer: "Consiste en repetir frases ancla en voz alta para obligar al cerebro a cambiar de canal neuronal, interrumpiendo el bucle de pensamientos automáticos negativos."
+      },
+      {
+        question: "¿Por qué es importante registrar los desencadenantes (triggers)?",
+        answer: "Porque identificar con precisión el lugar, la hora y la emoción previa te permite anticiparte y diseñar barreras defensivas antes de que aparezca el impulso."
+      },
+      {
+        question: "¿Qué diferencia hay entre motivación y disciplina?",
+        answer: "La motivación es una emoción inestable que va y viene. La disciplina es un sistema de hábitos automáticos que te sostiene incluso cuando no tienes ganas de actuar."
+      },
+      {
+        question: "¿Cómo puedo usar la regla de los 2 minutos?",
+        answer: "Si una tarea que tienes pendiente te toma menos de 2 minutos completarla, hazla en el acto. Esto evita la acumulación de pequeñas fricciones mentales."
+      },
+      {
+        question: "¿Por qué es beneficioso formar parte de una comunidad como Skool?",
+        answer: "Porque el aislamiento mental alimenta las recaídas. Compartir tu proceso, leer experiencias de otros y recibir apoyo mutuo acelera enormemente la recuperación."
+      },
+      {
+        question: "¿Cómo afecta el uso excesivo de pantallas al estado de ánimo?",
+        answer: "La sobreestimulación digital constante satura los receptores de dopamina, generando apatía, fatiga mental y dificultad para concentrarse en tareas profundas."
+      },
+      {
+        question: "¿Cuál es el primer paso para empezar a transformar mi vida?",
+        answer: "Aceptar tu punto de partida actual sin juicios severos, comprometerte con un solo micro-hábito diario y recordar que cada día es una nueva oportunidad para reenfocarte."
       }
     ];
 
@@ -1481,7 +1547,7 @@
     renderIndependentStreaks();
     checkFounderBanner();
     checkAdsVisibility();
-    checkAndUnlockBadges(); // Verificación inicial al cargar la página
+    checkAndUnlockBadges();
   </script>
 </body>
 </html>
