@@ -1059,19 +1059,35 @@
       }
     }
 
+    // FUNCIÓN DE EXPORTACIÓN MODIFICADA Y SEGURA (Blob / URL.createObjectURL)
     function exportData() {
-      const dataObj = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        dataObj[key] = localStorage.getItem(key);
+      try {
+        const dataObj = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          dataObj[key] = localStorage.getItem(key);
+        }
+
+        const dataStr = JSON.stringify(dataObj, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.href = url;
+        downloadAnchor.download = "reenfoque_vital_backup.json";
+        
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        
+        setTimeout(() => {
+          document.body.removeChild(downloadAnchor);
+          URL.revokeObjectURL(url);
+        }, 100);
+
+      } catch (error) {
+        console.error("Error al exportar los datos:", error);
+        alert("No se pudo generar la copia de seguridad. Inténtalo de nuevo.");
       }
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataObj, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", "reenfoque_vital_backup.json");
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
     }
 
     const ADDICTION_CATEGORIES = [
