@@ -1297,6 +1297,249 @@
       if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
     }
 
+    // --- CORRECCIONES Y LÓGICA DE INTERACTIVIDAD RESTAURADA ---
+
+    const EMOTION_TEMPLATES = {
+      phrases: [
+        "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.",
+        "No estás atascado, solo estás tomando impulso para el siguiente nivel.",
+        "Acepta este momento presente sin juzgarlo como bueno o malo.",
+        "Tu valor no disminuye por tener un día de baja energía.",
+        "Cada pensamiento negativo es una sugerencia, no una orden."
+      ],
+      advices: [
+        "Bebe un vaso de agua fría y haz 3 respiraciones profundas.",
+        "Realiza una micro-meta Kaizen de 1 minuto en la pestaña Enfoque.",
+        "Escribe libremente 3 líneas en tu diario íntimo sin juzgarte.",
+        "Sal a caminar 5 minutos o estira tus hombros suavemente.",
+        "Escucha una frecuencia de meditación durante 5 minutos."
+      ]
+    };
+
+    function processEmotion() {
+      const val = document.getElementById('emotionSelect').value;
+      const responseBox = document.getElementById('emotionResponse');
+
+      if (!val) { responseBox.style.display = 'none'; return; }
+
+      const phrase = EMOTION_TEMPLATES.phrases[Math.floor(Math.random() * EMOTION_TEMPLATES.phrases.length)];
+      const advice = EMOTION_TEMPLATES.advices[Math.floor(Math.random() * EMOTION_TEMPLATES.advices.length)];
+
+      const emotionNames = {
+        duelo: "Duelo / Pérdida", nube: "Nube Mental / Confusión", ira: "Ira / Enojo",
+        ansiedad: "Ansiedad / Abrumado", soledad: "Soledad / Frustración", desmotivado: "Desmotivación",
+        claridad: "Claridad / Enfoque", feliz: "Feliz / Motivado", agradecido: "Gratitud Profunda", atascado: "Sensación de Bloqueo"
+      };
+
+      document.getElementById('responseTitle').textContent = `Reencuadre para: ${emotionNames[val] || 'Tu Estado Actual'}`;
+      document.getElementById('responseText').innerHTML = `
+        <p style="margin-bottom:8px;"><b>Frase:</b> "${phrase}"</p>
+        <p style="margin-bottom:12px;"><b>Consejo Práctico:</b> ${advice}</p>
+      `;
+      responseBox.style.display = 'block';
+    }
+
+    const FAQ_DATABASE = [
+      {
+        question: "¿Por qué me pasa esto a mí?",
+        answer: "No te ocurre a ti de forma punitiva, sino para ti. Cada momento difícil es una oportunidad para revisar tus hábitos y construir mayor resiliencia."
+      },
+      {
+        question: "¿Por qué siento que vuelvo a empezar de cero?",
+        answer: "El progreso no es una línea recta, es una espiral. Cuando sientes que recaes, no vuelves al inicio: ahora tienes más experiencia."
+      },
+      {
+        question: "¿Cómo puedo calmar la ansiedad en menos de 2 minutos?",
+        answer: "Utiliza el protocolo de respiración 4-7-8 o la respiración cuadrada en la pestaña SOS."
+      },
+      {
+        question: "¿Qué debo hacer cuando tengo un impulso muy fuerte?",
+        answer: "Pausa de inmediato. Bebe un vaso de agua fría, cambia de habitación y aplica la regla de esperar 10 minutos."
+      }
+    ];
+
+    function renderFAQ() {
+      const select = document.getElementById('faqSelect');
+      if (!select) return;
+      select.innerHTML = '<option value="">-- Selecciona una pregunta --</option>';
+      FAQ_DATABASE.forEach((item, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = item.question;
+        select.appendChild(option);
+      });
+    }
+
+    function showFAQAnswer() {
+      const select = document.getElementById('faqSelect');
+      const responseBox = document.getElementById('faqResponseBox');
+      const index = select.value;
+
+      if (index === "" || !FAQ_DATABASE[index]) {
+        responseBox.style.display = 'none';
+        return;
+      }
+
+      const selectedFAQ = FAQ_DATABASE[index];
+      document.getElementById('faqResponseTitle').textContent = selectedFAQ.question;
+      document.getElementById('faqResponseText').textContent = selectedFAQ.answer;
+      responseBox.style.display = 'block';
+    }
+
+    const SAMPLES = {
+      brain_dump: { title: "Brain Dumping", desc: "Escribe durante 2 minutos todo lo que tienes rondando en la cabeza sin juzgar ni ordenar." },
+      facts_stories: { title: "Filtro 'Hechos vs. Historias'", desc: "Escribe la situación que te preocupa. Separa lo que es un HECHO real de lo que es una HISTORIA de tu mente." },
+      energy_audit: { title: "Auditoría de Energía", desc: "Anota 2 actividades de tu día que te hayan drenado energía y 2 que te hayan recargado." }
+    };
+
+    function loadSampleExercise() {
+      const val = document.getElementById('exerciseSampleSelect').value;
+      const box = document.getElementById('sampleExerciseBox');
+      document.getElementById('completedSampleBanner').style.display = 'none';
+      if (val && SAMPLES[val]) {
+        document.getElementById('sampleTitle').textContent = SAMPLES[val].title;
+        document.getElementById('sampleDesc').textContent = SAMPLES[val].desc;
+        document.getElementById('sampleInput').value = '';
+        box.style.display = 'block';
+      } else { box.style.display = 'none'; }
+    }
+
+    function completeSampleExercise() {
+      const input = document.getElementById('sampleInput').value.trim();
+      if (!input) { alert('Escribe algo antes de guardar.'); return; }
+      document.getElementById('sampleExerciseBox').style.display = 'none';
+      document.getElementById('completedSampleBanner').style.display = 'block';
+    }
+
+    const AFFIRMATIONS = [
+      "Tengo el poder de enfocar mi mente en lo que suma y construir paz hoy.",
+      "Cada pequeño paso fortalece mi disciplina y mi confianza.",
+      "Suelto el control de aquello que no puedo cambiar y actúo en lo que sí depende de mí.",
+      "Mi mente es un espacio de calma, claridad y propósito."
+    ];
+
+    function newAffirmation() {
+      const idx = Math.floor(Math.random() * AFFIRMATIONS.length);
+      document.getElementById('affirmationBox').textContent = `"${AFFIRMATIONS[idx]}"`;
+    }
+
+    function loadGratitude() {
+      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
+      const items = stored ? JSON.parse(stored) : [];
+      const list = document.getElementById('gratitudeList');
+      if (!list) return;
+      list.innerHTML = '';
+      items.forEach(item => { 
+        const li = document.createElement('li'); 
+        li.textContent = `🌸 ${item}`; 
+        list.appendChild(li); 
+      });
+    }
+
+    function addGratitude() {
+      const input = document.getElementById('gratitudeInput');
+      const text = input.value.trim();
+      if (!text) { alert("Escribe algo por lo que dar gracias."); return; }
+      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
+      const items = stored ? JSON.parse(stored) : [];
+      items.unshift(text);
+      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
+      input.value = ''; 
+      loadGratitude();
+    }
+
+    const ADDICTION_PROTOCOLS = {
+      general: ["Lávate la cara con agua fría.", "Cambia de habitación inmediatamente.", "Espera 10 minutos a que pase el pico del impulso."],
+      drogas_blandas: ["Guarda todos los accesorios fuera de tu vista.", "Cepíllate los dientes con menta fuerte."],
+      drogas_duras: ["Llama al 112 si hay riesgo para tu salud.", "Pide ayuda a alguien de confianza."],
+      alcohol: ["Toma un vaso grande de agua con hielo.", "Alejate de zonas de tentación."],
+      sexo: ["Deja el teléfono en otra habitación.", "Haz flexiones hasta agotar la tensión."],
+      juego: ["Bloquea apps de apuestas de inmediato.", "Entrega tus tarjetas a un familiar."],
+      porno: ["Cierra todas las pestañas del navegador.", "Sal de la estancia privada."]
+    };
+
+    function toggleSOS() {
+      const box = document.getElementById('sosBox');
+      const isOpening = box.style.display !== 'block';
+      box.style.display = isOpening ? 'block' : 'none';
+      if (isOpening) {
+        updateSOSAdvice();
+      }
+    }
+
+    function updateSOSAdvice() {
+      const category = document.getElementById('addictionCategorySelect').value;
+      const adviceTitle = document.getElementById('sosAdviceTitle');
+      const adviceText = document.getElementById('sosAdviceText');
+
+      const options = ADDICTION_PROTOCOLS[category] || ADDICTION_PROTOCOLS.general;
+      const randomIndex = Math.floor(Math.random() * options.length);
+
+      adviceTitle.textContent = "Protocolo de Auxilio";
+      adviceText.textContent = `💡 "${options[randomIndex]}"`;
+    }
+
+    let ecoInterval = null;
+    const ecoWords = [
+      "Inhala paz, exhala tensión", "Aquí y ahora estoy a salvo", "Este impulso pasará", 
+      "Un día a la vez", "Elijo cuidar de mi mente", "Mi cuerpo está relajado"
+    ];
+
+    function toggleEcoMental() {
+      const btn = document.getElementById('ecoBtn');
+      const display = document.getElementById('ecoWordDisplay');
+      
+      if (ecoInterval) {
+        clearInterval(ecoInterval);
+        ecoInterval = null;
+        display.textContent = "Ejercicio finalizado.";
+        btn.textContent = "Iniciar Ejercicio de Voz (30s)";
+        btn.style.backgroundColor = "var(--success)";
+        return;
+      }
+
+      let timeLeft = 30;
+      btn.textContent = "Detener Ejercicio";
+      btn.style.backgroundColor = "#c97a63";
+      display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
+
+      ecoInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(ecoInterval);
+          ecoInterval = null;
+          display.textContent = "¡Excelente trabajo completado! 🌟";
+          btn.textContent = "Iniciar Ejercicio de Voz (30s)";
+          btn.style.backgroundColor = "var(--success)";
+        } else {
+          if (timeLeft % 4 === 0) {
+            display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
+          }
+        }
+      }, 1000);
+    }
+
+    function startIntensityCheck() {
+      document.getElementById('intensityStep1').style.display = 'none';
+      document.getElementById('intensityStep2').style.display = 'block';
+    }
+
+    function finishIntensityCheck() {
+      alert("¡Buen trabajo! Has completado el registro de tu impulso.");
+      document.getElementById('intensityStep2').style.display = 'none';
+      document.getElementById('intensityStep1').style.display = 'block';
+    }
+
+    function showRewardAd(onSuccessCallback) {
+      if (isUserPremium) { onSuccessCallback(); return; }
+      if (AdController) {
+        AdController.show().then(() => onSuccessCallback()).catch(() => onSuccessCallback());
+      } else {
+        onSuccessCallback();
+      }
+    }
+
+    // Inicialización general al arrancar la app
     loadDarkMode();
     loadGratitude();
     loadFrog();
@@ -1305,7 +1548,6 @@
     loadTriggers();
     loadJournal();
     renderFAQ();
-    renderBooks();
     updateTimerDisplay();
     renderIndependentStreaks();
     checkFounderBanner();
