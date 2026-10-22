@@ -286,7 +286,6 @@
     .nav-item.active { color: var(--primary); font-weight: bold; }
     .nav-item span { font-size: 1.1rem; margin-bottom: 2px; }
 
-    /* Estilos específicos para las acciones del diario */
     .journal-actions {
       display: flex;
       gap: 6px;
@@ -1076,7 +1075,7 @@
       }
     }
 
-    // FUNCIÓN DE EXPORTACIÓN ROBUSTA (Blob / URL.createObjectURL)
+    // --- FUNCIÓN DE EXPORTACIÓN ROBUSTA Y COMPATIBLE CON TELEGRAM ---
     function exportData() {
       try {
         const dataObj = {};
@@ -1086,24 +1085,32 @@
         }
 
         const dataStr = JSON.stringify(dataObj, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json' });
+        
+        // Uso de Blob y URL.createObjectURL para máxima compatibilidad en WebViews móviles
+        const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
 
         const downloadAnchor = document.createElement('a');
         downloadAnchor.href = url;
-        downloadAnchor.download = "reenfoque_vital_backup.json";
+        downloadAnchor.setAttribute('download', 'reenfoque_vital_backup.json');
         
+        // Soporte adicional para Telegram WebApp (intentar abrir o descargar directamente)
+        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.openLink) {
+          // Si el entorno móvil requiere apertura externa para descargas seguras
+          downloadAnchor.target = '_blank';
+        }
+
         document.body.appendChild(downloadAnchor);
         downloadAnchor.click();
         
         setTimeout(() => {
           document.body.removeChild(downloadAnchor);
           URL.revokeObjectURL(url);
-        }, 100);
+        }, 200);
 
       } catch (error) {
         console.error("Error al exportar los datos:", error);
-        alert("No se pudo generar la copia de seguridad. Inténtalo de nuevo.");
+        alert("No se pudo generar la copia de seguridad. Por favor, inténtalo de nuevo.");
       }
     }
 
@@ -1309,7 +1316,7 @@
       document.getElementById('distractionTask').innerHTML = `<strong>Reto de Enfoque:</strong> Cuenta de 100 hacia atrás de 7 en 7.`;
     }
 
-    // --- GESTIÓN MEJORADA DEL DIARIO (CON SOPORTE DE EDICIÓN Y BORRADO) ---
+    // --- GESTIÓN DEL DIARIO (CON SOPORTE DE EDICIÓN Y BORRADO) ---
 
     function saveJournal() {
       const textInput = document.getElementById('journalEntry');
@@ -1328,7 +1335,6 @@
         entries = [];
       }
 
-      // Soporte retrocompatible por si existían strings puros antiguos
       entries = entries.map(item => {
         if (typeof item === 'string') {
           return { id: Date.now() + Math.random(), text: item, date: new Date().toLocaleString() };
@@ -1362,7 +1368,6 @@
       }
 
       entries.forEach(item => {
-        // Compatibilidad con entradas antiguas que fueran strings
         let entryId = item.id || Date.now();
         let entryText = typeof item === 'string' ? item : item.text;
         let entryDate = item.date || new Date().toLocaleString();
