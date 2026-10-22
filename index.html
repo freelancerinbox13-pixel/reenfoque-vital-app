@@ -285,6 +285,23 @@
     .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: var(--text-light); cursor: pointer; min-width: 60px; }
     .nav-item.active { color: var(--primary); font-weight: bold; }
     .nav-item span { font-size: 1.1rem; margin-bottom: 2px; }
+
+    /* Estilos específicos para las acciones del diario */
+    .journal-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .journal-btn {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .journal-btn-edit { background-color: var(--primary); color: white; }
+    .journal-btn-delete { background-color: #a94442; color: white; }
   </style>
 </head>
 <body>
@@ -1059,7 +1076,7 @@
       }
     }
 
-    // FUNCIÓN DE EXPORTACIÓN MODIFICADA Y SEGURA (Blob / URL.createObjectURL)
+    // FUNCIÓN DE EXPORTACIÓN ROBUSTA (Blob / URL.createObjectURL)
     function exportData() {
       try {
         const dataObj = {};
@@ -1292,21 +1309,108 @@
       document.getElementById('distractionTask').innerHTML = `<strong>Reto de Enfoque:</strong> Cuenta de 100 hacia atrás de 7 en 7.`;
     }
 
+    // --- GESTIÓN MEJORADA DEL DIARIO (CON SOPORTE DE EDICIÓN Y BORRADO) ---
+
     function saveJournal() {
-      const text = document.getElementById('journalEntry').value.trim();
-      if (!text) return;
+      const textInput = document.getElementById('journalEntry');
+      const text = textInput.value.trim();
+      if (!text) {
+        alert("Escribe algo en tu diario antes de guardar.");
+        return;
+      }
+
       const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-      const entries = stored ? JSON.parse(stored) : [];
-      entries.unshift(`<b>${new Date().toLocaleString()}:</b> ${text}`);
+      let entries = [];
+      
+      try {
+        entries = stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        entries = [];
+      }
+
+      // Soporte retrocompatible por si existían strings puros antiguos
+      entries = entries.map(item => {
+        if (typeof item === 'string') {
+          return { id: Date.now() + Math.random(), text: item, date: new Date().toLocaleString() };
+        }
+        return item;
+      });
+
+      const newEntry = {
+        id: Date.now(),
+        text: text,
+        date: new Date().toLocaleString()
+      };
+
+      entries.unshift(newEntry);
       localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
-      document.getElementById('journalEntry').value = ''; loadJournal();
+      textInput.value = '';
+      loadJournal();
     }
 
     function loadJournal() {
       const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-      const entries = stored ? JSON.parse(stored) : [];
-      const list = document.getElementById('journalList'); list.innerHTML = '';
-      entries.forEach(e => { const li = document.createElement('li'); li.innerHTML = `📝 ${e}`; list.appendChild(li); });
+      const list = document.getElementById('journalList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      let entries = [];
+      try {
+        entries = stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        entries = [];
+      }
+
+      entries.forEach(item => {
+        // Compatibilidad con entradas antiguas que fueran strings
+        let entryId = item.id || Date.now();
+        let entryText = typeof item === 'string' ? item : item.text;
+        let entryDate = item.date || new Date().toLocaleString();
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div>📝 <b>${entryDate}:</b> <span id="text_${entryId}">${entryText}</span></div>
+          <div class="journal-actions">
+            <button class="journal-btn journal-btn-edit" onclick="editJournalEntry(${entryId})">✏️ Editar</button>
+            <button class="journal-btn journal-btn-delete" onclick="deleteJournalEntry(${entryId})">🗑️ Borrar</button>
+          </div>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    function deleteJournalEntry(id) {
+      if (confirm("¿Estás seguro de que deseas eliminar esta entrada del diario?")) {
+        const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
+        let entries = stored ? JSON.parse(stored) : [];
+        
+        entries = entries.filter(item => item.id !== id);
+        localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
+        loadJournal();
+      }
+    }
+
+    function editJournalEntry(id) {
+      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
+      let entries = stored ? JSON.parse(stored) : [];
+      
+      const entry = entries.find(item => item.id === id);
+      if (!entry) return;
+
+      const currentText = typeof entry === 'string' ? entry : entry.text;
+      const newText = prompt("Edita tu entrada del diario:", currentText);
+
+      if (newText !== null && newText.trim() !== "") {
+        entries = entries.map(item => {
+          if (item.id === id) {
+            return { ...item, text: newText.trim(), date: new Date().toLocaleString() + " (Editado)" };
+          }
+          return item;
+        });
+
+        localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
+        loadJournal();
+      }
     }
 
     function resetAllData() {
