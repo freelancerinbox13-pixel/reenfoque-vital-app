@@ -674,7 +674,9 @@
       <!-- GESTIÓN Y RESPALDO DE DATOS -->
       <div class="card">
         <h2>⚙️ Gestión y Respaldo de Datos</h2>
-        <button class="btn btn-purple" onclick="exportData()" style="margin-bottom: 8px;">📥 Exportar Copia de Seguridad</button>
+        <!-- Contenedor dinámico para asegurar la descarga segura en WebViews móviles -->
+        <div id="exportContainer" style="margin-bottom: 8px;"></div>
+        <button class="btn btn-purple" onclick="exportData()" style="margin-bottom: 8px;">📥 Generar Copia de Seguridad</button>
         <button class="btn btn-danger" onclick="resetAllData()">Reiniciar Todos los Datos</button>
       </div>
     </div>
@@ -1075,7 +1077,7 @@
       }
     }
 
-    // --- FUNCIÓN DE EXPORTACIÓN ROBUSTA Y COMPATIBLE CON TELEGRAM ---
+    // --- FUNCIÓN DE EXPORTACIÓN ROBUSTA CON BOTÓN VISIBLE EN PANTALLA ---
     function exportData() {
       try {
         const dataObj = {};
@@ -1085,28 +1087,30 @@
         }
 
         const dataStr = JSON.stringify(dataObj, null, 2);
-        
-        // Uso de Blob y URL.createObjectURL para máxima compatibilidad en WebViews móviles
         const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
 
+        const container = document.getElementById('exportContainer');
+        container.innerHTML = ''; // Limpiar enlaces previos si los hubiera
+
+        // Creamos un enlace directo y visible para que el usuario pueda pulsar físicamente en él
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = "reenfoque_vital_backup.json";
+        downloadLink.className = "btn btn-success";
+        downloadLink.style.display = "block";
+        downloadLink.style.textAlign = "center";
+        downloadLink.innerHTML = "📥 Pulsa aquí para descargar el archivo .json";
+        
+        container.appendChild(downloadLink);
+
+        // Intento automático adicional por si el entorno soporta el evento simulado
         const downloadAnchor = document.createElement('a');
         downloadAnchor.href = url;
-        downloadAnchor.setAttribute('download', 'reenfoque_vital_backup.json');
-        
-        // Soporte adicional para Telegram WebApp (intentar abrir o descargar directamente)
-        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.openLink) {
-          // Si el entorno móvil requiere apertura externa para descargas seguras
-          downloadAnchor.target = '_blank';
-        }
-
+        downloadAnchor.download = "reenfoque_vital_backup.json";
         document.body.appendChild(downloadAnchor);
         downloadAnchor.click();
-        
-        setTimeout(() => {
-          document.body.removeChild(downloadAnchor);
-          URL.revokeObjectURL(url);
-        }, 200);
+        document.body.removeChild(downloadAnchor);
 
       } catch (error) {
         console.error("Error al exportar los datos:", error);
