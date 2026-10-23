@@ -122,16 +122,6 @@
     .skool-banner h3 { margin: 0 0 8px 0; font-size: 1.15rem; }
     .skool-banner p { margin: 0 0 14px 0; font-size: 0.88rem; line-height: 1.4; opacity: 0.95; }
 
-    .ad-native-card {
-      background: rgba(74, 91, 109, 0.06);
-      border: 1px dashed var(--primary);
-      border-radius: var(--border-radius);
-      padding: 12px;
-      margin-bottom: 16px;
-      text-align: center;
-      display: block;
-    }
-
     select, input[type="text"], input[type="date"], textarea {
       width: 100%;
       padding: 12px;
@@ -166,41 +156,8 @@
     .btn:active { opacity: 0.85; }
     .btn-sos { background-color: #c97a63; }
     .btn-success { background-color: var(--success); }
-    .btn-kaizen { background-color: var(--accent); color: #2c353f; }
     .btn-purple { background-color: var(--purple); }
     .btn-danger { background-color: #a94442; }
-    .btn-skool { background-color: #ffffff; color: #4a5b6d; font-weight: bold; }
-
-    .book-card {
-      background: rgba(0, 0, 0, 0.03);
-      padding: 14px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      border-left: 4px solid var(--accent);
-    }
-
-    .book-title { margin: 0 0 4px 0; font-size: 1rem; color: var(--primary); }
-    .book-author { margin: 0 0 6px 0; font-size: 0.82rem; color: var(--text-light); }
-    .book-desc { margin: 0 0 12px 0; font-size: 0.85rem; line-height: 1.3; }
-    .book-actions { display: flex; gap: 8px; flex-direction: column; }
-
-    .reader-modal {
-      display: none;
-      background: var(--card-bg);
-      border: 1px solid var(--accent);
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 12px;
-    }
-
-    .emotion-response {
-      background-color: rgba(168, 192, 208, 0.15);
-      border-left: 4px solid var(--primary);
-      padding: 12px;
-      border-radius: 6px;
-      margin-top: 10px;
-      display: none;
-    }
 
     .affirmation-box {
       background-color: rgba(212, 184, 150, 0.15);
@@ -225,51 +182,11 @@
       text-align: center;
     }
 
-    .disclaimer-box {
-      background: rgba(0, 0, 0, 0.02);
-      border: 1px dashed var(--text-light);
-      border-radius: 8px;
-      padding: 12px;
-      margin-top: 16px;
-      font-size: 0.78rem;
-      line-height: 1.4;
-      color: var(--text-light);
-      text-align: center;
-    }
-
-    .breathing-circle {
-      width: 90px; height: 90px;
-      background-color: #c97a63;
-      border-radius: 50%;
-      margin: 15px auto;
-      animation: breathe var(--breathing-duration) infinite ease-in-out;
-    }
-
-    @keyframes breathe {
-      0%, 100% { transform: scale(0.85); opacity: 0.5; }
-      50% { transform: scale(1.35); opacity: 1; }
-    }
-
     .timer-display { font-size: 2.8rem; text-align: center; font-weight: bold; margin: 10px 0; color: var(--primary); }
     .timer-controls { display: flex; gap: 8px; }
-    
-    .habit-streak-card {
-      background: rgba(0, 0, 0, 0.02);
-      border: 1px solid #d0d7de;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 12px;
-    }
-    .habit-streak-title { font-weight: bold; font-size: 0.95rem; color: var(--primary); margin-bottom: 6px; }
-    .habit-streak-value { font-size: 1.5rem; font-weight: bold; color: var(--success); margin: 6px 0; text-align: center; }
-
-    .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-top: 10px; }
-    .badge-item { background: var(--bg-color); border: 1px solid #d0d7de; border-radius: 8px; padding: 10px 5px; font-size: 0.8rem; opacity: 0.4; }
-    .badge-item.unlocked { opacity: 1; border-color: var(--accent); background: rgba(212, 184, 150, 0.15); }
-    .badge-item span { font-size: 1.8rem; display: block; margin-bottom: 4px; }
 
     ul { list-style: none; padding: 0; margin: 0; }
-    li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; }
+    li { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.9rem; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -279,18 +196,12 @@
       background-color: var(--card-bg); display: flex; justify-content: space-around;
       align-items: center; border-top: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 -2px 10px rgba(0,0,0,0.03); z-index: 1000;
-      overflow-x: auto;
     }
 
     .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: var(--text-light); cursor: pointer; min-width: 60px; }
     .nav-item.active { color: var(--primary); font-weight: bold; }
     .nav-item span { font-size: 1.1rem; margin-bottom: 2px; }
 
-    .journal-actions {
-      display: flex;
-      gap: 6px;
-      margin-top: 6px;
-    }
     .journal-btn {
       padding: 4px 8px;
       font-size: 0.75rem;
@@ -299,7 +210,6 @@
       cursor: pointer;
       font-weight: bold;
     }
-    .journal-btn-edit { background-color: var(--primary); color: white; }
     .journal-btn-delete { background-color: #a94442; color: white; }
   </style>
 </head>
@@ -318,81 +228,6 @@
 
     <!-- PESTAÑA 1: INICIO -->
     <div id="tab-home" class="tab-content active">
-      <!-- BANNER AUTOMÁTICO DE MIEMBRO FUNDADOR / 9€ -->
-      <div id="dynamicFounderBanner" class="skool-banner" style="background: linear-gradient(135deg, #529471, #3b6e53);">
-        <h3 id="bannerTitle">🎁 Plaza de Miembro Fundador (Gratis)</h3>
-        <p id="bannerDesc">Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.</p>
-        <a id="bannerBtn" href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" onclick="incrementFounderCounter()" style="color: #3b6e53; font-weight: bold;">
-          Reclamar mi plaza gratuita
-        </a>
-      </div>
-
-      <!-- CHECK-IN EMOCIONAL -->
-      <div class="card">
-        <h2>🧠 ¿Cómo te sientes hoy?</h2>
-        <select id="emotionSelect" onchange="processEmotion()">
-          <option value="">-- Selecciona una opción --</option>
-          <option value="duelo">😔 Duelo / Pérdida</option>
-          <option value="nube">🌧️ Nube mental / Confusión</option>
-          <option value="ira">😤 Iracundo / Enojo</option>
-          <option value="ansiedad">😰 Ansiedad / Abrumado</option>
-          <option value="soledad">💔 Soledad / Frustración</option>
-          <option value="desmotivado">🥱 Sin energía / Desmotivado</option>
-          <option value="claridad">💡 Claridad / Enfoque</option>
-          <option value="feliz">😊 Feliz / Motivado</option>
-          <option value="agradecido">🙏 Agradecido</option>
-          <option value="atascado">🧱 Atascado / Bloqueado</option>
-        </select>
-        <div id="emotionResponse" class="emotion-response">
-          <h3 id="responseTitle"></h3>
-          <p id="responseText"></p>
-        </div>
-      </div>
-
-      <!-- PREGUNTAS Y REFLEXIONES -->
-      <div class="card">
-        <h2>❓ Preguntas & Reflexiones</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light);">
-          Selecciona una duda o pensamiento común para ver su respuesta:
-        </p>
-        
-        <select id="faqSelect" onchange="showFAQAnswer()">
-          <option value="">-- Selecciona una pregunta --</option>
-        </select>
-
-        <div id="faqResponseBox" style="display: none; background: rgba(0, 0, 0, 0.03); padding: 12px; border-radius: 8px; border-left: 4px solid var(--accent); margin-top: 10px;">
-          <h3 id="faqResponseTitle" style="margin-top: 0; font-size: 0.95rem; color: var(--primary);"></h3>
-          <p id="faqResponseText" style="margin-bottom: 0; font-size: 0.88rem; line-height: 1.4; color: var(--text);"></p>
-        </div>
-      </div>
-
-      <!-- MUESTRAS DE EJERCICIOS -->
-      <div class="card">
-        <h2>🎓 Muestras de Ejercicios Guiados</h2>
-        <select id="exerciseSampleSelect" onchange="loadSampleExercise()">
-          <option value="">-- Elige un ejercicio de prueba --</option>
-          <option value="brain_dump">🐸 1. Brain Dumping (Desahogo Mental)</option>
-          <option value="facts_stories">🛡️ 2. Filtro "Hechos vs. Historias"</option>
-          <option value="energy_audit">🔋 3. Auditoría de Energía</option>
-        </select>
-
-        <div id="sampleExerciseBox" style="display: none; margin-top: 12px; background: rgba(0,0,0,0.03); padding: 12px; border-radius: 8px;">
-          <h3 id="sampleTitle" style="margin-top:0; font-size: 1rem; color: var(--primary);"></h3>
-          <p id="sampleDesc" style="font-size: 0.85rem; color: var(--text-light);"></p>
-          <textarea id="sampleInput" placeholder="Escribe tu respuesta aquí..."></textarea>
-          <button class="btn btn-success" onclick="completeSampleExercise()">Guardar Ejercicio</button>
-        </div>
-
-        <div id="completedSampleBanner" class="skool-banner" style="display: none; margin-top: 12px; background: linear-gradient(135deg, #529471, #3b6e53);">
-          <h3>✨ ¡Ejercicio completado e inspeccionado!</h3>
-          <p>Has dado el primer paso. Para recibir retroalimentación de la comunidad o descargar la plantilla completa en PDF, entra al área de miembros.</p>
-          <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" style="color: #3b6e53;">
-            Desbloquear plantilla y publicar en Skool
-          </a>
-        </div>
-      </div>
-
-      <!-- AFIRMACIONES -->
       <div class="card">
         <h2>✨ Afirmaciones & Gratitud</h2>
         <div id="affirmationBox" class="affirmation-box">
@@ -403,50 +238,12 @@
         <button class="btn btn-success" onclick="addGratitude()">Guardar Gratitud</button>
         <ul id="gratitudeList"></ul>
       </div>
-
-      <!-- TABLÓN DUAL DE SUGERENCIAS Y REPORTES -->
-      <div class="card" style="border-left: 4px solid var(--purple);">
-        <h2>📬 Tablón de Sugerencias y Reportes</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          ¿Tienes una idea para mejorar la app o encontraste algún error? Envía tu mensaje directo a nuestra comunidad de Telegram.
-        </p>
-
-        <!-- BANNER PUBLICITARIO INTEGRADO EN EL TABLÓN -->
-        <div class="ad-native-card" id="adContainerTablon" style="margin-bottom: 12px;">
-          <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
-        </div>
-        
-        <select id="tipoAportacion" style="margin-top: 4px;">
-          <option value="Sugerencia">💡 Sugerencia de Nueva Funcionalidad</option>
-          <option value="Reporte de Error">🐛 Reporte de Problema / Bug</option>
-        </select>
-
-        <textarea id="textoAportacion" placeholder="Escribe aquí tu sugerencia o describe el error..."></textarea>
-        <button class="btn btn-purple" onclick="enviarAlTablonDeTelegram()">Enviar a la Comunidad de Telegram</button>
-      </div>
-
     </div>
 
-    <!-- PESTAÑA 2: ENFOQUE -->
+    <!-- PESTAÑA 2: ENFOQUE (CON REGLA DE LOS 2 MINUTOS ACTUALIZADA) -->
     <div id="tab-focus" class="tab-content">
       <div class="card">
-        <h2>🎧 Sonidos de Enfoque</h2>
-        <select id="noiseTypeSelect">
-          <option value="white">Ruido Blanco (Aislamiento absoluto)</option>
-          <option value="pink">Ruido Rosa (Lluvia constante)</option>
-          <option value="brown">Ruido Marrón (Océano profundo)</option>
-          <option value="blue">Ruido Azul (Estimulación)</option>
-          <option value="violet">Ruido Violeta (Enmascarar acúfenos)</option>
-        </select>
-        <button class="btn btn-purple" id="noiseBtn" onclick="toggleNoise()">Activar Sonido</button>
-      </div>
-
-      <!-- TEMPORIZADOR POMODORO -->
-      <div class="card">
         <h2>⏱️ Temporizador Pomodoro</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          <strong>¿Para qué sirve?</strong> Ayuda a mantener alta la concentración dividiendo el trabajo en bloques de 25 minutos seguidos de descansos cortos. Previene el agotamiento mental y combate la procrastinación.
-        </p>
         <div class="timer-display" id="timer">25:00</div>
         <div class="timer-controls">
           <button class="btn" onclick="startTimer()">Iniciar</button>
@@ -454,38 +251,10 @@
         </div>
       </div>
 
-      <!-- EAT THAT FROG -->
-      <div class="card">
-        <h2>🐸 "Eat That Frog" (La Tarea Principal)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          <strong>¿Por qué se hace?</strong> Basado en el principio de Mark Twain: si lo primero que haces cada mañana es comerte una rana viva (tu tarea más difícil o pesada), el resto del día fluirá con éxito y sin el peso de la postergación.
-        </p>
-        <input type="text" id="frogInput" placeholder="Mi tarea principal de hoy es...">
-        <button class="btn btn-success" onclick="saveFrog()">Establecer Tarea Principal</button>
-        <div id="frogStatus" style="margin-top: 8px; font-weight: bold; color: var(--primary);"></div>
-      </div>
-
-      <!-- MÉTODO KAIZEN -->
-      <div class="card">
-        <h2>🌱 Método Kaizen (Pasos de 1 Min)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          <strong>¿Para qué sirve?</strong> La mejora continua a través de micro-pasos tan ridículamente pequeños que tu cerebro no active resistencia ni miedo al fracaso. Ideal para superar la inercia inicial.
-        </p>
-        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión...">
-        <button class="btn btn-kaizen" id="kaizenBtn" onclick="showRewardAd(completeKaizen)">¡Completar Micro-Meta!</button>
-        <div id="kaizenStatus" style="display:none; margin-top:8px; text-align:center; font-weight:bold; color:var(--warning);"></div>
-      </div>
-
-      <!-- BLOQUE PUBLICITARIO NATIVO 1 (ENFOQUE) -->
-      <div class="ad-native-card" id="adContainerFocus">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
-      </div>
-
-      <!-- REGLA DE LOS 2 MINUTOS -->
       <div class="card">
         <h2>⚡ Regla de los 2 Minutos</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
-          <strong>¿Por qué se hace?</strong> Si una acción te toma menos de dos minutos en ser realizada, hazla de inmediato. Elimina la acumulación mental de pequeñas tareas pendientes que consumen tu atención.
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">
+          Si una acción toma menos de 2 minutos, hazla ahora. Se guardarán visiblemente durante 3 días.
         </p>
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
         <button class="btn btn-success" onclick="addQuickTask()">Agregar y Ejecutar</button>
@@ -498,310 +267,32 @@
       <div class="card">
         <h2>🆘 Auxilio ante Impulsos o Vicios</h2>
         <button class="btn btn-sos" onclick="toggleSOS()">¡Tengo un impulso ahora!</button>
-
-        <div id="sosBox" class="sos-box">
-          <label style="font-size: 0.85rem; font-weight: bold; color: var(--primary); display: block; margin-bottom: 4px; text-align: left;">
-            Selecciona el tipo de impulso:
-          </label>
-          <select id="addictionCategorySelect" onchange="updateSOSAdvice()">
-            <option value="general">🟢 General / Impulso No Especificado</option>
-            <option value="drogas_blandas">🌿 Drogas Blandas (Cannabis, Vape, Vapeo)</option>
-            <option value="drogas_duras">⚠️ Sustancias Fuertes / Drogas Duras</option>
-            <option value="alcohol">🍺 Alcohol</option>
-            <option value="sexo">🔥 Sexo / Impulsos Compulsivos</option>
-            <option value="juego">🎰 Juego / Apuestas / Ludopatía</option>
-            <option value="porno">🔞 Películas Adultos / Pantallas</option>
-          </select>
-
-          <div id="sosAdviceCard" style="background: rgba(255,255,255,0.7); border-radius: 8px; padding: 10px; margin-bottom: 12px; text-align: left; border-left: 4px solid var(--accent);">
-            <strong id="sosAdviceTitle" style="color: var(--primary); font-size: 0.9rem; display: block; margin-bottom: 4px;"></strong>
-            <p id="sosAdviceText" style="margin: 0; font-size: 0.85rem; line-height: 1.3; color: var(--text);"></p>
-          </div>
-
-          <div class="card" style="border: 2px solid var(--accent); background: rgba(212, 184, 150, 0.1);">
-            <h2>🤝 Apoyo de la Comunidad</h2>
-            <p style="font-size: 0.88rem; line-height: 1.4; color: var(--text);">
-              Si la técnica de respiración no es suficiente y necesitas desahogarte con personas que entienden por lo que estás pasando:
-            </p>
-            <a href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-kaizen" style="margin-bottom: 8px;">
-              💬 Entrar al Círculo de Apoyo en Skool
-            </a>
-            <a href="https://t.me/ReenfoqueVital" target="_blank" class="btn btn-purple" style="font-size: 0.85rem;">
-              📢 Unirme al Canal Oficial de Telegram
-            </a>
-          </div>
-
-          <select id="breathingTechnique" onchange="changeBreathingPattern()" style="margin-bottom: 8px;">
-            <option value="4-7-8">4-7-8 (Relajación profunda)</option>
-            <option value="box">Cuadrada 4-4-4-4 (Calma rápida)</option>
-            <option value="coherent">Coherente 5-5 (Ritmo cardíaco)</option>
-            <option value="7-11">7-11 (Sistema parasimpático)</option>
-            <option value="sigh">Suspiro Fisiológico (Inhalación doble)</option>
-          </select>
-
-          <div class="breathing-circle"></div>
-          <button class="btn btn-purple" onclick="newDistractionTask()" style="margin-bottom: 8px;">Cambiar Reto Mental</button>
-          <p id="distractionTask"><strong>Reto de Enfoque:</strong> Cuenta de 100 hacia atrás restando de 7 en 7.</p>
-        </div>
-      </div>
-
-      <!-- MÓDULO: ECO MENTAL -->
-      <div class="card" style="border-left: 4px solid var(--success);">
-        <h2>🗣️ Eco Mental (Distracción por Voz)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4;">
-          Rompe el ciclo del pensamiento obsesivo repitiendo en voz alta lo que la app te indica. Obliga a tu cerebro a cambiar de canal neuronal.
-        </p>
-        <div id="ecoWordDisplay" style="font-size: 1.4rem; font-weight: bold; text-align: center; color: var(--primary); margin: 15px 0; min-height: 45px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.03); border-radius: 8px;">
-          Pulsa "Iniciar Ejercicio"
-        </div>
-        <button class="btn btn-success" id="ecoBtn" onclick="toggleEcoMental()">Iniciar Ejercicio de Voz (30s)</button>
-      </div>
-
-      <!-- MÓDULO: TERMÓMETRO DE IMPULSO -->
-      <div class="card" id="intensityCheckCard" style="background: rgba(201, 122, 99, 0.05); border: 1px dashed #c97a63;">
-        <h2>📊 Termómetro de Impulso</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light);">Mide tu nivel de intensidad antes y después de aplicar el protocolo para ver tu progreso:</p>
-        
-        <div id="intensityStep1">
-          <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 6px;">Intensidad actual del impulso (1 al 10):</label>
-          <input type="range" id="intensityBefore" min="1" max="10" value="8" oninput="document.getElementById('valBefore').textContent = this.value" style="width: 100%; accent-color: #c97a63;">
-          <div style="text-align: center; font-weight: bold; font-size: 1.2rem; color: #c97a63; margin-bottom: 10px;" id="valBefore">8</div>
-          <button class="btn btn-sos" onclick="startIntensityCheck()">Registrar e iniciar alivio</button>
-        </div>
-
-        <div id="intensityStep2" style="display: none; text-align: center;">
-          <p style="font-size: 0.9rem; font-weight: bold; color: var(--primary);">⏱️ Realiza tu respiración o el Eco Mental durante 1 minuto...</p>
-          <label style="font-size: 0.85rem; font-weight: bold; display: block; margin-top: 10px; margin-bottom: 6px;">¿Cómo es la intensidad ahora?</label>
-          <input type="range" id="intensityAfter" min="1" max="10" value="4" oninput="document.getElementById('valAfter').textContent = this.value" style="width: 100%; accent-color: var(--success);">
-          <div style="text-align: center; font-weight: bold; font-size: 1.2rem; color: var(--success); margin-bottom: 10px;" id="valAfter">4</div>
-          <button class="btn btn-success" onclick="finishIntensityCheck()">Guardar Victoria 🎉</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>⚠️ Registro de Desencadenante (Trigger)</h2>
-        <input type="text" id="triggerPlace" placeholder="¿Dónde estás o qué hacías?">
-        <input type="text" id="triggerEmotion" placeholder="¿Qué emoción sentías previo al impulso?">
-        <button class="btn btn-warning" onclick="saveTrigger()">Guardar Registro</button>
-        <ul id="triggerList"></ul>
-      </div>
-
-      <div class="card">
-        <h2>📞 Líneas de Ayuda Urgente</h2>
-        <a href="tel:024" class="btn btn-danger" style="margin-bottom: 8px;">📞 Llama al 024 (Atención a la Crisis)</a>
-        <a href="tel:112" class="btn" style="background-color: #34495e;">🚑 Llama al 112 (Emergencias)</a>
-      </div>
-
-      <!-- DESCARGO DE RESPONSABILIDAD -->
-      <div class="disclaimer-box">
-        <strong>Aviso Legal y Descargo de Responsabilidad:</strong> Reenfoque Vital es una herramienta de apoyo al autocontrol y desarrollo personal. No sustituye el diagnóstico, tratamiento o asesoramiento médico, psiquiátrico o psicológico profesional. En caso de crisis grave o riesgo para la salud, acude inmediatamente a un especialista o utiliza los servicios de emergencia.
       </div>
     </div>
 
-    <!-- PESTAÑA 4: RELAX, FRECUENCIAS & BIBLIOTECA -->
+    <!-- PESTAÑA 4: RELAX -->
     <div id="tab-meditation" class="tab-content">
       <div class="card">
         <h2>🧘 Frecuencias Vibracionales</h2>
         <select id="freqSelect">
           <option value="432">432 Hz - Armonía Natural</option>
           <option value="528">528 Hz - Transformación</option>
-          <option value="963">963 Hz - Meditación Profunda</option>
-          <option value="alpha">Ondas Alfa (10 Hz) - Calma</option>
-          <option value="theta">Ondas Theta (6 Hz) - Relax</option>
         </select>
-        <select id="meditationTimer">
+        <select id="meditationTimer" style="margin-top: 8px;">
           <option value="5">5 Minutos</option>
           <option value="10">10 Minutos</option>
-          <option value="15">15 Minutos</option>
         </select>
-        <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()">Iniciar Frecuencia</button>
-      </div>
-
-      <!-- BLOQUE PUBLICITARIO NATIVO 2 (RELAX) -->
-      <div class="ad-native-card" id="adContainerRelax">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
-      </div>
-
-      <div class="card">
-        <h2>📚 Biblioteca & Lecturas de Superación</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light);">
-          Lee resúmenes enriquecidos directamente en la app o adquiere la versión completa:
-        </p>
-        <div id="booksContainer"></div>
-
-        <div id="readerModal" class="reader-modal">
-          <h3 id="readerTitle" style="margin-top:0; color: var(--primary);"></h3>
-          <div id="readerContent" style="font-size: 0.9rem; line-height: 1.5; margin-bottom: 12px; max-height: 200px; overflow-y: auto;"></div>
-          <button class="btn btn-purple" onclick="closeReader()">Cerrar Lectura</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>📖 Diario Íntimo de Proceso Personal</h2>
-        <textarea id="journalEntry" placeholder="Escribe libremente aquí..."></textarea>
-        <button class="btn btn-success" onclick="saveJournal()">Guardar Entrada</button>
-        <ul id="journalList"></ul>
+        <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()" style="margin-top: 8px;">Iniciar Frecuencia</button>
       </div>
     </div>
 
     <!-- PESTAÑA 5: PROGRESO -->
     <div id="tab-stats" class="tab-content">
       <div class="card">
-        <h2>🔥 Contadores Independientes de Rachas</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
-          Una recaída en un área no borra tu esfuerzo en las demás. Gestiona cada hábito por separado:
-        </p>
-        <div id="independentStreaksContainer"></div>
-      </div>
-
-      <div class="card">
-        <h2>🏆 Logros e Insignias</h2>
-        <div class="badge-grid">
-          <div class="badge-item" id="badge-1"><span>🌱</span> 1er Día</div>
-          <div class="badge-item" id="badge-3"><span>🔥</span> 3 Días</div>
-          <div class="badge-item" id="badge-7"><span>⚡</span> 1 Semana</div>
-          <div class="badge-item" id="badge-30"><span>🏆</span> 1 Mes</div>
-          <div class="badge-item" id="badge-kaizen"><span>🎯</span> Kaizen</div>
-          <div class="badge-item" id="badge-journal"><span>📖</span> Diario</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>⭐ Suscripción Premium</h2>
-        <button class="btn btn-success" onclick="comprarConStars()">Eliminar Anuncios con Telegram Stars</button>
-      </div>
-
-      <!-- GESTIÓN Y RESPALDO DE DATOS -->
-      <div class="card">
         <h2>⚙️ Gestión y Respaldo de Datos</h2>
-        <!-- Contenedor dinámico para asegurar la descarga segura en WebViews móviles -->
         <div id="exportContainer" style="margin-bottom: 8px;"></div>
         <button class="btn btn-purple" onclick="exportData()" style="margin-bottom: 8px;">📥 Generar Copia de Seguridad</button>
         <button class="btn btn-danger" onclick="resetAllData()">Reiniciar Todos los Datos</button>
-      </div>
-    </div>
-
-    <!-- PESTAÑA 6: PLAN DE TRANSFORMACIÓN -->
-    <div id="tab-transformation" class="tab-content">
-      <div class="skool-banner" style="background: linear-gradient(135deg, #364453, #192028);">
-        <h3>🗺️ Tu Ruta de Transformación y Bienestar</h3>
-        <p>Un sistema de ejecución paso a paso para cuidar de ti, ordenar tu entorno y recuperar el control mental y emocional.</p>
-        <div id="transformationProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--accent); margin-top: 6px;">Progreso Sprint (4M): 0% Completado</div>
-        <div id="yearlyProgressText" style="font-weight: bold; font-size: 0.9rem; color: var(--warning); margin-top: 4px;">Progreso Anual (12M): 0% Completado</div>
-      </div>
-
-      <!-- TEXTO EXPLICATIVO DE SALUD MENTAL -->
-      <div class="card" style="background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--accent);">
-        <h3 style="margin-bottom: 8px; font-size: 1rem; color: var(--primary);">🧠 ¿Por dónde empezar a reconstruir tu equilibrio?</h3>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 10px;">
-          La fatiga mental, la rumiación y la ansiedad a menudo nacen del caos: la falta de rumbos claros y el agotamiento diario. No se trata de "intentar" cambiar con fuerza de voluntad agotada, sino de contar con un <strong>sistema de ejecución estructurado</strong> que te acompañe a recuperar la paz a tu ritmo.
-        </p>
-        <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin-bottom: 0;">
-          Dispones de dos rutas según tu momento actual: un <strong>Sprint de 4 Meses</strong> para frenar el desgaste y estabilizarte, o el <strong>Mapa Maestro de 12 Meses</strong> para una reinvención profunda y sostenible.
-        </p>
-      </div>
-
-      <!-- BANNER PUBLICITARIO NATIVO 3 (TRANSFORMACIÓN) -->
-      <div class="ad-native-card" id="adContainerTransformation">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
-      </div>
-
-      <!-- FASE 0: LIMPIEZA -->
-      <div class="card">
-        <h2>🛡️ Fase 0: Protocolo de Limpieza (Semanas 1-2)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Detén la hemorragia, aíslate del ruido y audita tu punto de partida.</p>
-        
-        <div class="habit-streak-card">
-          <div class="habit-streak-title">📋 Auditoría de Cero (Libreta Personal)</div>
-          <textarea id="auditNotes" placeholder="Escribe aquí tus notas de finanzas, habilidades actuales y fugas de energía..."></textarea>
-          <button class="btn btn-success" style="margin-top: 8px;" onclick="saveTransformationNotes()">Guardar Auditoría</button>
-        </div>
-
-        <div style="margin-top: 12px;">
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_1" onchange="updateTransformationProgress()"> Aislamiento activo (Modo Monje / Cero redes sociales pasivas)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_2" onchange="updateTransformationProgress()"> Chasis físico blindado (Sueño de 7-8h y entrenamiento diario)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_3" onchange="updateTransformationProgress()"> Auditoría de finanzas y habilidades completada</label>
-        </div>
-      </div>
-
-      <!-- FASE 1: ESTABILIZACIÓN -->
-      <div class="card">
-        <h2>⚡ Fase 1: Estabilización y Activos (Mes 2)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Asegura flujo de caja rápido y elige un único vehículo de enfoque.</p>
-        <div>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_4" onchange="updateTransformationProgress()"> Ingreso de supervivencia asegurado (Monetización rápida)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_5" onchange="updateTransformationProgress()"> Elección del Dragón (Selección de un único proyecto principal)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_6" onchange="updateTransformationProgress()"> Arquitectura del entorno y bloques de tiempo configurados</label>
-        </div>
-      </div>
-
-      <!-- FASE 2: TRACCIÓN -->
-      <div class="card">
-        <h2>🚀 Fase 2: Tracción Brutal (Mes 3)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Haz ruido constante, valida tu oferta y sal al mercado.</p>
-        <div>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_7" onchange="updateTransformationProgress()"> Creación de la Oferta Grand Slam (Solución de alto valor)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_8" onchange="updateTransformationProgress()"> Máquina de distribución activa (Contenido y captación diaria)</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_9" onchange="updateTransformationProgress()"> Automatización del 80% de tareas repetitivas</label>
-        </div>
-      </div>
-
-      <!-- FASE 3: ACELERACIÓN -->
-      <div class="card">
-        <h2>🏆 Fase 3: Aceleración y Estándar (Mes 4)</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">Multiplica resultados, blinda tu caja y consolida tu nueva línea base.</p>
-        <div>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_10" onchange="updateTransformationProgress()"> Optimización de embudos y métricas de conversión</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_11" onchange="updateTransformationProgress()"> Fondo de reserva y reinversión estratégica asegurados</label>
-          <label style="display: block; font-size: 0.9rem; margin-bottom: 6px;"><input type="checkbox" id="t_task_12" onchange="updateTransformationProgress()"> Documentación de SOPs y cierre del ciclo de 120 días</label>
-        </div>
-      </div>
-
-      <!-- PLAN ANUAL DE 12 MESES -->
-      <div class="card" style="margin-top: 20px; border-top: 4px solid var(--primary);">
-        <h2>🗺️ Mapa Maestro: Plan Anual de 12 Meses</h2>
-        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
-          El sistema de 52 semanas para la reinvención total y la construcción de un proyecto de vida sólido.
-        </p>
-
-        <!-- FASE 0: 12 MESES -->
-        <div class="habit-streak-card" style="margin-bottom: 12px;">
-          <div class="habit-streak-title">🛡️ Fase 0: Protocolo de Limpieza (Semanas 1 a 4)</div>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_1" onchange="updateYearlyProgress()"> Aislamiento Estratégico (Modo fantasma / Monk Mode)</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_2" onchange="updateYearlyProgress()"> Auditoría de Cero (Finanzas, habilidades y fugas de energía)</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_3" onchange="updateYearlyProgress()"> Reconstrucción del Chasis (Sueño, movimiento y nutrición)</label>
-        </div>
-
-        <!-- FASE 1: 12 MESES -->
-        <div class="habit-streak-card" style="margin-bottom: 12px;">
-          <div class="habit-streak-title">⚡ Fase 1: Estabilización y Activos (Meses 2 al 3)</div>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_4" onchange="updateYearlyProgress()"> Ingresos de supervivencia y flujo rápido asegurados</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_5" onchange="updateYearlyProgress()"> Elección del Dragón (Enfoque único en un solo vehículo)</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_6" onchange="updateYearlyProgress()"> Arquitectura del entorno y time-blocking configurados</label>
-        </div>
-
-        <!-- FASE 2: 12 MESES -->
-        <div class="habit-streak-card" style="margin-bottom: 12px;">
-          <div class="habit-streak-title">🚀 Fase 2: Tracción Brutal (Meses 4 al 6)</div>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_7" onchange="updateYearlyProgress()"> Monopolio Personal de Habilidades (Oferta Grand Slam)</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_8" onchange="updateYearlyProgress()"> Distribución, impacto y consistencia diaria de contenidos</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_9" onchange="updateYearlyProgress()"> Sistemas de escala y automatización del 80% operativo</label>
-        </div>
-
-        <!-- FASE 3: 12 MESES -->
-        <div class="habit-streak-card" style="margin-bottom: 12px;">
-          <div class="habit-streak-title">📈 Fase 3: Aceleración y Dominio (Meses 7 al 9)</div>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_10" onchange="updateYearlyProgress()"> Optimización de embudos, conversión y retención</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_11" onchange="updateYearlyProgress()"> Fortaleza financiera (Fondo de reserva y reinversión)</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_12" onchange="updateYearlyProgress()"> Círculo de excelencia y networking estratégico</label>
-        </div>
-
-        <!-- FASE 4: 12 MESES -->
-        <div class="habit-streak-card">
-          <div class="habit-streak-title">🏆 Fase 4: El Nuevo Estándar (Meses 10 al 12)</div>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_13" onchange="updateYearlyProgress()"> Institucionalización de la marca/proyecto y SOPs</label>
-          <label style="display: block; font-size: 0.88rem; margin-bottom: 6px;"><input type="checkbox" id="y_task_14" onchange="updateYearlyProgress()"> Revisión del máximo nivel y cierre del ciclo de 365 días</label>
-        </div>
       </div>
     </div>
 
@@ -814,169 +305,23 @@
     <div class="nav-item" onclick="switchTab('tab-sos', this)"><span>🆘</span>SOS</div>
     <div class="nav-item" onclick="switchTab('tab-meditation', this)"><span>🧘</span>Relax</div>
     <div class="nav-item" onclick="switchTab('tab-stats', this)"><span>🔥</span>Progreso</div>
-    <div class="nav-item" onclick="switchTab('tab-transformation', this)"><span>🗺️</span>Plan 4M</div>
   </div>
 
   <script>
     const CONFIG = {
       WORK_MINUTES: 25,
       KEYS: {
-        KAIZEN_GOAL: 'rf_kaizen_goal',
-        KAIZEN_LAST_DONE: 'rf_kaizen_last_done',
-        TASKS: 'rf_quick_tasks',
         GRATITUDE: 'rf_gratitude_list',
-        FROG: 'rf_frog_task',
-        TRIGGERS: 'rf_triggers_list',
-        JOURNAL: 'rf_journal_entries',
-        IS_PREMIUM: 'rf_is_premium',
-        DARK_MODE: 'rf_dark_mode',
-        FOUNDER_COUNTER: 'rf_founder_counter'
+        TASKS: 'rf_quick_tasks',
+        DARK_MODE: 'rf_dark_mode'
       }
     };
 
-    let isUserPremium = localStorage.getItem(CONFIG.KEYS.IS_PREMIUM) === 'true';
-    
-    // INTEGRACIÓN OFICIAL DE ADSGRAM
-    const ADSGRAM_BLOCK_ID = "52618"; 
-    const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
-      ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
-
-    if (window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready();
-      window.Telegram.WebApp.expand();
-    }
-
-    // CONTROL DE MONETIZACIÓN Y VISIBILIDAD DE ANUNCIOS
-    function checkAdsVisibility() {
-      const adCards = document.querySelectorAll('.ad-native-card');
-      if (isUserPremium) {
-        adCards.forEach(el => el.style.display = 'none');
-      } else {
-        adCards.forEach(el => el.style.display = 'block');
-      }
-    }
-
-    // LÓGICA DEL PLAN DE TRANSFORMACIÓN DE 4 MESES
-    function saveTransformationNotes() {
-      const notes = document.getElementById('auditNotes').value;
-      localStorage.setItem('rf_transformation_audit', notes);
-      alert('¡Notas de auditoría guardadas con éxito!');
-    }
-
-    function updateTransformationProgress() {
-      let checkedCount = 0;
-      const totalTasks = 12;
-
-      for (let i = 1; i <= totalTasks; i++) {
-        const checkbox = document.getElementById(`t_task_${i}`);
-        if (checkbox && checkbox.checked) {
-          checkedCount++;
-          localStorage.setItem(`rf_t_task_${i}`, 'true');
-        } else if (checkbox) {
-          localStorage.setItem(`rf_t_task_${i}`, 'false');
-        }
-      }
-
-      const percent = Math.round((checkedCount / totalTasks) * 100);
-      const progressEl = document.getElementById('transformationProgressText');
-      if (progressEl) {
-        progressEl.textContent = `Progreso Sprint (4M): ${percent}% Completado`;
-      }
-    }
-
-    function loadTransformationData() {
-      const savedNotes = localStorage.getItem('rf_transformation_audit');
-      if (savedNotes) {
-        const auditEl = document.getElementById('auditNotes');
-        if(auditEl) auditEl.value = savedNotes;
-      }
-
-      for (let i = 1; i <= 12; i++) {
-        const checkbox = document.getElementById(`t_task_${i}`);
-        const isChecked = localStorage.getItem(`rf_t_task_${i}`) === 'true';
-        if (checkbox) {
-          checkbox.checked = isChecked;
-        }
-      }
-      updateTransformationProgress();
-    }
-
-    // LÓGICA DEL PLAN ANUAL DE 12 MESES
-    function updateYearlyProgress() {
-      let checkedCount = 0;
-      const totalTasks = 14;
-
-      for (let i = 1; i <= totalTasks; i++) {
-        const checkbox = document.getElementById(`y_task_${i}`);
-        if (checkbox && checkbox.checked) {
-          checkedCount++;
-          localStorage.setItem(`rf_y_task_${i}`, 'true');
-        } else if (checkbox) {
-          localStorage.setItem(`rf_y_task_${i}`, 'false');
-        }
-      }
-
-      const percent = Math.round((checkedCount / totalTasks) * 100);
-      const progressEl = document.getElementById('yearlyProgressText');
-      if (progressEl) {
-        progressEl.textContent = `Progreso Anual (12M): ${percent}% Completado`;
-      }
-    }
-
-    function loadYearlyData() {
-      for (let i = 1; i <= 14; i++) {
-        const checkbox = document.getElementById(`y_task_${i}`);
-        const isChecked = localStorage.getItem(`rf_y_task_${i}`) === 'true';
-        if (checkbox) {
-          checkbox.checked = isChecked;
-        }
-      }
-      updateYearlyProgress();
-    }
-
-    // FUNCIÓN DE VERIFICACIÓN AUTOMÁTICA DE LOGROS E INSIGNIAS
-    function checkAndUnlockBadges() {
-      let maxStreak = 0;
-      const categories = ['general', 'drogas_blandas', 'drogas_duras', 'alcohol', 'sexo', 'juego', 'porno'];
-      
-      categories.forEach(cat => {
-        const savedDate = localStorage.getItem(`rf_streak_${cat}`);
-        if (savedDate) {
-          const daysCount = Math.floor(Math.abs(new Date() - new Date(savedDate)) / (1000 * 60 * 60 * 24));
-          if (daysCount > maxStreak) maxStreak = daysCount;
-        }
-      });
-
-      if (maxStreak >= 1) document.getElementById('badge-1').classList.add('unlocked');
-      if (maxStreak >= 3) document.getElementById('badge-3').classList.add('unlocked');
-      if (maxStreak >= 7) document.getElementById('badge-7').classList.add('unlocked');
-      if (maxStreak >= 30) document.getElementById('badge-30').classList.add('unlocked');
-
-      const kaizenDone = localStorage.getItem(CONFIG.KEYS.KAIZEN_LAST_DONE);
-      if (kaizenDone) {
-        document.getElementById('badge-kaizen').classList.add('unlocked');
-      }
-
-      const journalEntries = JSON.parse(localStorage.getItem(CONFIG.KEYS.JOURNAL) || '[]');
-      if (journalEntries.length > 0) {
-        document.getElementById('badge-journal').classList.add('unlocked');
-      }
-    }
-
-    // FUNCIÓN DEL TABLÓN DE SUGERENCIAS Y REPORTES CONECTADO A TELEGRAM
-    function enviarAlTablonDeTelegram() {
-      const tipo = document.getElementById('tipoAportacion').value;
-      const mensaje = document.getElementById('textoAportacion').value.trim();
-      
-      if (!mensaje) {
-        alert("Por favor, escribe tu sugerencia o problema antes de enviar.");
-        return;
-      }
-
-      const textoCompleto = encodeURIComponent(`[${tipo.toUpperCase()}] ${mensaje}`);
-      const urlTelegram = `https://t.me/ReenfoqueVital?text=${textoCompleto}`;
-      
-      window.open(urlTelegram, '_blank');
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
     }
 
     function toggleDarkMode() {
@@ -985,587 +330,100 @@
       document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
     }
 
-    function loadDarkMode() {
-      const savedDark = localStorage.getItem(CONFIG.KEYS.DARK_MODE) === 'true';
-      if (savedDark) {
-        document.body.classList.add('dark-mode');
-        document.getElementById('themeBtn').textContent = '☀️';
-      }
-    }
-
-    function switchTab(tabId, element) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      element.classList.add('active');
-      
-      if(tabId === 'tab-stats') {
-        renderIndependentStreaks();
-        checkAndUnlockBadges();
-      }
-    }
-
-    function checkFounderBanner() {
-      let count = parseInt(localStorage.getItem(CONFIG.KEYS.FOUNDER_COUNTER) || '0', 10);
-      const banner = document.getElementById('dynamicFounderBanner');
-      const title = document.getElementById('bannerTitle');
-      const desc = document.getElementById('bannerDesc');
-      const btn = document.getElementById('bannerBtn');
-
-      if (count >= 50 && count < 100) {
-        banner.style.background = 'linear-gradient(135deg, #788596, #4a5b6d)';
-        title.textContent = '🌟 Membresía Reducida (9€)';
-        desc.textContent = 'Se han cubierto las primeras 50 plazas gratuitas. Mantén una tarifa especial de acceso por solo 9€ para los siguientes miembros hasta completar el cupo de 100.';
-        btn.textContent = 'Acceder por 9€';
-        btn.style.color = '#4a5b6d';
-      } else if (count >= 100) {
-        banner.style.background = 'linear-gradient(135deg, #c97a63, #a94442)';
-        title.textContent = '🔒 Plazas Fundadoras Completadas';
-        desc.textContent = 'El cupo especial de 100 miembros se ha completado. Mantente atento a futuras aperturas de la comunidad.';
-        btn.textContent = 'Entrar al Canal General';
-        btn.href = 'https://t.me/ReenfoqueVital';
-      } else {
-        banner.style.background = 'linear-gradient(135deg, #529471, #3b6e53)';
-        title.textContent = '🎁 Plaza de Miembro Fundador (Gratis)';
-        desc.textContent = 'Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada. Acceso 100% gratuito.';
-        btn.textContent = 'Reclamar mi plaza gratuita';
-        btn.style.color = '#3b6e53';
-      }
-    }
-
-    function incrementFounderCounter() {
-      let count = parseInt(localStorage.getItem(CONFIG.KEYS.FOUNDER_COUNTER) || '0', 10);
-      count++;
-      localStorage.setItem(CONFIG.KEYS.FOUNDER_COUNTER, count.toString());
-      checkFounderBanner();
-    }
-
-    async function comprarConStars() {
-      const tg = window.Telegram.WebApp;
-      const userId = tg.initDataUnsafe?.user?.id;
-
-      if (!userId) {
-        alert("Por favor, abre la aplicación desde Telegram para poder realizar el pago.");
-        return;
-      }
-
-      try {
-        const res = await fetch(`/api/create-invoice?userid=${userId}`);
-        const data = await res.json();
-
-        if (!data.invoiceLink) {
-          alert("No se pudo generar el enlace de pago.");
-          return;
-        }
-
-        tg.openInvoice(data.invoiceLink, (status) => {
-          if (status === 'paid') {
-            isUserPremium = true;
-            localStorage.setItem(CONFIG.KEYS.IS_PREMIUM, 'true');
-            checkAdsVisibility();
-            alert("¡Suscripción realizada con éxito! Gracias por tu apoyo. Ahora eres usuario Premium y se han eliminado los anuncios.");
-          } else if (status === 'cancelled') {
-            console.log("El usuario canceló el pago.");
-          } else {
-            console.log("Estado del pago:", status);
-          }
-        });
-
-      } catch (err) {
-        console.error("Error en el proceso de pago:", err);
-        alert("Hubo un error al procesar la solicitud.");
-      }
-    }
-
-    // --- FUNCIÓN DE EXPORTACIÓN ROBUSTA CON BOTÓN VISIBLE EN PANTALLA ---
-    function exportData() {
-      try {
-        const dataObj = {};
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          dataObj[key] = localStorage.getItem(key);
-        }
-
-        const dataStr = JSON.stringify(dataObj, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-
-        const container = document.getElementById('exportContainer');
-        container.innerHTML = ''; // Limpiar enlaces previos si los hubiera
-
-        // Creamos un enlace directo y visible para que el usuario pueda pulsar físicamente en él
-        const downloadLink = document.createElement('a');
-        downloadLink.href = url;
-        downloadLink.download = "reenfoque_vital_backup.json";
-        downloadLink.className = "btn btn-success";
-        downloadLink.style.display = "block";
-        downloadLink.style.textAlign = "center";
-        downloadLink.innerHTML = "📥 Pulsa aquí para descargar el archivo .json";
-        
-        container.appendChild(downloadLink);
-
-        // Intento automático adicional por si el entorno soporta el evento simulado
-        const downloadAnchor = document.createElement('a');
-        downloadAnchor.href = url;
-        downloadAnchor.download = "reenfoque_vital_backup.json";
-        document.body.appendChild(downloadAnchor);
-        downloadAnchor.click();
-        document.body.removeChild(downloadAnchor);
-
-      } catch (error) {
-        console.error("Error al exportar los datos:", error);
-        alert("No se pudo generar la copia de seguridad. Por favor, inténtalo de nuevo.");
-      }
-    }
-
-    const ADDICTION_CATEGORIES = [
-      { id: 'general', name: '🟢 General / Hábito Principal' },
-      { id: 'drogas_blandas', name: '🌿 Drogas Blandas (Cannabis, Vape)' },
-      { id: 'drogas_duras', name: '⚠️ Sustancias Fuertes / Drogas Duras' },
-      { id: 'alcohol', name: '🍺 Alcohol' },
-      { id: 'sexo', name: '🔥 Sexo / Impulsos Compulsivos' },
-      { id: 'juego', name: '🎰 Juego / Apuestas' },
-      { id: 'porno', name: '🔞 Pantallas / Contenido Adultos' }
-    ];
-
-    function renderIndependentStreaks() {
-      const container = document.getElementById('independentStreaksContainer');
-      if(!container) return;
-      container.innerHTML = '';
-
-      ADDICTION_CATEGORIES.forEach(cat => {
-        const storageKey = `rf_streak_${cat.id}`;
-        const savedDate = localStorage.getItem(storageKey) || '';
-        
-        let daysCount = 0;
-        if(savedDate) {
-          daysCount = Math.floor(Math.abs(new Date() - new Date(savedDate)) / (1000 * 60 * 60 * 24));
-        }
-
-        const card = document.createElement('div');
-        card.className = 'habit-streak-card';
-        card.innerHTML = `
-          <div class="habit-streak-title">${cat.name}</div>
-          <div class="habit-streak-value" id="count_${cat.id}">${daysCount} Días</div>
-          <label style="font-size:0.8rem; color:var(--text-light); display:block; margin-bottom:4px;">Fecha de inicio (Racha):</label>
-          <input type="date" id="date_${cat.id}" value="${savedDate}" onchange="updateHabitStreak('${cat.id}')" style="margin-bottom:8px;">
-          <button class="btn btn-danger" style="padding:6px; font-size:0.8rem;" onclick="resetHabitStreak('${cat.id}')">🔄 Reiniciar Racha de este Hábito</button>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function updateHabitStreak(catId) {
-      const inputVal = document.getElementById(`date_${catId}`).value;
-      const storageKey = `rf_streak_${catId}`;
-      if(inputVal) {
-        localStorage.setItem(storageKey, inputVal);
-        const diff = Math.floor(Math.abs(new Date() - new Date(inputVal)) / (1000 * 60 * 60 * 24));
-        document.getElementById(`count_${catId}`).textContent = `${diff} Día${diff !== 1 ? 's' : ''}`;
-      } else {
-        localStorage.removeItem(storageKey);
-        document.getElementById(`count_${catId}`).textContent = `0 Días`;
-      }
-    }
-
-    function resetHabitStreak(catId) {
-      if(confirm(`¿Deseas reiniciar el contador para este hábito?`)) {
-        const storageKey = `rf_streak_${catId}`;
-        localStorage.removeItem(storageKey);
-        renderIndependentStreaks();
-      }
-    }
-
-    let audioCtxNoise = null, noiseSource = null, isPlayingNoise = false;
-    function toggleNoise() {
-      const btn = document.getElementById('noiseBtn');
-
-      if (!isPlayingNoise) {
-        audioCtxNoise = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtxNoise.state === 'suspended') audioCtxNoise.resume();
-
-        const bufferSize = audioCtxNoise.sampleRate * 2;
-        const buffer = audioCtxNoise.createBuffer(1, bufferSize, audioCtxNoise.sampleRate);
-        const output = buffer.getChannelData(0);
-
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = (Math.random() * 2 - 1) * 0.1;
-        }
-
-        noiseSource = audioCtxNoise.createBufferSource();
-        noiseSource.buffer = buffer; noiseSource.loop = true;
-        noiseSource.connect(audioCtxNoise.destination); noiseSource.start();
-        isPlayingNoise = true; btn.textContent = "Detener Sonido"; btn.style.backgroundColor = "#c97a63";
-      } else {
-        if (noiseSource) noiseSource.stop();
-        if (audioCtxNoise) audioCtxNoise.close();
-        isPlayingNoise = false; btn.textContent = "Activar Sonido"; btn.style.backgroundColor = "var(--purple)";
-      }
-    }
-
-    let audioCtxFreq = null, osc1 = null, osc2 = null, isPlayingFreq = false;
-    function toggleFrequency() {
-      const btn = document.getElementById('freqBtn');
-      const val = document.getElementById('freqSelect').value;
-
-      if (!isPlayingFreq) {
-        audioCtxFreq = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtxFreq.state === 'suspended') audioCtxFreq.resume();
-        const masterGain = audioCtxFreq.createGain(); masterGain.gain.value = 0.1;
-        osc1 = audioCtxFreq.createOscillator(); osc1.type = 'sine';
-        osc1.frequency.value = val === '528' ? 528 : 432;
-
-        osc1.connect(masterGain); masterGain.connect(audioCtxFreq.destination); osc1.start();
-        isPlayingFreq = true; btn.textContent = "Detener Frecuencia"; btn.style.backgroundColor = "#c97a63";
-      } else {
-        if (osc1) osc1.stop(); if (osc2) osc2.stop();
-        if (audioCtxFreq) audioCtxFreq.close();
-        isPlayingFreq = false; btn.textContent = "Iniciar Frecuencia"; btn.style.backgroundColor = "var(--purple)";
-      }
-    }
-
-    function saveFrog() {
-      const val = document.getElementById('frogInput').value.trim();
-      if (!val) return;
-      localStorage.setItem(CONFIG.KEYS.FROG, val); loadFrog();
-    }
-
-    function loadFrog() {
-      const saved = localStorage.getItem(CONFIG.KEYS.FROG);
-      if (saved) document.getElementById('frogStatus').textContent = `🐸 Tu Rana de hoy: "${saved}"`;
-    }
-
-    function loadKaizen() {
-      const savedGoal = localStorage.getItem(CONFIG.KEYS.KAIZEN_GOAL);
-      const lastDone = localStorage.getItem(CONFIG.KEYS.KAIZEN_LAST_DONE);
-      const today = new Date().toDateString();
-      if (savedGoal) document.getElementById('kaizenInput').value = savedGoal;
-      if (lastDone === today) {
-        document.getElementById('kaizenStatus').style.display = 'block';
-        document.getElementById('kaizenStatus').textContent = '✨ ¡Micro-meta completada!';
-        document.getElementById('kaizenBtn').disabled = true;
-      }
-    }
-
-    function completeKaizen() {
-      const text = document.getElementById('kaizenInput').value.trim();
-      if (!text) return;
-      const today = new Date().toDateString();
-      localStorage.setItem(CONFIG.KEYS.KAIZEN_GOAL, text);
-      localStorage.setItem(CONFIG.KEYS.KAIZEN_LAST_DONE, today);
-      loadKaizen();
-    }
-
-    let timerInterval = null, timeLeft = CONFIG.WORK_MINUTES * 60;
-    function updateTimerDisplay() {
-      const mins = Math.floor(timeLeft / 60), secs = timeLeft % 60;
-      document.getElementById('timer').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function startTimer() {
-      if (timerInterval !== null) return;
-      timerInterval = setInterval(() => {
-        if (timeLeft > 0) { timeLeft--; updateTimerDisplay(); }
-        else { clearInterval(timerInterval); timerInterval = null; alert('¡Pomodoro cumplido!'); }
-      }, 1000);
-    }
-
-    function resetTimer() {
-      clearInterval(timerInterval); timerInterval = null;
-      timeLeft = CONFIG.WORK_MINUTES * 60; updateTimerDisplay();
-    }
-
+    // --- REGLA DE LOS 2 MINUTOS (FILTRADO DE 3 DÍAS Y BORRADO) ---
     function loadTasks() {
       const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
       const tasks = stored ? JSON.parse(stored) : [];
-      const list = document.getElementById('taskList'); list.innerHTML = '';
-      tasks.forEach(t => { const li = document.createElement('li'); li.textContent = `✓ ${t}`; list.appendChild(li); });
-    }
-
-    function addQuickTask() {
-      const val = document.getElementById('quickTaskInput').value.trim();
-      if (!val) return;
-      const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
-      const tasks = stored ? JSON.parse(stored) : [];
-      tasks.unshift(val);
-      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(tasks));
-      document.getElementById('quickTaskInput').value = ''; loadTasks();
-    }
-
-    function saveTrigger() {
-      const place = document.getElementById('triggerPlace').value.trim();
-      const emotion = document.getElementById('triggerEmotion').value.trim();
-      if (!place || !emotion) return;
-      const stored = localStorage.getItem(CONFIG.KEYS.TRIGGERS);
-      const triggers = stored ? JSON.parse(stored) : [];
-      triggers.unshift(`[${new Date().toLocaleDateString()}] Lugar: ${place} | Emoción: ${emotion}`);
-      localStorage.setItem(CONFIG.KEYS.TRIGGERS, JSON.stringify(triggers));
-      document.getElementById('triggerPlace').value = ''; document.getElementById('triggerEmotion').value = ''; loadTriggers();
-    }
-
-    function loadTriggers() {
-      const stored = localStorage.getItem(CONFIG.KEYS.TRIGGERS);
-      const triggers = stored ? JSON.parse(stored) : [];
-      const list = document.getElementById('triggerList'); list.innerHTML = '';
-      triggers.forEach(t => { const li = document.createElement('li'); li.textContent = `⚠️ ${t}`; list.appendChild(li); });
-    }
-
-    function changeBreathingPattern() {
-      const tech = document.getElementById('breathingTechnique').value;
-      const dur = tech === '4-7-8' ? '8s' : (tech === 'box' ? '4s' : '10s');
-      document.documentElement.style.setProperty('--breathing-duration', dur);
-    }
-
-    function newDistractionTask() {
-      document.getElementById('distractionTask').innerHTML = `<strong>Reto de Enfoque:</strong> Cuenta de 100 hacia atrás de 7 en 7.`;
-    }
-
-    // --- GESTIÓN DEL DIARIO (CON SOPORTE DE EDICIÓN Y BORRADO) ---
-
-    function saveJournal() {
-      const textInput = document.getElementById('journalEntry');
-      const text = textInput.value.trim();
-      if (!text) {
-        alert("Escribe algo en tu diario antes de guardar.");
-        return;
-      }
-
-      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-      let entries = [];
-      
-      try {
-        entries = stored ? JSON.parse(stored) : [];
-      } catch (e) {
-        entries = [];
-      }
-
-      entries = entries.map(item => {
-        if (typeof item === 'string') {
-          return { id: Date.now() + Math.random(), text: item, date: new Date().toLocaleString() };
-        }
-        return item;
-      });
-
-      const newEntry = {
-        id: Date.now(),
-        text: text,
-        date: new Date().toLocaleString()
-      };
-
-      entries.unshift(newEntry);
-      localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
-      textInput.value = '';
-      loadJournal();
-    }
-
-    function loadJournal() {
-      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-      const list = document.getElementById('journalList');
+      const list = document.getElementById('taskList');
       if (!list) return;
       list.innerHTML = '';
 
-      let entries = [];
-      try {
-        entries = stored ? JSON.parse(stored) : [];
-      } catch (e) {
-        entries = [];
-      }
+      const now = new Date().getTime();
+      const threeDaysMs = 3 * 24 * 60 * 60 * 1000;
 
-      entries.forEach(item => {
-        let entryId = item.id || Date.now();
-        let entryText = typeof item === 'string' ? item : item.text;
-        let entryDate = item.date || new Date().toLocaleString();
+      // Filtrar tareas con menos o igual a 3 días de antigüedad
+      const validTasks = tasks.filter(item => {
+        if (typeof item === 'string') return true; // Compatibilidad con textos antiguos
+        return (now - item.timestamp) <= threeDaysMs;
+      });
+
+      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(validTasks));
+
+      validTasks.forEach((item, index) => {
+        let text = typeof item === 'string' ? item : item.text;
+        let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
 
         const li = document.createElement('li');
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
         li.innerHTML = `
-          <div>📝 <b>${entryDate}:</b> <span id="text_${entryId}">${entryText}</span></div>
-          <div class="journal-actions">
-            <button class="journal-btn journal-btn-edit" onclick="editJournalEntry(${entryId})">✏️ Editar</button>
-            <button class="journal-btn journal-btn-delete" onclick="deleteJournalEntry(${entryId})">🗑️ Borrar</button>
-          </div>
+          <span>✓ ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
+          <button class="journal-btn journal-btn-delete" onclick="deleteQuickTask(${index})">🗑️</button>
         `;
         list.appendChild(li);
       });
     }
 
-    function deleteJournalEntry(id) {
-      if (confirm("¿Estás seguro de que deseas eliminar esta entrada del diario?")) {
-        const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-        let entries = stored ? JSON.parse(stored) : [];
-        
-        entries = entries.filter(item => item.id !== id);
-        localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
-        loadJournal();
-      }
-    }
+    function addQuickTask() {
+      const input = document.getElementById('quickTaskInput');
+      const val = input.value.trim();
+      if (!val) { alert("Escribe una tarea rápida."); return; }
 
-    function editJournalEntry(id) {
-      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
-      let entries = stored ? JSON.parse(stored) : [];
-      
-      const entry = entries.find(item => item.id === id);
-      if (!entry) return;
+      const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
+      let tasks = stored ? JSON.parse(stored) : [];
 
-      const currentText = typeof entry === 'string' ? entry : entry.text;
-      const newText = prompt("Edita tu entrada del diario:", currentText);
-
-      if (newText !== null && newText.trim() !== "") {
-        entries = entries.map(item => {
-          if (item.id === id) {
-            return { ...item, text: newText.trim(), date: new Date().toLocaleString() + " (Editado)" };
-          }
-          return item;
-        });
-
-        localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
-        loadJournal();
-      }
-    }
-
-    function resetAllData() {
-      if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
-    }
-
-    // --- CORRECCIONES Y LÓGICA DE INTERACTIVIDAD RESTAURADA ---
-
-    const EMOTION_TEMPLATES = {
-      phrases: [
-        "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.",
-        "No estás atascado, solo estás tomando impulso para el siguiente nivel.",
-        "Acepta este momento presente sin juzgarlo como bueno o malo.",
-        "Tu valor no disminuye por tener un día de baja energía.",
-        "Cada pensamiento negativo es una sugerencia, no una orden."
-      ],
-      advices: [
-        "Bebe un vaso de agua fría y haz 3 respiraciones profundas.",
-        "Realiza una micro-meta Kaizen de 1 minuto en la pestaña Enfoque.",
-        "Escribe libremente 3 líneas en tu diario íntimo sin juzgarte.",
-        "Sal a caminar 5 minutos o estira tus hombros suavemente.",
-        "Escucha una frecuencia de meditación durante 5 minutos."
-      ]
-    };
-
-    function processEmotion() {
-      const val = document.getElementById('emotionSelect').value;
-      const responseBox = document.getElementById('emotionResponse');
-
-      if (!val) { responseBox.style.display = 'none'; return; }
-
-      const phrase = EMOTION_TEMPLATES.phrases[Math.floor(Math.random() * EMOTION_TEMPLATES.phrases.length)];
-      const advice = EMOTION_TEMPLATES.advices[Math.floor(Math.random() * EMOTION_TEMPLATES.advices.length)];
-
-      const emotionNames = {
-        duelo: "Duelo / Pérdida", nube: "Nube Mental / Confusión", ira: "Ira / Enojo",
-        ansiedad: "Ansiedad / Abrumado", soledad: "Soledad / Frustración", desmotivado: "Desmotivación",
-        claridad: "Claridad / Enfoque", feliz: "Feliz / Motivado", agradecido: "Gratitud Profunda", atascado: "Sensación de Bloqueo"
+      const newTask = {
+        text: val,
+        timestamp: new Date().getTime(),
+        date: new Date().toLocaleDateString()
       };
 
-      document.getElementById('responseTitle').textContent = `Reencuadre para: ${emotionNames[val] || 'Tu Estado Actual'}`;
-      document.getElementById('responseText').innerHTML = `
-        <p style="margin-bottom:8px;"><b>Frase:</b> "${phrase}"</p>
-        <p style="margin-bottom:12px;"><b>Consejo Práctico:</b> ${advice}</p>
-      `;
-      responseBox.style.display = 'block';
+      tasks.unshift(newTask);
+      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(tasks));
+      input.value = ''; 
+      loadTasks();
     }
 
-    const FAQ_DATABASE = [
-      { question: "¿Por qué me pasa esto a mí?", answer: "No te ocurre de forma punitiva, sino para ti. Cada dificultad es un maestro para construir mayor resiliencia." },
-      { question: "¿Por qué siento que vuelvo a empezar de cero?", answer: "El progreso no es lineal sino en espiral. No vuelves al inicio; vuelves con más experiencia y consciencia." },
-      { question: "¿Cómo calmar la ansiedad en menos de 2 minutos?", answer: "Aplica la respiración 4-7-8 o la respiración cuadrada en la pestaña SOS para activar el sistema parasimpático." },
-      { question: "¿Qué hacer ante un impulso muy fuerte?", answer: "Pausa de inmediato, bebe agua fría, cambia de estancia y espera 10 minutos a que baje el pico químico." },
-      { question: "¿Cómo superar la pereza para empezar una tarea?", answer: "Reduce la tarea a un paso ridículamente pequeño de 1 minuto mediante el método Kaizen." },
-      { question: "¿Por qué mi mente rumia tanto por la noche?", answer: "Porque intenta resolver cabos sueltos. Vacía tus pensamientos escribiéndolos en el diario antes de dormir." },
-      { question: "¿Cómo afecta el entorno a mi salud mental?", answer: "Tu entorno físico y digital programa tu atención. Ordenar tu espacio reduce directamente el cortisol." },
-      { question: "¿Es normal tener recaídas en el proceso?", answer: "Sí. Las recaídas forman parte del aprendizaje; lo importante es la velocidad de recuperación y análisis." },
-      { question: "¿Cómo puedo mantenerme constante sin quemarme?", answer: "Trabaja por bloques de enfoque acompañados de descansos reales, sin negociar tu sueño ni tu salud física." },
-      { question: "¿Qué hago si siento que nadie me entiende?", answer: "Busca espacios seguros de comunidad con personas que compartan tus mismos objetivos de crecimiento." },
-      { question: "¿Cómo dejar de compararme con los demás?", answer: "Recuerda que solo ves el escaparate de los demás y comparas su resultado final con tu proceso interno." },
-      { question: "¿Cómo puedo recuperar la motivación perdida?", answer: "La motivación llega después de la acción, no antes. Empieza con un micro-paso y la energía aparecerá." },
-      { question: "¿Por qué procrastino lo más importante?", answer: "Por miedo inconsciente al fracaso o al juicio. Divide esa tarea en partes tan pequeñas que no genere resistencia." },
-      { question: "¿Cómo establecer límites saludables?", answer: "Aprender a decir 'no' a lo que te drena es decir 'sí' a tu paz mental y a tus prioridades." },
-      { question: "¿Cómo afecta el sueño a mis emociones?", answer: "La privación de sueño desregula la amígdala cerebral, amplificando la ansiedad y la impulsividad." },
-      { question: "¿Cómo puedo practicar el autoperdón?", answer: "Entendiendo que hiciste lo mejor que pudiste con las herramientas y recursos mentales que tenías en ese momento." },
-      { question: "¿Qué es el 'Modo Monje' y para qué sirve?", answer: "Es un periodo de aislamiento estratégico y eliminación de distracciones para sanar bases y acelerar proyectos." },
-      { question: "¿Cómo gestionar los pensamientos negativos recurrentes?", answer: "Utiliza el filtro de Hechos vs. Historias: separa la realidad objetiva de las narrativas catastróficas de tu mente." },
-      { question: "¿Por qué es vital celebrar las pequeñas victorias?", answer: "Porque tu cerebro refuerza los circuitos neuronales de dopamina y hábito cuando validas tus avances diarios." },
-      { question: "¿Cómo construir una disciplina antifragilidad?", answer: "Viendo cada obstáculo, error o imprevisto no como un freno, sino como combustible necesario para adaptarte y crecer." }
-    ];
-
-    function renderFAQ() {
-      const select = document.getElementById('faqSelect');
-      if (!select) return;
-      select.innerHTML = '<option value="">-- Selecciona una pregunta --</option>';
-      FAQ_DATABASE.forEach((item, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = item.question;
-        select.appendChild(option);
-      });
+    function deleteQuickTask(index) {
+      const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
+      let tasks = stored ? JSON.parse(stored) : [];
+      tasks.splice(index, 1);
+      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(tasks));
+      loadTasks();
     }
 
-    function showFAQAnswer() {
-      const select = document.getElementById('faqSelect');
-      const responseBox = document.getElementById('faqResponseBox');
-      const index = select.value;
-
-      if (index === "" || !FAQ_DATABASE[index]) {
-        responseBox.style.display = 'none';
-        return;
-      }
-
-      const selectedFAQ = FAQ_DATABASE[index];
-      document.getElementById('faqResponseTitle').textContent = selectedFAQ.question;
-      document.getElementById('faqResponseText').textContent = selectedFAQ.answer;
-      responseBox.style.display = 'block';
-    }
-
-    const SAMPLES = {
-      brain_dump: { title: "Brain Dumping", desc: "Escribe durante 2 minutos todo lo que tienes rondando en la cabeza sin juzgar ni ordenar." },
-      facts_stories: { title: "Filtro 'Hechos vs. Historias'", desc: "Escribe la situación que te preocupa. Separa lo que es un HECHO real de lo que es una HISTORIA de tu mente." },
-      energy_audit: { title: "Auditoría de Energía", desc: "Anota 2 actividades de tu día que te hayan drenado energía y 2 que te hayan recargado." }
-    };
-
-    function loadSampleExercise() {
-      const val = document.getElementById('exerciseSampleSelect').value;
-      const box = document.getElementById('sampleExerciseBox');
-      document.getElementById('completedSampleBanner').style.display = 'none';
-      if (val && SAMPLES[val]) {
-        document.getElementById('sampleTitle').textContent = SAMPLES[val].title;
-        document.getElementById('sampleDesc').textContent = SAMPLES[val].desc;
-        document.getElementById('sampleInput').value = '';
-        box.style.display = 'block';
-      } else { box.style.display = 'none'; }
-    }
-
-    function completeSampleExercise() {
-      const input = document.getElementById('sampleInput').value.trim();
-      if (!input) { alert('Escribe algo antes de guardar.'); return; }
-      document.getElementById('sampleExerciseBox').style.display = 'none';
-      document.getElementById('completedSampleBanner').style.display = 'block';
-    }
-
-    const AFFIRMATIONS = [
-      "Tengo el poder de enfocar mi mente en lo que suma y construir paz hoy.",
-      "Cada pequeño paso fortalece mi disciplina y mi confianza.",
-      "Suelto el control de aquello que no puedo cambiar y actúo en lo que sí depende de mí.",
-      "Mi mente es un espacio de calma, claridad y propósito."
-    ];
-
-    function newAffirmation() {
-      const idx = Math.floor(Math.random() * AFFIRMATIONS.length);
-      document.getElementById('affirmationBox').textContent = `"${AFFIRMATIONS[idx]}"`;
-    }
-
+    // --- GESTIÓN DE GRATITUD (FILTRADO DE 3 DÍAS Y BORRADO) ---
     function loadGratitude() {
       const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
       const items = stored ? JSON.parse(stored) : [];
       const list = document.getElementById('gratitudeList');
       if (!list) return;
       list.innerHTML = '';
-      items.forEach(item => { 
-        const li = document.createElement('li'); 
-        li.textContent = `🌸 ${item}`; 
-        list.appendChild(li); 
+
+      const now = new Date().getTime();
+      const threeDaysMs = 3 * 24 * 60 * 60 * 1000;
+
+      const validItems = items.filter(item => {
+        if (typeof item === 'string') return true; 
+        return (now - item.timestamp) <= threeDaysMs;
+      });
+
+      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(validItems));
+
+      validItems.forEach((item, index) => {
+        let text = typeof item === 'string' ? item : item.text;
+        let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
+
+        const li = document.createElement('li');
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.innerHTML = `
+          <span>🌸 ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
+          <button class="journal-btn journal-btn-delete" onclick="deleteGratitude(${index})">🗑️</button>
+        `;
+        list.appendChild(li);
       });
     }
 
@@ -1573,121 +431,63 @@
       const input = document.getElementById('gratitudeInput');
       const text = input.value.trim();
       if (!text) { alert("Escribe algo por lo que dar gracias."); return; }
+
       const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
-      const items = stored ? JSON.parse(stored) : [];
-      items.unshift(text);
+      let items = stored ? JSON.parse(stored) : [];
+
+      const newEntry = {
+        text: text,
+        timestamp: new Date().getTime(),
+        date: new Date().toLocaleDateString()
+      };
+
+      items.unshift(newEntry);
       localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
       input.value = ''; 
       loadGratitude();
     }
 
-    const ADDICTION_PROTOCOLS = {
-      general: ["Lávate la cara con agua fría.", "Cambia de habitación inmediatamente.", "Espera 10 minutos a que pase el pico del impulso."],
-      drogas_blandas: ["Guarda todos los accesorios fuera de tu vista.", "Cepíllate los dientes con menta fuerte."],
-      drogas_duras: ["Llama al 112 si hay riesgo para tu salud.", "Pide ayuda a alguien de confianza."],
-      alcohol: ["Toma un vaso grande de agua con hielo.", "Alejate de zonas de tentación."],
-      sexo: ["Deja el teléfono en otra habitación.", "Haz flexiones hasta agotar la tensión."],
-      juego: ["Bloquea apps de apuestas de inmediato.", "Entrega tus tarjetas a un familiar."],
-      porno: ["Cierra todas las pestañas del navegador.", "Sal de la estancia privada."]
-    };
-
-    function toggleSOS() {
-      const box = document.getElementById('sosBox');
-      const isOpening = box.style.display !== 'block';
-      box.style.display = isOpening ? 'block' : 'none';
-      if (isOpening) {
-        updateSOSAdvice();
-      }
+    function deleteGratitude(index) {
+      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
+      let items = stored ? JSON.parse(stored) : [];
+      items.splice(index, 1);
+      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
+      loadGratitude();
     }
 
-    function updateSOSAdvice() {
-      const category = document.getElementById('addictionCategorySelect').value;
-      const adviceTitle = document.getElementById('sosAdviceTitle');
-      const adviceText = document.getElementById('sosAdviceText');
-
-      const options = ADDICTION_PROTOCOLS[category] || ADDICTION_PROTOCOLS.general;
-      const randomIndex = Math.floor(Math.random() * options.length);
-
-      adviceTitle.textContent = "Protocolo de Auxilio";
-      adviceText.textContent = `💡 "${options[randomIndex]}"`;
-    }
-
-    let ecoInterval = null;
-    const ecoWords = [
-      "Inhala paz, exhala tensión", "Aquí y ahora estoy a salvo", "Este impulso pasará", 
-      "Un día a la vez", "Elijo cuidar de mi mente", "Mi cuerpo está relajado"
-    ];
-
-    function toggleEcoMental() {
-      const btn = document.getElementById('ecoBtn');
-      const display = document.getElementById('ecoWordDisplay');
-      
-      if (ecoInterval) {
-        clearInterval(ecoInterval);
-        ecoInterval = null;
-        display.textContent = "Ejercicio finalizado.";
-        btn.textContent = "Iniciar Ejercicio de Voz (30s)";
-        btn.style.backgroundColor = "var(--success)";
-        return;
-      }
-
-      let timeLeft = 30;
-      btn.textContent = "Detener Ejercicio";
-      btn.style.backgroundColor = "#c97a63";
-      display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
-
-      ecoInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-          clearInterval(ecoInterval);
-          ecoInterval = null;
-          display.textContent = "¡Excelente trabajo completado! 🌟";
-          btn.textContent = "Iniciar Ejercicio de Voz (30s)";
-          btn.style.backgroundColor = "var(--success)";
-        } else {
-          if (timeLeft % 4 === 0) {
-            display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
-          }
+    function exportData() {
+      try {
+        const dataObj = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          dataObj[key] = localStorage.getItem(key);
         }
-      }, 1000);
-    }
+        const dataStr = JSON.stringify(dataObj, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
 
-    function startIntensityCheck() {
-      document.getElementById('intensityStep1').style.display = 'none';
-      document.getElementById('intensityStep2').style.display = 'block';
-    }
-
-    function finishIntensityCheck() {
-      alert("¡Buen trabajo! Has completado el registro de tu impulso.");
-      document.getElementById('intensityStep2').style.display = 'none';
-      document.getElementById('intensityStep1').style.display = 'block';
-    }
-
-    function showRewardAd(onSuccessCallback) {
-      if (isUserPremium) { onSuccessCallback(); return; }
-      if (AdController) {
-        AdController.show().then(() => onSuccessCallback()).catch(() => onSuccessCallback());
-      } else {
-        onSuccessCallback();
+        const container = document.getElementById('exportContainer');
+        container.innerHTML = '';
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = "reenfoque_vital_backup.json";
+        downloadLink.className = "btn btn-success";
+        downloadLink.style.display = "block";
+        downloadLink.style.textAlign = "center";
+        downloadLink.innerHTML = "📥 Pulsa aquí para descargar el archivo .json";
+        container.appendChild(downloadLink);
+      } catch (error) {
+        console.error("Error al exportar los datos:", error);
       }
     }
 
-    // Inicialización general al arrancar la app
-    loadDarkMode();
+    function resetAllData() {
+      if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
+    }
+
+    // Inicialización al arrancar
     loadGratitude();
-    loadFrog();
-    loadKaizen();
     loadTasks();
-    loadTriggers();
-    loadJournal();
-    renderFAQ();
-    updateTimerDisplay();
-    renderIndependentStreaks();
-    checkFounderBanner();
-    checkAdsVisibility();
-    checkAndUnlockBadges();
-    loadTransformationData();
-    loadYearlyData();
   </script>
 </body>
 </html>
