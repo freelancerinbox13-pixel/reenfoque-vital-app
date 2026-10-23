@@ -269,7 +269,7 @@
     .badge-item span { font-size: 1.8rem; display: block; margin-bottom: 4px; }
 
     ul { list-style: none; padding: 0; margin: 0; }
-    li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; }
+    li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -401,7 +401,7 @@
         <button class="btn btn-purple" onclick="newAffirmation()" style="margin-bottom: 12px;">Nueva Afirmación</button>
         <input type="text" id="gratitudeInput" placeholder="Hoy doy gracias por...">
         <button class="btn btn-success" onclick="addGratitude()">Guardar Gratitud</button>
-        <ul id="gratitudeList"></ul>
+        <ul id="gratitudeList" style="margin-top: 10px;"></ul>
       </div>
 
       <!-- TABLÓN DUAL DE SUGERENCIAS Y REPORTES -->
@@ -489,7 +489,7 @@
         </p>
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
         <button class="btn btn-success" onclick="addQuickTask()">Agregar y Ejecutar</button>
-        <ul id="taskList"></ul>
+        <ul id="taskList" style="margin-top: 10px;"></ul>
       </div>
     </div>
 
@@ -609,12 +609,12 @@
           <option value="alpha">Ondas Alfa (10 Hz) - Calma</option>
           <option value="theta">Ondas Theta (6 Hz) - Relax</option>
         </select>
-        <select id="meditationTimer">
+        <select id="meditationTimer" style="margin-top: 8px;">
           <option value="5">5 Minutos</option>
           <option value="10">10 Minutos</option>
           <option value="15">15 Minutos</option>
         </select>
-        <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()">Iniciar Frecuencia</button>
+        <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()" style="margin-top: 8px;">Iniciar Frecuencia</button>
       </div>
 
       <!-- BLOQUE PUBLICITARIO NATIVO 2 (RELAX) -->
@@ -1091,9 +1091,8 @@
         const url = URL.createObjectURL(blob);
 
         const container = document.getElementById('exportContainer');
-        container.innerHTML = ''; // Limpiar enlaces previos si los hubiera
+        container.innerHTML = '';
 
-        // Creamos un enlace directo y visible para que el usuario pueda pulsar físicamente en él
         const downloadLink = document.createElement('a');
         downloadLink.href = url;
         downloadLink.download = "reenfoque_vital_backup.json";
@@ -1104,7 +1103,6 @@
         
         container.appendChild(downloadLink);
 
-        // Intento automático adicional por si el entorno soporta el evento simulado
         const downloadAnchor = document.createElement('a');
         downloadAnchor.href = url;
         downloadAnchor.download = "reenfoque_vital_backup.json";
@@ -1203,24 +1201,53 @@
       }
     }
 
-    let audioCtxFreq = null, osc1 = null, osc2 = null, isPlayingFreq = false;
+    // --- FRECUENCIAS CON PARADA AUTOMÁTICA ---
+    let audioCtxFreq = null, osc1 = null, isPlayingFreq = false, freqTimeout = null;
+
     function toggleFrequency() {
       const btn = document.getElementById('freqBtn');
       const val = document.getElementById('freqSelect').value;
+      const minutesSelect = document.getElementById('meditationTimer');
+      const minutes = minutesSelect ? parseInt(minutesSelect.value, 10) : 5;
 
       if (!isPlayingFreq) {
         audioCtxFreq = new (window.AudioContext || window.webkitAudioContext)();
         if (audioCtxFreq.state === 'suspended') audioCtxFreq.resume();
-        const masterGain = audioCtxFreq.createGain(); masterGain.gain.value = 0.1;
-        osc1 = audioCtxFreq.createOscillator(); osc1.type = 'sine';
-        osc1.frequency.value = val === '528' ? 528 : 432;
+        const masterGain = audioCtxFreq.createGain(); 
+        masterGain.gain.value = 0.1;
+        
+        osc1 = audioCtxFreq.createOscillator(); 
+        osc1.type = 'sine';
+        osc1.frequency.value = val === '528' ? 528 : (val === '963' ? 963 : (val === 'alpha' ? 10 : (val === 'theta' ? 6 : 432)));
 
-        osc1.connect(masterGain); masterGain.connect(audioCtxFreq.destination); osc1.start();
-        isPlayingFreq = true; btn.textContent = "Detener Frecuencia"; btn.style.backgroundColor = "#c97a63";
+        osc1.connect(masterGain); 
+        masterGain.connect(audioCtxFreq.destination); 
+        osc1.start();
+        
+        isPlayingFreq = true; 
+        btn.textContent = "Detener Frecuencia"; 
+        btn.style.backgroundColor = "#c97a63";
+
+        const durationMs = minutes * 60 * 1000;
+        freqTimeout = setTimeout(() => {
+          stopFrequency();
+          alert(`¡Frecuencia de ${minutes} minutos completada!`);
+        }, durationMs);
+
       } else {
-        if (osc1) osc1.stop(); if (osc2) osc2.stop();
-        if (audioCtxFreq) audioCtxFreq.close();
-        isPlayingFreq = false; btn.textContent = "Iniciar Frecuencia"; btn.style.backgroundColor = "var(--purple)";
+        stopFrequency();
+      }
+    }
+
+    function stopFrequency() {
+      if (osc1) { try { osc1.stop(); } catch(e) {} }
+      if (audioCtxFreq && audioCtxFreq.state !== 'closed') { audioCtxFreq.close(); }
+      if (freqTimeout) { clearTimeout(freqTimeout); freqTimeout = null; }
+      isPlayingFreq = false;
+      const btn = document.getElementById('freqBtn');
+      if (btn) {
+        btn.textContent = "Iniciar Frecuencia"; 
+        btn.style.backgroundColor = "var(--purple)";
       }
     }
 
@@ -1275,21 +1302,63 @@
       timeLeft = CONFIG.WORK_MINUTES * 60; updateTimerDisplay();
     }
 
+    // --- REGLA DE LOS 2 MINUTOS (3 DÍAS + BORRADO) ---
     function loadTasks() {
       const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
       const tasks = stored ? JSON.parse(stored) : [];
-      const list = document.getElementById('taskList'); list.innerHTML = '';
-      tasks.forEach(t => { const li = document.createElement('li'); li.textContent = `✓ ${t}`; list.appendChild(li); });
+      const list = document.getElementById('taskList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      const now = new Date().getTime();
+      const threeDaysMs = 3 * 24 * 60 * 60 * 1000;
+
+      const validTasks = tasks.filter(item => {
+        if (typeof item === 'string') return true; 
+        return (now - item.timestamp) <= threeDaysMs;
+      });
+
+      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(validTasks));
+
+      validTasks.forEach((item, index) => {
+        let text = typeof item === 'string' ? item : item.text;
+        let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>✓ ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
+          <button class="journal-btn journal-btn-delete" onclick="deleteQuickTask(${index})">🗑️</button>
+        `;
+        list.appendChild(li);
+      });
     }
 
     function addQuickTask() {
-      const val = document.getElementById('quickTaskInput').value.trim();
-      if (!val) return;
+      const input = document.getElementById('quickTaskInput');
+      const val = input.value.trim();
+      if (!val) { alert("Escribe una tarea rápida."); return; }
+
       const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
-      const tasks = stored ? JSON.parse(stored) : [];
-      tasks.unshift(val);
+      let tasks = stored ? JSON.parse(stored) : [];
+
+      const newTask = {
+        text: val,
+        timestamp: new Date().getTime(),
+        date: new Date().toLocaleDateString()
+      };
+
+      tasks.unshift(newTask);
       localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(tasks));
-      document.getElementById('quickTaskInput').value = ''; loadTasks();
+      input.value = ''; 
+      loadTasks();
+    }
+
+    function deleteQuickTask(index) {
+      const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
+      let tasks = stored ? JSON.parse(stored) : [];
+      tasks.splice(index, 1);
+      localStorage.setItem(CONFIG.KEYS.TASKS, JSON.stringify(tasks));
+      loadTasks();
     }
 
     function saveTrigger() {
@@ -1426,8 +1495,6 @@
       if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
     }
 
-    // --- CORRECCIONES Y LÓGICA DE INTERACTIVIDAD RESTAURADA ---
-
     const EMOTION_TEMPLATES = {
       phrases: [
         "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.",
@@ -1477,18 +1544,8 @@
       { question: "¿Por qué mi mente rumia tanto por la noche?", answer: "Porque intenta resolver cabos sueltos. Vacía tus pensamientos escribiéndolos en el diario antes de dormir." },
       { question: "¿Cómo afecta el entorno a mi salud mental?", answer: "Tu entorno físico y digital programa tu atención. Ordenar tu espacio reduce directamente el cortisol." },
       { question: "¿Es normal tener recaídas en el proceso?", answer: "Sí. Las recaídas forman parte del aprendizaje; lo importante es la velocidad de recuperación y análisis." },
-      { question: "¿Cómo puedo mantenerme constante sin quemarme?", answer: "Trabaja por bloques de enfoque acompañados de descansos reales, sin negociar tu sueño ni tu salud física." },
-      { question: "¿Qué hago si siento que nadie me entiende?", answer: "Busca espacios seguros de comunidad con personas que compartan tus mismos objetivos de crecimiento." },
-      { question: "¿Cómo dejar de compararme con los demás?", answer: "Recuerda que solo ves el escaparate de los demás y comparas su resultado final con tu proceso interno." },
-      { question: "¿Cómo puedo recuperar la motivación perdida?", answer: "La motivación llega después de la acción, no antes. Empieza con un micro-paso y la energía aparecerá." },
-      { question: "¿Por qué procrastino lo más importante?", answer: "Por miedo inconsciente al fracaso o al juicio. Divide esa tarea en partes tan pequeñas que no genere resistencia." },
-      { question: "¿Cómo establecer límites saludables?", answer: "Aprender a decir 'no' a lo que te drena es decir 'sí' a tu paz mental y a tus prioridades." },
       { question: "¿Cómo afecta el sueño a mis emociones?", answer: "La privación de sueño desregula la amígdala cerebral, amplificando la ansiedad y la impulsividad." },
-      { question: "¿Cómo puedo practicar el autoperdón?", answer: "Entendiendo que hiciste lo mejor que pudiste con las herramientas y recursos mentales que tenías en ese momento." },
-      { question: "¿Qué es el 'Modo Monje' y para qué sirve?", answer: "Es un periodo de aislamiento estratégico y eliminación de distracciones para sanar bases y acelerar proyectos." },
-      { question: "¿Cómo gestionar los pensamientos negativos recurrentes?", answer: "Utiliza el filtro de Hechos vs. Historias: separa la realidad objetiva de las narrativas catastróficas de tu mente." },
-      { question: "¿Por qué es vital celebrar las pequeñas victorias?", answer: "Porque tu cerebro refuerza los circuitos neuronales de dopamina y hábito cuando validas tus avances diarios." },
-      { question: "¿Cómo construir una disciplina antifragilidad?", answer: "Viendo cada obstáculo, error o imprevisto no como un freno, sino como combustible necesario para adaptarte y crecer." }
+      { question: "¿Cómo puedo practicar el autoperdón?", answer: "Entendiendo que hiciste lo mejor que pudiste con las herramientas y recursos mentales que tenías en ese momento." }
     ];
 
     function renderFAQ() {
@@ -1556,16 +1613,34 @@
       document.getElementById('affirmationBox').textContent = `"${AFFIRMATIONS[idx]}"`;
     }
 
+    // --- GRATITUD (3 DÍAS + BORRADO) ---
     function loadGratitude() {
       const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
       const items = stored ? JSON.parse(stored) : [];
       const list = document.getElementById('gratitudeList');
       if (!list) return;
       list.innerHTML = '';
-      items.forEach(item => { 
-        const li = document.createElement('li'); 
-        li.textContent = `🌸 ${item}`; 
-        list.appendChild(li); 
+
+      const now = new Date().getTime();
+      const threeDaysMs = 3 * 24 * 60 * 60 * 1000;
+
+      const validItems = items.filter(item => {
+        if (typeof item === 'string') return true; 
+        return (now - item.timestamp) <= threeDaysMs;
+      });
+
+      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(validItems));
+
+      validItems.forEach((item, index) => {
+        let text = typeof item === 'string' ? item : item.text;
+        let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>🌸 ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
+          <button class="journal-btn journal-btn-delete" onclick="deleteGratitude(${index})">🗑️</button>
+        `;
+        list.appendChild(li);
       });
     }
 
@@ -1573,11 +1648,27 @@
       const input = document.getElementById('gratitudeInput');
       const text = input.value.trim();
       if (!text) { alert("Escribe algo por lo que dar gracias."); return; }
+
       const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
-      const items = stored ? JSON.parse(stored) : [];
-      items.unshift(text);
+      let items = stored ? JSON.parse(stored) : [];
+
+      const newEntry = {
+        text: text,
+        timestamp: new Date().getTime(),
+        date: new Date().toLocaleDateString()
+      };
+
+      items.unshift(newEntry);
       localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
       input.value = ''; 
+      loadGratitude();
+    }
+
+    function deleteGratitude(index) {
+      const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
+      let items = stored ? JSON.parse(stored) : [];
+      items.splice(index, 1);
+      localStorage.setItem(CONFIG.KEYS.GRATITUDE, JSON.stringify(items));
       loadGratitude();
     }
 
