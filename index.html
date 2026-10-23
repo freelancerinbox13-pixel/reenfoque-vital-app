@@ -122,6 +122,16 @@
     .skool-banner h3 { margin: 0 0 8px 0; font-size: 1.15rem; }
     .skool-banner p { margin: 0 0 14px 0; font-size: 0.88rem; line-height: 1.4; opacity: 0.95; }
 
+    .ad-native-card {
+      background: rgba(74, 91, 109, 0.06);
+      border: 1px dashed var(--primary);
+      border-radius: var(--border-radius);
+      padding: 12px;
+      margin-bottom: 16px;
+      text-align: center;
+      display: block;
+    }
+
     select, input[type="text"], input[type="date"], textarea {
       width: 100%;
       padding: 12px;
@@ -156,8 +166,28 @@
     .btn:active { opacity: 0.85; }
     .btn-sos { background-color: #c97a63; }
     .btn-success { background-color: var(--success); }
+    .btn-kaizen { background-color: var(--accent); color: #2c353f; }
     .btn-purple { background-color: var(--purple); }
     .btn-danger { background-color: #a94442; }
+    .btn-skool { background-color: #ffffff; color: #4a5b6d; font-weight: bold; }
+
+    .reader-modal {
+      display: none;
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    .emotion-response {
+      background-color: rgba(168, 192, 208, 0.15);
+      border-left: 4px solid var(--primary);
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+      display: none;
+    }
 
     .affirmation-box {
       background-color: rgba(212, 184, 150, 0.15);
@@ -182,11 +212,51 @@
       text-align: center;
     }
 
+    .disclaimer-box {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px dashed var(--text-light);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .breathing-circle {
+      width: 90px; height: 90px;
+      background-color: #c97a63;
+      border-radius: 50%;
+      margin: 15px auto;
+      animation: breathe var(--breathing-duration) infinite ease-in-out;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.85); opacity: 0.5; }
+      50% { transform: scale(1.35); opacity: 1; }
+    }
+
     .timer-display { font-size: 2.8rem; text-align: center; font-weight: bold; margin: 10px 0; color: var(--primary); }
     .timer-controls { display: flex; gap: 8px; }
+    
+    .habit-streak-card {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .habit-streak-title { font-weight: bold; font-size: 0.95rem; color: var(--primary); margin-bottom: 6px; }
+    .habit-streak-value { font-size: 1.5rem; font-weight: bold; color: var(--success); margin: 6px 0; text-align: center; }
+
+    .badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-top: 10px; }
+    .badge-item { background: var(--bg-color); border: 1px solid #d0d7de; border-radius: 8px; padding: 10px 5px; font-size: 0.8rem; opacity: 0.4; }
+    .badge-item.unlocked { opacity: 1; border-color: var(--accent); background: rgba(212, 184, 150, 0.15); }
+    .badge-item span { font-size: 1.8rem; display: block; margin-bottom: 4px; }
 
     ul { list-style: none; padding: 0; margin: 0; }
-    li { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.9rem; }
+    li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -196,12 +266,18 @@
       background-color: var(--card-bg); display: flex; justify-content: space-around;
       align-items: center; border-top: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 -2px 10px rgba(0,0,0,0.03); z-index: 1000;
+      overflow-x: auto;
     }
 
     .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; color: var(--text-light); cursor: pointer; min-width: 60px; }
     .nav-item.active { color: var(--primary); font-weight: bold; }
     .nav-item span { font-size: 1.1rem; margin-bottom: 2px; }
 
+    .journal-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
     .journal-btn {
       padding: 4px 8px;
       font-size: 0.75rem;
@@ -210,6 +286,7 @@
       cursor: pointer;
       font-weight: bold;
     }
+    .journal-btn-edit { background-color: var(--primary); color: white; }
     .journal-btn-delete { background-color: #a94442; color: white; }
   </style>
 </head>
@@ -228,6 +305,49 @@
 
     <!-- PESTAÑA 1: INICIO -->
     <div id="tab-home" class="tab-content active">
+      <div id="dynamicFounderBanner" class="skool-banner" style="background: linear-gradient(135deg, #529471, #3b6e53);">
+        <h3 id="bannerTitle">🎁 Plaza de Miembro Fundador (Gratis)</h3>
+        <p id="bannerDesc">Estamos abriendo las puertas a las primeras 50 personas que quieran transformar su salud mental de forma acompañada.</p>
+        <a id="bannerBtn" href="https://www.skool.com/reenfoque-vital-5345/about" target="_blank" class="btn btn-skool" onclick="incrementFounderCounter()" style="color: #3b6e53; font-weight: bold;">
+          Reclamar mi plaza gratuita
+        </a>
+      </div>
+
+      <!-- CHECK-IN EMOCIONAL -->
+      <div class="card">
+        <h2>🧠 ¿Cómo te sientes hoy?</h2>
+        <select id="emotionSelect" onchange="processEmotion()">
+          <option value="">-- Selecciona una opción --</option>
+          <option value="duelo">😔 Duelo / Pérdida</option>
+          <option value="nube">🌧️ Nube mental / Confusión</option>
+          <option value="ira">😤 Iracundo / Enojo</option>
+          <option value="ansiedad">😰 Ansiedad / Abrumado</option>
+          <option value="soledad">💔 Soledad / Frustración</option>
+          <option value="desmotivado">🥱 Sin energía / Desmotivado</option>
+          <option value="claridad">💡 Claridad / Enfoque</option>
+          <option value="feliz">😊 Feliz / Motivado</option>
+          <option value="agradecido">🙏 Agradecido</option>
+          <option value="atascado">🧱 Atascado / Bloqueado</option>
+        </select>
+        <div id="emotionResponse" class="emotion-response">
+          <h3 id="responseTitle"></h3>
+          <p id="responseText"></p>
+        </div>
+      </div>
+
+      <!-- PREGUNTAS & REFLEXIONES -->
+      <div class="card">
+        <h2>❓ Preguntas & Reflexiones</h2>
+        <select id="faqSelect" onchange="showFAQAnswer()">
+          <option value="">-- Selecciona una pregunta --</option>
+        </select>
+        <div id="faqResponseBox" style="display: none; background: rgba(0, 0, 0, 0.03); padding: 12px; border-radius: 8px; border-left: 4px solid var(--accent); margin-top: 10px;">
+          <h3 id="faqResponseTitle" style="margin-top: 0; font-size: 0.95rem; color: var(--primary);"></h3>
+          <p id="faqResponseText" style="margin-bottom: 0; font-size: 0.88rem; line-height: 1.4; color: var(--text);"></p>
+        </div>
+      </div>
+
+      <!-- AFIRMACIONES Y GRATITUD (ÚLTIMOS 3 DÍAS + BORRADO) -->
       <div class="card">
         <h2>✨ Afirmaciones & Gratitud</h2>
         <div id="affirmationBox" class="affirmation-box">
@@ -236,12 +356,36 @@
         <button class="btn btn-purple" onclick="newAffirmation()" style="margin-bottom: 12px;">Nueva Afirmación</button>
         <input type="text" id="gratitudeInput" placeholder="Hoy doy gracias por...">
         <button class="btn btn-success" onclick="addGratitude()">Guardar Gratitud</button>
-        <ul id="gratitudeList"></ul>
+        <ul id="gratitudeList" style="margin-top: 10px;"></ul>
+      </div>
+
+      <!-- TABLÓN DE SUGERENCIAS -->
+      <div class="card" style="border-left: 4px solid var(--purple);">
+        <h2>📬 Tablón de Sugerencias y Reportes</h2>
+        <div class="ad-native-card" id="adContainerTablon" style="margin-bottom: 12px;">
+          <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+        </div>
+        <select id="tipoAportacion" style="margin-top: 4px;">
+          <option value="Sugerencia">💡 Sugerencia de Nueva Funcionalidad</option>
+          <option value="Reporte de Error">🐛 Reporte de Problema / Bug</option>
+        </select>
+        <textarea id="textoAportacion" placeholder="Escribe aquí tu sugerencia o describe el error..."></textarea>
+        <button class="btn btn-purple" onclick="enviarAlTablonDeTelegram()">Enviar a la Comunidad de Telegram</button>
       </div>
     </div>
 
-    <!-- PESTAÑA 2: ENFOQUE (CON REGLA DE LOS 2 MINUTOS ACTUALIZADA) -->
+    <!-- PESTAÑA 2: ENFOQUE -->
     <div id="tab-focus" class="tab-content">
+      <div class="card">
+        <h2>🎧 Sonidos de Enfoque</h2>
+        <select id="noiseTypeSelect">
+          <option value="white">Ruido Blanco (Aislamiento absoluto)</option>
+          <option value="pink">Ruido Rosa (Lluvia constante)</option>
+          <option value="brown">Ruido Marrón (Océano profundo)</option>
+        </select>
+        <button class="btn btn-purple" id="noiseBtn" onclick="toggleNoise()">Activar Sonido</button>
+      </div>
+
       <div class="card">
         <h2>⏱️ Temporizador Pomodoro</h2>
         <div class="timer-display" id="timer">25:00</div>
@@ -252,13 +396,28 @@
       </div>
 
       <div class="card">
+        <h2>🐸 "Eat That Frog" (La Tarea Principal)</h2>
+        <input type="text" id="frogInput" placeholder="Mi tarea principal de hoy es...">
+        <button class="btn btn-success" onclick="saveFrog()">Establecer Tarea Principal</button>
+        <div id="frogStatus" style="margin-top: 8px; font-weight: bold; color: var(--primary);"></div>
+      </div>
+
+      <div class="card">
+        <h2>🌱 Método Kaizen (Pasos de 1 Min)</h2>
+        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión...">
+        <button class="btn btn-kaizen" onclick="completeKaizen()">¡Completar Micro-Meta!</button>
+        <div id="kaizenStatus" style="display:none; margin-top:8px; text-align:center; font-weight:bold; color:var(--warning);"></div>
+      </div>
+
+      <!-- REGLA DE LOS 2 MINUTOS (ÚLTIMOS 3 DÍAS + BORRADO) -->
+      <div class="card">
         <h2>⚡ Regla de los 2 Minutos</h2>
         <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">
-          Si una acción toma menos de 2 minutos, hazla ahora. Se guardarán visiblemente durante 3 días.
+          Tareas rápidas visibles durante 3 días.
         </p>
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
         <button class="btn btn-success" onclick="addQuickTask()">Agregar y Ejecutar</button>
-        <ul id="taskList"></ul>
+        <ul id="taskList" style="margin-top: 10px;"></ul>
       </div>
     </div>
 
@@ -267,6 +426,30 @@
       <div class="card">
         <h2>🆘 Auxilio ante Impulsos o Vicios</h2>
         <button class="btn btn-sos" onclick="toggleSOS()">¡Tengo un impulso ahora!</button>
+        <div id="sosBox" class="sos-box">
+          <select id="breathingTechnique" onchange="changeBreathingPattern()" style="margin-bottom: 8px;">
+            <option value="4-7-8">4-7-8 (Relajación profunda)</option>
+            <option value="box">Cuadrada 4-4-4-4 (Calma rápida)</option>
+          </select>
+          <div class="breathing-circle"></div>
+          <p id="distractionTask"><strong>Reto de Enfoque:</strong> Cuenta de 100 hacia atrás restando de 7 en 7.</p>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid var(--success);">
+        <h2>🗣️ Eco Mental (Distracción por Voz)</h2>
+        <div id="ecoWordDisplay" style="font-size: 1.4rem; font-weight: bold; text-align: center; color: var(--primary); margin: 15px 0; min-height: 45px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.03); border-radius: 8px;">
+          Pulsa "Iniciar Ejercicio"
+        </div>
+        <button class="btn btn-success" id="ecoBtn" onclick="toggleEcoMental()">Iniciar Ejercicio de Voz (30s)</button>
+      </div>
+
+      <div class="card">
+        <h2>⚠️ Registro de Desencadenante (Trigger)</h2>
+        <input type="text" id="triggerPlace" placeholder="¿Dónde estás o qué hacías?">
+        <input type="text" id="triggerEmotion" placeholder="¿Qué emoción sentías previo al impulso?">
+        <button class="btn btn-warning" onclick="saveTrigger()">Guardar Registro</button>
+        <ul id="triggerList" style="margin-top: 10px;"></ul>
       </div>
     </div>
 
@@ -277,17 +460,33 @@
         <select id="freqSelect">
           <option value="432">432 Hz - Armonía Natural</option>
           <option value="528">528 Hz - Transformación</option>
+          <option value="963">963 Hz - Meditación Profunda</option>
+          <option value="alpha">Ondas Alfa (10 Hz) - Calma</option>
+          <option value="theta">Ondas Theta (6 Hz) - Relax</option>
         </select>
         <select id="meditationTimer" style="margin-top: 8px;">
           <option value="5">5 Minutos</option>
           <option value="10">10 Minutos</option>
+          <option value="15">15 Minutos</option>
         </select>
         <button class="btn btn-purple" id="freqBtn" onclick="toggleFrequency()" style="margin-top: 8px;">Iniciar Frecuencia</button>
+      </div>
+
+      <div class="card">
+        <h2>📖 Diario Íntimo de Proceso Personal</h2>
+        <textarea id="journalEntry" placeholder="Escribe libremente aquí..."></textarea>
+        <button class="btn btn-success" onclick="saveJournal()">Guardar Entrada</button>
+        <ul id="journalList" style="margin-top: 10px;"></ul>
       </div>
     </div>
 
     <!-- PESTAÑA 5: PROGRESO -->
     <div id="tab-stats" class="tab-content">
+      <div class="card">
+        <h2>🔥 Contadores Independientes de Rachas</h2>
+        <div id="independentStreaksContainer"></div>
+      </div>
+
       <div class="card">
         <h2>⚙️ Gestión y Respaldo de Datos</h2>
         <div id="exportContainer" style="margin-bottom: 8px;"></div>
@@ -311,9 +510,15 @@
     const CONFIG = {
       WORK_MINUTES: 25,
       KEYS: {
-        GRATITUDE: 'rf_gratitude_list',
+        KAIZEN_GOAL: 'rf_kaizen_goal',
+        KAIZEN_LAST_DONE: 'rf_kaizen_last_done',
         TASKS: 'rf_quick_tasks',
-        DARK_MODE: 'rf_dark_mode'
+        GRATITUDE: 'rf_gratitude_list',
+        FROG: 'rf_frog_task',
+        TRIGGERS: 'rf_triggers_list',
+        JOURNAL: 'rf_journal_entries',
+        DARK_MODE: 'rf_dark_mode',
+        FOUNDER_COUNTER: 'rf_founder_counter'
       }
     };
 
@@ -322,6 +527,9 @@
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       element.classList.add('active');
+      if(tabId === 'tab-stats') {
+        renderIndependentStreaks();
+      }
     }
 
     function toggleDarkMode() {
@@ -330,7 +538,65 @@
       document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
     }
 
-    // --- REGLA DE LOS 2 MINUTOS (FILTRADO DE 3 DÍAS Y BORRADO) ---
+    function loadDarkMode() {
+      const savedDark = localStorage.getItem(CONFIG.KEYS.DARK_MODE) === 'true';
+      if (savedDark) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('themeBtn').textContent = '☀️';
+      }
+    }
+
+    // --- FRECUENCIAS CON PARADA AUTOMÁTICA ---
+    let audioCtxFreq = null, osc1 = null, isPlayingFreq = false, freqTimeout = null;
+
+    function toggleFrequency() {
+      const btn = document.getElementById('freqBtn');
+      const val = document.getElementById('freqSelect').value;
+      const minutesSelect = document.getElementById('meditationTimer');
+      const minutes = minutesSelect ? parseInt(minutesSelect.value, 10) : 5;
+
+      if (!isPlayingFreq) {
+        audioCtxFreq = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtxFreq.state === 'suspended') audioCtxFreq.resume();
+        const masterGain = audioCtxFreq.createGain(); 
+        masterGain.gain.value = 0.1;
+        
+        osc1 = audioCtxFreq.createOscillator(); 
+        osc1.type = 'sine';
+        osc1.frequency.value = val === '528' ? 528 : (val === '963' ? 963 : (val === 'alpha' ? 10 : (val === 'theta' ? 6 : 432)));
+
+        osc1.connect(masterGain); 
+        masterGain.connect(audioCtxFreq.destination); 
+        osc1.start();
+        
+        isPlayingFreq = true; 
+        btn.textContent = "Detener Frecuencia"; 
+        btn.style.backgroundColor = "#c97a63";
+
+        const durationMs = minutes * 60 * 1000;
+        freqTimeout = setTimeout(() => {
+          stopFrequency();
+          alert(`¡Frecuencia de ${minutes} minutos completada!`);
+        }, durationMs);
+
+      } else {
+        stopFrequency();
+      }
+    }
+
+    function stopFrequency() {
+      if (osc1) { try { osc1.stop(); } catch(e) {} }
+      if (audioCtxFreq && audioCtxFreq.state !== 'closed') { audioCtxFreq.close(); }
+      if (freqTimeout) { clearTimeout(freqTimeout); freqTimeout = null; }
+      isPlayingFreq = false;
+      const btn = document.getElementById('freqBtn');
+      if (btn) {
+        btn.textContent = "Iniciar Frecuencia"; 
+        btn.style.backgroundColor = "var(--purple)";
+      }
+    }
+
+    // --- REGLA DE LOS 2 MINUTOS (3 DÍAS + BORRADO) ---
     function loadTasks() {
       const stored = localStorage.getItem(CONFIG.KEYS.TASKS);
       const tasks = stored ? JSON.parse(stored) : [];
@@ -341,9 +607,8 @@
       const now = new Date().getTime();
       const threeDaysMs = 3 * 24 * 60 * 60 * 1000;
 
-      // Filtrar tareas con menos o igual a 3 días de antigüedad
       const validTasks = tasks.filter(item => {
-        if (typeof item === 'string') return true; // Compatibilidad con textos antiguos
+        if (typeof item === 'string') return true; 
         return (now - item.timestamp) <= threeDaysMs;
       });
 
@@ -354,9 +619,6 @@
         let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
 
         const li = document.createElement('li');
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
         li.innerHTML = `
           <span>✓ ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
           <button class="journal-btn journal-btn-delete" onclick="deleteQuickTask(${index})">🗑️</button>
@@ -393,7 +655,7 @@
       loadTasks();
     }
 
-    // --- GESTIÓN DE GRATITUD (FILTRADO DE 3 DÍAS Y BORRADO) ---
+    // --- GRATITUD (3 DÍAS + BORRADO) ---
     function loadGratitude() {
       const stored = localStorage.getItem(CONFIG.KEYS.GRATITUDE);
       const items = stored ? JSON.parse(stored) : [];
@@ -416,9 +678,6 @@
         let dateStr = typeof item === 'string' ? '' : ` (${item.date})`;
 
         const li = document.createElement('li');
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
         li.innerHTML = `
           <span>🌸 ${text} <small style="color:var(--text-light);">${dateStr}</small></span>
           <button class="journal-btn journal-btn-delete" onclick="deleteGratitude(${index})">🗑️</button>
@@ -455,6 +714,91 @@
       loadGratitude();
     }
 
+    // --- OTRAS FUNCIONES AUXILIARES ---
+    const AFFIRMATIONS = [
+      "Tengo el poder de enfocar mi mente en lo que suma y construir paz hoy.",
+      "Cada pequeño paso fortalece mi disciplina y mi confianza."
+    ];
+    function newAffirmation() {
+      const idx = Math.floor(Math.random() * AFFIRMATIONS.length);
+      document.getElementById('affirmationBox').textContent = `"${AFFIRMATIONS[idx]}"`;
+    }
+
+    function saveFrog() {
+      const val = document.getElementById('frogInput').value.trim();
+      if (!val) return;
+      localStorage.setItem(CONFIG.KEYS.FROG, val); loadFrog();
+    }
+    function loadFrog() {
+      const saved = localStorage.getItem(CONFIG.KEYS.FROG);
+      if (saved) document.getElementById('frogStatus').textContent = `🐸 Tu Rana de hoy: "${saved}"`;
+    }
+
+    function completeKaizen() {
+      const text = document.getElementById('kaizenInput').value.trim();
+      if (!text) return;
+      localStorage.setItem(CONFIG.KEYS.KAIZEN_LAST_DONE, new Date().toDateString());
+      document.getElementById('kaizenStatus').style.display = 'block';
+      document.getElementById('kaizenStatus').textContent = '✨ ¡Micro-meta completada!';
+    }
+
+    function saveJournal() {
+      const textInput = document.getElementById('journalEntry');
+      const text = textInput.value.trim();
+      if (!text) return;
+      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
+      let entries = stored ? JSON.parse(stored) : [];
+      entries.unshift({ id: Date.now(), text: text, date: new Date().toLocaleString() });
+      localStorage.setItem(CONFIG.KEYS.JOURNAL, JSON.stringify(entries));
+      textInput.value = ''; loadJournal();
+    }
+    function loadJournal() {
+      const stored = localStorage.getItem(CONFIG.KEYS.JOURNAL);
+      const list = document.getElementById('journalList');
+      if (!list) return;
+      list.innerHTML = '';
+      const entries = stored ? JSON.parse(stored) : [];
+      entries.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>📝 <b>${item.date}:</b> ${item.text}</span>`;
+        list.appendChild(li);
+      });
+    }
+
+    function saveTrigger() {
+      const place = document.getElementById('triggerPlace').value.trim();
+      const emotion = document.getElementById('triggerEmotion').value.trim();
+      if (!place || !emotion) return;
+      const stored = localStorage.getItem(CONFIG.KEYS.TRIGGERS);
+      const triggers = stored ? JSON.parse(stored) : [];
+      triggers.unshift(`[${new Date().toLocaleDateString()}] Lugar: ${place} | Emoción: ${emotion}`);
+      localStorage.setItem(CONFIG.KEYS.TRIGGERS, JSON.stringify(triggers));
+      document.getElementById('triggerPlace').value = ''; document.getElementById('triggerEmotion').value = ''; loadTriggers();
+    }
+    function loadTriggers() {
+      const stored = localStorage.getItem(CONFIG.KEYS.TRIGGERS);
+      const triggers = stored ? JSON.parse(stored) : [];
+      const list = document.getElementById('triggerList');
+      if (!list) return;
+      list.innerHTML = '';
+      triggers.forEach(t => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>⚠️ ${t}</span>`;
+        list.appendChild(li);
+      });
+    }
+
+    function renderIndependentStreaks() {
+      const container = document.getElementById('independentStreaksContainer');
+      if(!container) return;
+      container.innerHTML = `
+        <div class="habit-streak-card">
+          <div class="habit-streak-title">🟢 Hábito Principal / General</div>
+          <div class="habit-streak-value">Activo</div>
+        </div>
+      `;
+    }
+
     function exportData() {
       try {
         const dataObj = {};
@@ -465,7 +809,6 @@
         const dataStr = JSON.stringify(dataObj, null, 2);
         const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
-
         const container = document.getElementById('exportContainer');
         container.innerHTML = '';
         const downloadLink = document.createElement('a');
@@ -477,7 +820,7 @@
         downloadLink.innerHTML = "📥 Pulsa aquí para descargar el archivo .json";
         container.appendChild(downloadLink);
       } catch (error) {
-        console.error("Error al exportar los datos:", error);
+        console.error("Error al exportar:", error);
       }
     }
 
@@ -485,9 +828,100 @@
       if (confirm('¿Borrar todos los datos de la app?')) { localStorage.clear(); location.reload(); }
     }
 
-    // Inicialización al arrancar
+    let timerInterval = null, timeLeft = CONFIG.WORK_MINUTES * 60;
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeLeft / 60), secs = timeLeft % 60;
+      document.getElementById('timer').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    function startTimer() {
+      if (timerInterval !== null) return;
+      timerInterval = setInterval(() => {
+        if (timeLeft > 0) { timeLeft--; updateTimerDisplay(); }
+        else { clearInterval(timerInterval); timerInterval = null; alert('¡Pomodoro cumplido!'); }
+      }, 1000);
+    }
+    function resetTimer() {
+      clearInterval(timerInterval); timerInterval = null;
+      timeLeft = CONFIG.WORK_MINUTES * 60; updateTimerDisplay();
+    }
+
+    function toggleSOS() {
+      const box = document.getElementById('sosBox');
+      box.style.display = box.style.display !== 'block' ? 'block' : 'none';
+    }
+
+    let ecoInterval = null;
+    const ecoWords = ["Inhala paz, exhala tensión", "Aquí y ahora estoy a salvo", "Este impulso pasará"];
+    function toggleEcoMental() {
+      const btn = document.getElementById('ecoBtn');
+      const display = document.getElementById('ecoWordDisplay');
+      if (ecoInterval) {
+        clearInterval(ecoInterval); ecoInterval = null;
+        display.textContent = "Ejercicio finalizado.";
+        btn.textContent = "Iniciar Ejercicio de Voz (30s)";
+        return;
+      }
+      let left = 30;
+      btn.textContent = "Detener Ejercicio";
+      ecoInterval = setInterval(() => {
+        left--;
+        if (left <= 0) {
+          clearInterval(ecoInterval); ecoInterval = null;
+          display.textContent = "¡Excelente trabajo! 🌟";
+          btn.textContent = "Iniciar Ejercicio de Voz (30s)";
+        } else if (left % 4 === 0) {
+          display.textContent = ecoWords[Math.floor(Math.random() * ecoWords.length)];
+        }
+      }, 1000);
+    }
+
+    function processEmotion() {
+      const val = document.getElementById('emotionSelect').value;
+      const resp = document.getElementById('emotionResponse');
+      if(!val) { resp.style.display = 'none'; return; }
+      document.getElementById('responseTitle').textContent = "Reencuadre sugerido";
+      document.getElementById('responseText').textContent = "El dolor o la duda de hoy es el suelo donde germina tu versión más fuerte.";
+      resp.style.display = 'block';
+    }
+
+    const FAQ_DATABASE = [
+      { question: "¿Por qué me pasa esto a mí?", answer: "Cada dificultad es un maestro para construir mayor resiliencia." },
+      { question: "¿Cómo calmar la ansiedad en menos de 2 minutos?", answer: "Aplica la respiración en la pestaña SOS." }
+    ];
+    function renderFAQ() {
+      const select = document.getElementById('faqSelect');
+      if(!select) return;
+      FAQ_DATABASE.forEach((item, index) => {
+        const opt = document.createElement('option');
+        opt.value = index; opt.textContent = item.question;
+        select.appendChild(opt);
+      });
+    }
+    function showFAQAnswer() {
+      const idx = document.getElementById('faqSelect').value;
+      const box = document.getElementById('faqResponseBox');
+      if(idx === "" || !FAQ_DATABASE[idx]) { box.style.display = 'none'; return; }
+      document.getElementById('faqResponseTitle').textContent = FAQ_DATABASE[idx].question;
+      document.getElementById('faqResponseText').textContent = FAQ_DATABASE[idx].answer;
+      box.style.display = 'block';
+    }
+
+    function enviarAlTablonDeTelegram() {
+      const tipo = document.getElementById('tipoAportacion').value;
+      const msg = document.getElementById('textoAportacion').value.trim();
+      if(!msg) return;
+      window.open(`https://t.me/ReenfoqueVital?text=${encodeURIComponent(`[${tipo}] ${msg}`)}`, '_blank');
+    }
+
+    // Inicialización general
+    loadDarkMode();
     loadGratitude();
     loadTasks();
+    loadFrog();
+    loadJournal();
+    loadTriggers();
+    renderFAQ();
+    updateTimerDisplay();
   </script>
 </body>
 </html>
