@@ -968,7 +968,7 @@
     let isUserPremium = localStorage.getItem(CONFIG.KEYS.IS_PREMIUM) === 'true';
     
    // INTEGRACIÓN OFICIAL DE ADSGRAM
-   const ADSGRAM_BLOCK_ID = "55290";[cite: 20]
+   const ADSGRAM_BLOCK_ID = "55290";
    const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
     ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
 
