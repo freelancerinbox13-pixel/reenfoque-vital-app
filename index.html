@@ -489,9 +489,11 @@
         <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.4; margin-bottom: 10px;">
           <strong>¿Para qué sirve?</strong> La mejora continua a través de micro-pasos tan ridículamente pequeños que tu cerebro no active resistencia ni miedo al fracaso. Ideal para superar la inercia inicial.
         </p>
-        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión...">
-        <button class="btn btn-kaizen" id="kaizenBtn" onclick="showRewardAd(completeKaizen)">¡Completar Micro-Meta!</button>
-        <div id="kaizenStatus" style="display:none; margin-top:8px; text-align:center; font-weight:bold; color:var(--warning);"></div>
+        <input type="text" id="kaizenInput" placeholder="Ej: Leer 1 página, hacer 1 flexión..." style="margin-bottom: 6px;">
+        <button class="btn btn-kaizen" id="kaizenBtn" onclick="saveKaizenGoal()" style="margin-bottom: 8px;">Guardar Micro-hábito</button>
+        <div id="kaizenDisplay" style="font-size: 0.9rem; margin-bottom: 8px; font-weight: bold; color: var(--primary);"></div>
+        <button class="btn btn-success" id="kaizenCompleteBtn" onclick="completeKaizenToday()" style="margin-bottom: 6px;">✅ ¡Hecho por hoy!</button>
+        <div id="kaizenStatus" style="font-size: 0.8rem; color: var(--success); font-weight: bold; text-align: center;"></div>
       </div>
 
       <!-- BLOQUE PUBLICITARIO NATIVO 1 (ENFOQUE) -->
