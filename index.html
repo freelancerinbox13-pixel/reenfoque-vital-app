@@ -497,6 +497,13 @@
           Estrategias milenarias aplicadas al dominio de los impulsos y el enfoque diario.
         </p>
 
+        <!-- MÓDULO INTEGRADO: EL ARTE DE LA GUERRA (7 TÁCTICAS) -->
+      <div class="card" style="margin-top: 20px; border-top: 4px solid var(--accent);">
+        <h2>⚔️ El Arte de la Guerra (Tácticas de Disciplina)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
+          Estrategias milenarias aplicadas al dominio de los impulsos y el enfoque diario.
+        </p>
+
         <!-- Táctica 1 -->
         <div class="habit-streak-card" style="margin-bottom: 12px;">
           <div class="habit-streak-title">🛡️ 1. Atacar por Sorpresa (Blindaje Nocturno)</div>
@@ -516,14 +523,56 @@
           <ul id="t2-list" style="margin-top: 10px;"></ul>
         </div>
 
+        <!-- Táctica 3 -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🗺️ 3. Elección de Terreno (Evaluación de Situación)</div>
+          <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 6px;">¿En qué clase de terreno te encuentras hoy?</p>
+          <select id="t3-select" style="margin-bottom:6px;">
+            <option value="Terreno de Dispersión">Terreno de Dispersión (Distracciones múltiples)</option>
+            <option value="Terreno Difícil">Terreno Difícil (Falta de energía / Cansancio)</option>
+            <option value="Terreno Clave">Terreno Clave (Punto de inflexión / Decisión importante)</option>
+            <option value="Terreno de Muerte">Terreno de Muerte (O lo haces o sufres consecuencias)</option>
+          </select>
+          <button class="btn btn-purple" style="margin-top: 6px;" onclick="saveSunTzuTerreno()">Fijar Estado del Terreno</button>
+          <div id="t3-status" style="display:none; margin-top:6px; font-size:0.85rem; font-weight:bold; color:var(--success);"></div>
+        </div>
+
+        <!-- Táctica 4 -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🌊 4. La Forma del Agua (Mínimo Irreducible)</div>
+          <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 6px;">Define tu versión mínima para días críticos:</p>
+          <input type="text" id="t4-habito" placeholder="Hábito o tarea clave (Ej: Estudiar / Entrenar)" style="margin-bottom:6px;">
+          <input type="text" id="t4-minima" placeholder="Versión mínima (Ej: Leer 1 página / 5 flexiones)" style="margin-bottom:6px;">
+          <button class="btn btn-success" style="margin-top: 6px;" onclick="saveSunTzuAgua()">Guardar Versión de Supervivencia</button>
+        </div>
+
         <!-- Táctica 5 -->
-        <div class="habit-streak-card">
-          <div class="habit-streak-title">📌 3. Dividir y Conquistar (Frentes Abiertos)</div>
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">📌 5. Dividir y Conquistar (Frentes Abiertos)</div>
           <input type="text" id="t5-frente" placeholder="Frente abierto" style="margin-bottom:6px;">
           <input type="text" id="t5-destino" placeholder="Plan de contención" style="margin-bottom:6px;">
           <button class="btn btn-success" style="margin-top: 6px;" onclick="addSunTzuFrente()">Añadir Frente</button>
           <ul id="t5-list" style="margin-top: 10px;"></ul>
         </div>
+
+        <!-- Táctica 6 -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">📜 6. El Manifiesto del General (Disciplina sin Juicio)</div>
+          <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 6px;">Si el ejército flaquea, reorganiza la tropa sin culpa:</p>
+          <textarea id="t6-input" placeholder="¿En qué flaqueaste hoy? Escríbelo..." style="margin-bottom:6px;"></textarea>
+          <button class="btn btn-kaizen" style="margin-top: 6px;" onclick="generarSunTzuDiscurso()">Emitir Orden del General</button>
+          <div id="t6-output" style="display:none; margin-top:8px; padding:10px; background:rgba(0,0,0,0.03); border-left:4px solid var(--accent); font-size:0.85rem; line-height:1.4;"></div>
+        </div>
+
+        <!-- Táctica 7 -->
+        <div class="habit-streak-card">
+          <div class="habit-streak-title">🔥 7. Quemar las Naves (Eliminar Salidas Traseras)</div>
+          <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 6px;">Asegúrate de no tener opción de retirada a viejos hábitos:</p>
+          <input type="text" id="t7-nave" placeholder="¿Qué 'salida trasera' vas a quemar hoy?" style="margin-bottom:6px;">
+          <button class="btn btn-danger" style="margin-top: 6px;" onclick="burnSunTzuNave()">¡Quemar las Naves!</button>
+          <div id="t7-status" style="display:none; margin-top:6px; font-size:0.85rem; font-weight:bold; color:var(--danger);">🔥 ¡Puente quemado! No hay opción de regreso.</div>
+        </div>
+      </div>
       </div>
       
     </div>
@@ -1215,11 +1264,11 @@
         renderIndependentStreaks();
       }
     }
-    // --- FUNCIONES MÓDULO: EL ARTE DE LA GUERRA ---
+    // --- LÓGICA COMPLETA: EL ARTE DE LA GUERRA ---
     function saveSunTzuTactic1() {
-      const l1 = document.getElementById('t1-line1').value;
-      const l2 = document.getElementById('t1-line2').value;
-      const l3 = document.getElementById('t1-line3').value;
+      const l1 = document.getElementById('t1-line1')?.value || '';
+      const l2 = document.getElementById('t1-line2')?.value || '';
+      const l3 = document.getElementById('t1-line3')?.value || '';
       localStorage.setItem(CONFIG.KEYS.ST_T1, JSON.stringify({l1, l2, l3}));
       alert('¡Estrategia nocturna sellada!');
     }
@@ -1237,9 +1286,9 @@
     }
 
     function addSunTzuEspia() {
-      const hora = document.getElementById('t2-hora').value;
-      const lugar = document.getElementById('t2-lugar').value;
-      const excusa = document.getElementById('t2-excusa').value;
+      const hora = document.getElementById('t2-hora')?.value;
+      const lugar = document.getElementById('t2-lugar')?.value;
+      const excusa = document.getElementById('t2-excusa')?.value;
       if(!hora || !lugar) { alert("Indica al menos la hora y el lugar."); return; }
       sunTzuEspiaLogs.unshift({hora, lugar, excusa});
       localStorage.setItem(CONFIG.KEYS.ST_T2, JSON.stringify(sunTzuEspiaLogs));
@@ -1256,20 +1305,22 @@
     }
 
     function saveSunTzuTerreno() {
-      const sel = document.getElementById('t3-select').value;
+      const sel = document.getElementById('t3-select')?.value;
+      if(!sel) return;
       localStorage.setItem(CONFIG.KEYS.ST_T3, sel);
       const status = document.getElementById('t3-status');
       if(status) {
         status.style.display = 'block';
-        status.textContent = '✅ Terreno modificado: ' + sel;
+        status.textContent = '✅ Terreno fijado: ' + sel;
       }
     }
 
     function saveSunTzuAgua() {
-      const habito = document.getElementById('t4-habito').value;
-      const minima = document.getElementById('t4-minima').value;
+      const habito = document.getElementById('t4-habito')?.value;
+      const minima = document.getElementById('t4-minima')?.value;
+      if(!habito || !minima) { alert("Rellena ambos campos del protocolo de agua."); return; }
       localStorage.setItem(CONFIG.KEYS.ST_T4, JSON.stringify({habito, minima}));
-      alert('¡Protocolo de agua guardado para días difíciles!');
+      alert('¡Protocolo del Agua guardado para días difíciles!');
     }
 
     let sunTzuFrentes = JSON.parse(localStorage.getItem(CONFIG.KEYS.ST_T5) || '[]');
@@ -1285,8 +1336,8 @@
     }
 
     function addSunTzuFrente() {
-      const frente = document.getElementById('t5-frente').value;
-      const destino = document.getElementById('t5-destino').value;
+      const frente = document.getElementById('t5-frente')?.value;
+      const destino = document.getElementById('t5-destino')?.value;
       if(!frente) { alert("Escribe el frente abierto."); return; }
       sunTzuFrentes.push({frente, destino});
       localStorage.setItem(CONFIG.KEYS.ST_T5, JSON.stringify(sunTzuFrentes));
@@ -1301,17 +1352,17 @@
     }
 
     function generarSunTzuDiscurso() {
-      const texto = document.getElementById('t6-input').value;
+      const texto = document.getElementById('t6-input')?.value;
       const output = document.getElementById('t6-output');
-      if(!texto) { alert("Escribe en qué fallaste."); return; }
+      if(!texto) { alert("Escribe en qué flaqueaste para que el general emita su orden."); return; }
       output.style.display = 'block';
-      output.innerHTML = `🛡️ <strong>ORDEN DEL GENERAL:</strong><br>
-      1. <em>Humanidad:</em> Comprendo que hayas flaqueado ("${texto}"). Le pasa a cualquier soldado en campaña.<br>
-      2. <em>Hierro:</em> Mañana a la hora prevista, el ejército vuelve al campo. No hay negociaciones ni excusas.`;
+      output.innerHTML = `🛡️ <strong>ORDEN DEL GENERAL:</strong><br>` +
+        `1. <em>Humanidad:</em> Comprendo que hayas flaqueado ("${texto}"). El cansancio es real, pero la guerra continúa.<br>` +
+        `2. <em>Hierro:</em> Mañana a la hora prevista, el ejército vuelve al campo de batalla. Cero negociaciones ni excusas.`;
     }
 
     function burnSunTzuNave() {
-      const nave = document.getElementById('t7-nave').value;
+      const nave = document.getElementById('t7-nave')?.value;
       if(!nave) { alert("Indica qué salida trasera vas a quemar."); return; }
       localStorage.setItem(CONFIG.KEYS.ST_T7, nave);
       const status = document.getElementById('t7-status');
@@ -1922,7 +1973,8 @@
     checkAdsVisibility();
     checkAndUnlockBadges();
     loadTransformationData();
-    loadYearlyData();renderSunTzuEspia();
+    loadYearlyData();
+    renderSunTzuEspia();
     renderSunTzuFrentes();
     
   </script>
