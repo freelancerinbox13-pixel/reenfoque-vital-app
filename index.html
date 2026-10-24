@@ -490,7 +490,42 @@
         <input type="text" id="quickTaskInput" placeholder="Tarea rápida de menos de 2 min...">
         <button class="btn btn-success" onclick="addQuickTask()">Agregar y Ejecutar</button>
         <ul id="taskList" style="margin-top: 10px;"></ul>
+      </div><!-- MÓDULO INTEGRADO: EL ARTE DE LA GUERRA -->
+      <div class="card" style="margin-top: 20px; border-top: 4px solid var(--accent);">
+        <h2>⚔️ El Arte de la Guerra (Tácticas de Disciplina)</h2>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 14px;">
+          Estrategias milenarias aplicadas al dominio de los impulsos y el enfoque diario.
+        </p>
+
+        <!-- Táctica 1 -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🛡️ 1. Atacar por Sorpresa (Blindaje Nocturno)</div>
+          <input type="text" id="t1-line1" placeholder="Regla 1 (Ej: Dejar móvil fuera)">
+          <input type="text" id="t1-line2" placeholder="Regla 2 (Ej: Apagar pantallas a las 22:00)">
+          <input type="text" id="t1-line3" placeholder="Regla 3 (Ej: Leer 10 páginas)">
+          <button class="btn btn-success" style="margin-top: 6px;" onclick="saveSunTzuTactic1()">Sellar Estrategia</button>
+        </div>
+
+        <!-- Táctica 2 -->
+        <div class="habit-streak-card" style="margin-bottom: 12px;">
+          <div class="habit-streak-title">🕵️ 2. Conoce al Enemigo (Espionaje de Excusas)</div>
+          <input type="text" id="t2-hora" placeholder="Hora aproximada (Ej: 23:30)" style="margin-bottom:6px;">
+          <input type="text" id="t2-lugar" placeholder="Lugar o situación" style="margin-bottom:6px;">
+          <input type="text" id="t2-excusa" placeholder="Excusa mental" style="margin-bottom:6px;">
+          <button class="btn btn-purple" style="margin-top: 6px;" onclick="addSunTzuEspia()">Registrar Espionaje</button>
+          <ul id="t2-list" style="margin-top: 10px;"></ul>
+        </div>
+
+        <!-- Táctica 5 -->
+        <div class="habit-streak-card">
+          <div class="habit-streak-title">📌 3. Dividir y Conquistar (Frentes Abiertos)</div>
+          <input type="text" id="t5-frente" placeholder="Frente abierto" style="margin-bottom:6px;">
+          <input type="text" id="t5-destino" placeholder="Plan de contención" style="margin-bottom:6px;">
+          <button class="btn btn-success" style="margin-top: 6px;" onclick="addSunTzuFrente()">Añadir Frente</button>
+          <ul id="t5-list" style="margin-top: 10px;"></ul>
+        </div>
       </div>
+      
     </div>
 
     <!-- PESTAÑA 3: SOS -->
