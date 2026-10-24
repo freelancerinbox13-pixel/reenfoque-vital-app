@@ -496,8 +496,7 @@
       </div>
 
       <!-- BLOQUE PUBLICITARIO NATIVO 1 (ENFOQUE) -->
-      <div class="ad-native-card" id="adContainerFocus">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+      <div class="ad-native-card" id="adContainerFocus"></div>
       </div>
 
       <!-- REGLA DE LOS 2 MINUTOS -->
@@ -745,8 +744,7 @@
       </div>
 
       <!-- BLOQUE PUBLICITARIO NATIVO 2 (RELAX) -->
-      <div class="ad-native-card" id="adContainerRelax">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+      <div class="ad-native-card" id="adContainerRelax"></div>
       </div>
 
       <div class="card">
@@ -829,8 +827,7 @@
       </div>
 
       <!-- BANNER PUBLICITARIO NATIVO 3 (TRANSFORMACIÓN) -->
-      <div class="ad-native-card" id="adContainerTransformation">
-        <p style="margin: 0; font-size: 0.8rem; color: var(--text-light);">📢 Espacio Patrocinado / Anuncio AdsGram</p>
+      <div class="ad-native-card" id="adContainerTransformation"></div>
       </div>
 
       <!-- FASE 0: LIMPIEZA -->
@@ -970,15 +967,29 @@
 
     let isUserPremium = localStorage.getItem(CONFIG.KEYS.IS_PREMIUM) === 'true';
     
-    // INTEGRACIÓN OFICIAL DE ADSGRAM
-    const ADSGRAM_BLOCK_ID = "55290"; 
-    const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
-      ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
+   // INTEGRACIÓN OFICIAL DE ADSGRAM
+   const ADSGRAM_BLOCK_ID = "55290";[cite: 20]
+   const AdController = (window.Adsgram && ADSGRAM_BLOCK_ID !== "TU_BLOCK_ID_AQUI") 
+    ? window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }) : null;
 
-    if (window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready();
-      window.Telegram.WebApp.expand();
-    }
+   // FUNCIÓN PARA MOSTRAR EL ANUNCIO EN EL CONTENEDOR
+   function mostrarAnuncioAdsgram() {
+       if (AdController) {
+           AdController.show().then((result) => {
+               console.log("Anuncio mostrado correctamente", result);
+           }).catch((result) => {
+               console.log("Error al mostrar el anuncio", result.description);
+           });
+       }
+   }
+
+   // Ejecutar cuando la aplicación cargue por completo
+   document.addEventListener("DOMContentLoaded", () => {
+       // Llamamos a la función para que el anuncio aparezca en el contenedor #adContainerTablon
+       setTimeout(() => {
+        mostrarAnuncioAdsgram();
+       }, 1000); // Pequeño retardo de 1 segundo para asegurar que el DOM cargó
+   });
 
     // CONTROL DE MONETIZACIÓN Y VISIBILIDAD DE ANUNCIOS
     function checkAdsVisibility() {
