@@ -830,7 +830,14 @@
         JOURNAL: 'rf_journal_entries',
         IS_PREMIUM: 'rf_is_premium',
         DARK_MODE: 'rf_dark_mode',
-        FOUNDER_COUNTER: 'rf_founder_counter'
+        FOUNDER_COUNTER: 'rf_founder_counter',
+        ST_T1: 'rf_st_t1',
+        ST_T2: 'rf_st_t2',
+        ST_T3: 'rf_st_t3',
+        ST_T4: 'rf_st_t4',
+        ST_T5: 'rf_st_t5',
+        ST_T7: 'rf_st_t7'
+        
       }
     };
 
@@ -1172,6 +1179,108 @@
         localStorage.removeItem(storageKey);
         renderIndependentStreaks();
       }
+    }
+    // --- FUNCIONES MÓDULO: EL ARTE DE LA GUERRA ---
+    function saveSunTzuTactic1() {
+      const l1 = document.getElementById('t1-line1').value;
+      const l2 = document.getElementById('t1-line2').value;
+      const l3 = document.getElementById('t1-line3').value;
+      localStorage.setItem(CONFIG.KEYS.ST_T1, JSON.stringify({l1, l2, l3}));
+      alert('¡Estrategia nocturna sellada!');
+    }
+
+    let sunTzuEspiaLogs = JSON.parse(localStorage.getItem(CONFIG.KEYS.ST_T2) || '[]');
+    function renderSunTzuEspia() {
+      const list = document.getElementById('t2-list');
+      if (!list) return;
+      list.innerHTML = sunTzuEspiaLogs.map((log, idx) => `
+        <li style="font-size: 0.85rem; padding: 6px 0;">
+          <span>⚔️ <strong>[${log.hora}]</strong> ${log.lugar} — <em>"${log.excusa}"</em></span>
+          <button class="journal-btn journal-btn-delete" onclick="delSunTzuEspia(${idx})">🗑️</button>
+        </li>
+      `).join('');
+    }
+
+    function addSunTzuEspia() {
+      const hora = document.getElementById('t2-hora').value;
+      const lugar = document.getElementById('t2-lugar').value;
+      const excusa = document.getElementById('t2-excusa').value;
+      if(!hora || !lugar) { alert("Indica al menos la hora y el lugar."); return; }
+      sunTzuEspiaLogs.unshift({hora, lugar, excusa});
+      localStorage.setItem(CONFIG.KEYS.ST_T2, JSON.stringify(sunTzuEspiaLogs));
+      document.getElementById('t2-hora').value = '';
+      document.getElementById('t2-lugar').value = '';
+      document.getElementById('t2-excusa').value = '';
+      renderSunTzuEspia();
+    }
+
+    function delSunTzuEspia(idx) {
+      sunTzuEspiaLogs.splice(idx, 1);
+      localStorage.setItem(CONFIG.KEYS.ST_T2, JSON.stringify(sunTzuEspiaLogs));
+      renderSunTzuEspia();
+    }
+
+    function saveSunTzuTerreno() {
+      const sel = document.getElementById('t3-select').value;
+      localStorage.setItem(CONFIG.KEYS.ST_T3, sel);
+      const status = document.getElementById('t3-status');
+      if(status) {
+        status.style.display = 'block';
+        status.textContent = '✅ Terreno modificado: ' + sel;
+      }
+    }
+
+    function saveSunTzuAgua() {
+      const habito = document.getElementById('t4-habito').value;
+      const minima = document.getElementById('t4-minima').value;
+      localStorage.setItem(CONFIG.KEYS.ST_T4, JSON.stringify({habito, minima}));
+      alert('¡Protocolo de agua guardado para días difíciles!');
+    }
+
+    let sunTzuFrentes = JSON.parse(localStorage.getItem(CONFIG.KEYS.ST_T5) || '[]');
+    function renderSunTzuFrentes() {
+      const list = document.getElementById('t5-list');
+      if (!list) return;
+      list.innerHTML = sunTzuFrentes.map((f, idx) => `
+        <li style="font-size: 0.85rem; padding: 6px 0;">
+          <span>📌 <strong>${f.frente}</strong> → <span style="color:var(--accent);">${f.destino}</span></span>
+          <button class="journal-btn journal-btn-delete" onclick="delSunTzuFrente(${idx})">🗑️</button>
+        </li>
+      `).join('');
+    }
+
+    function addSunTzuFrente() {
+      const frente = document.getElementById('t5-frente').value;
+      const destino = document.getElementById('t5-destino').value;
+      if(!frente) { alert("Escribe el frente abierto."); return; }
+      sunTzuFrentes.push({frente, destino});
+      localStorage.setItem(CONFIG.KEYS.ST_T5, JSON.stringify(sunTzuFrentes));
+      document.getElementById('t5-frente').value = '';
+      renderSunTzuFrentes();
+    }
+
+    function delSunTzuFrente(idx) {
+      sunTzuFrentes.splice(idx, 1);
+      localStorage.setItem(CONFIG.KEYS.ST_T5, JSON.stringify(sunTzuFrentes));
+      renderSunTzuFrentes();
+    }
+
+    function generarSunTzuDiscurso() {
+      const texto = document.getElementById('t6-input').value;
+      const output = document.getElementById('t6-output');
+      if(!texto) { alert("Escribe en qué fallaste."); return; }
+      output.style.display = 'block';
+      output.innerHTML = `🛡️ <strong>ORDEN DEL GENERAL:</strong><br>
+      1. <em>Humanidad:</em> Comprendo que hayas flaqueado ("${texto}"). Le pasa a cualquier soldado en campaña.<br>
+      2. <em>Hierro:</em> Mañana a la hora prevista, el ejército vuelve al campo. No hay negociaciones ni excusas.`;
+    }
+
+    function burnSunTzuNave() {
+      const nave = document.getElementById('t7-nave').value;
+      if(!nave) { alert("Indica qué salida trasera vas a quemar."); return; }
+      localStorage.setItem(CONFIG.KEYS.ST_T7, nave);
+      const status = document.getElementById('t7-status');
+      if(status) { status.style.display = 'block'; }
     }
 
     let audioCtxNoise = null, noiseSource = null, isPlayingNoise = false;
@@ -1778,7 +1887,9 @@
     checkAdsVisibility();
     checkAndUnlockBadges();
     loadTransformationData();
-    loadYearlyData();
+    loadYearlyData();renderSunTzuEspia();
+    renderSunTzuFrentes();
+    
   </script>
 </body>
 </html>
